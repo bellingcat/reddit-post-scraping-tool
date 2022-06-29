@@ -11,7 +11,7 @@ cd reddit-post-scraping-tool
 
 ## Usage
 ```
-python reddithposthscrapinghtool.py --keyword [keyword] --subreddit [subreddit]
+python reddit-post-scraping-tool.py --keyword [keyword] --subreddit [subreddit]
 ```
 
 ## Optional arguments
@@ -20,5 +20,3 @@ python reddithposthscrapinghtool.py --keyword [keyword] --subreddit [subreddit]
 | -l/--listing | LISTING     | [controversial, hot, best, new, rising]  |  listing: controversial, hot, best, new, rising (default: top)  |
 | -c/--limit   | NUMBER      | 1-100      |  results limit (default: 10)|
 | -t/--timeframe| TIMEFRAME  | [hour, day, week, month, year]           |  timeframe: hour, day, week, month, year (default: all) |
-
-Happy hunting!✌🏾😎
