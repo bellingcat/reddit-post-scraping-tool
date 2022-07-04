@@ -11,7 +11,7 @@ cd reddit-post-scraping-tool
 
 ## Usage
 ```
-python reddit-post-scraping-tool.py --keyword [keyword] --subreddit [subreddit]
+python reddit-post-scraping-tool.py --keyword [keyword] --subreddit [subreddit name (without 'r/')]
 ```
 
 ## Optional arguments
