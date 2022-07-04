@@ -1,3 +1,5 @@
+![IMG_20220705_005633](https://user-images.githubusercontent.com/74001397/177223778-7c4cba1b-d97a-47f6-8356-c6c3b245f9fd.jpg)
+
 Given a subreddit name and a keyword, this script will return all posts from a specified listing (default is 'top') that contain the provided keyword.
 
 ## Installation
