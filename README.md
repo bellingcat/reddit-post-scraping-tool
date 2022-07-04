@@ -1,4 +1,4 @@
-Given a subreddit name and a keyword, this script will return all top (by default) posts that contain the specified word.
+Given a subreddit name and a keyword, this script will return all posts from a specified listing (default is 'top') that contain the provided keyword.
 
 ## Installation
 ```
