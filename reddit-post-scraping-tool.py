@@ -56,11 +56,11 @@ class postScraper:
                      
         for key, value in post_data.items():
             print(f"    ├─ {key}: {value}")
-        print(f"    └╼ Body: {post['data']['selftext']}\n")
+        print(post['data']['selftext']+"\n")
         
 
 # Parsing command line arguments                    
-parser = argparse.ArgumentParser(description=f'Written by Richard Mwewa | https://about.me/rly0nheart', epilog=f'Given a subreddit name and a keyword, this script will return all top.(by default) posts that contain the specified word.')
+parser = argparse.ArgumentParser(description=f'reddit-post-scraping-tool — by Richard Mwewa | https://about.me/rly0nheart', epilog=f'Given a subreddit name and a keyword, this script will return all top (by default) posts that contain the specified word.')
 parser.add_argument('-k','--keyword',help='kewyword', required = True)
 parser.add_argument('-s','--subreddit',help='subreddit', required = True)
 parser.add_argument('-c','--limit',help='results limit (1-100) (default: %(default)s)', default=10, type=int)
@@ -68,8 +68,8 @@ parser.add_argument('-l', '--listing', default='top', const='top', nargs='?', ch
 parser.add_argument('-t','--timeframe', default='all', const='all', nargs='?', choices=['hour', 'day', 'week', 'month', 'year'], help='timeframe: hour, day, week, month, year (default: %(default)s)')
 args = parser.parse_args()
 start_time = datetime.now()
-
 logging.basicConfig(format=f'[%(asctime)s] %(message)s', datefmt=f'%H:%M:%S%p', level=logging.DEBUG)
+
 if __name__ == '__main__':
     try:
     	postScraper(args).Start()
@@ -80,4 +80,4 @@ if __name__ == '__main__':
     except Exception as e:
         logging.error(f'An error occured: {e}')
     	
-logging.info(f'Finished in {datetime.now()-start_time}s.')
+logging.info(f'Finished in {datetime.now()-start_time} seconds.')
