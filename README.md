@@ -2,18 +2,25 @@
 
 Given a subreddit name and a keyword, this script will return all posts from a specified listing (default is 'top') that contain the provided keyword.
 
-## Installation
+# Installation
+**1. Clone the repo**
 ```
 git clone https://github.com/rly0nheart/reddit-post-scraping-tool.git
 ```
 
+**2. Move to reddit-post-scraping-tool directory**
 ```
 cd reddit-post-scraping-tool
 ```
 
-## Usage
+**3. Install dependencies**
 ```
-python reddit-post-scraping-tool.py --keyword [keyword] --subreddit [subreddit name (without 'r/')]
+pip3 install -r requirements.txt
+```
+
+# Usage
+```
+python3 reddit-post-scraping-tool.py --keyword [keyword] --subreddit [subreddit name (without 'r/')]
 ```
 
 ## Optional arguments
