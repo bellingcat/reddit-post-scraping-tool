@@ -1,9 +1,12 @@
 import logging
 import argparse
 import requests
+from rich.tree import Tree
 from datetime import datetime
+from rich import print as xprint
 
-class postScraper:
+
+class RedditPostScraper:
     def __init__(self, args):
         self.session = requests.session()
         self.session.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15'}
@@ -14,8 +17,7 @@ class postScraper:
         for post in response['data']['children']:
             if args.keyword.lower() in post['data']['selftext'] or args.keyword.lower() in post['data']['title']:
                 found_posts += 1
-                print(f'\n\n[+] [post: {total_posts}] \'{args.keyword}\' found:')
-                self.getPosts(post)
+                self.get_posts(post)
 
         logging.info(f"Keyword ('{args.keyword}') was found in {found_posts}/{len(response['data']['children'])} {args.listing} posts from r/{args.subreddit}.")
                 
@@ -28,7 +30,6 @@ class postScraper:
                      'Visibility': post['data']['subreddit_type'],
                      #'Author': post["data"]["author_fullname"],
                      'Thumbnail': post["data"]["thumbnail"],
-                     'Title': post["data"]["title"],
                      #'Flair': post["data"]["link_flair_text"],
                      'NSFW': post['data']['over_18'],
                      'Gilded': post['data']['gilded'],
@@ -45,8 +46,10 @@ class postScraper:
                      'Approved at': post['data']['approved_at_utc'],
                      'Approved by': post['data']['approved_by'],} 
                      
+        post_tree = Tree("\n" + post['data']['title'])
         for post_key, post_value in post_data.items():
-            print(f"    ├─ {post_key}: {post_value}")
+            post_tree.add(f"{post_key}: {post_value}")
+        xprint(post_tree)
         print(post['data']['selftext']+"\n")
         
 
@@ -63,8 +66,8 @@ logging.basicConfig(format=f'[%(asctime)s] %(message)s', datefmt=f'%H:%M:%S%p', 
 
 if __name__ == '__main__':
     try:
-    	postScraper(args).start()
-    
+        RedditPostScraper(args).start()
+        
     except KeyboardInterrupt:
         logging.warning(f'Process interrupted with (Ctrl+C).')
     	
