@@ -21,16 +21,18 @@ pip3 install -r requirements.txt
 
 # Windows GUI
 ## Prerequisites
-* .NET 6.0 or later
+* **.NET 6.0 or later**
 
-**1.** Download the GUI from the releases page
+### 1. Download the GUI from the releases page
+
 You can download the latest release of the gui from [here](https://github.com/bellingcat/octosuite/releases/latest)
 
 
-**2.** Extract
+### 2. Extract the downloaded `.zip`
 ![Screenshot_20230210_181651](https://user-images.githubusercontent.com/74001397/218141653-991a91cd-93d5-4640-b2f2-37d29e6a9c62.png)
 
-**3.** Run the binary
+### 3. Run the binary
+
 Once extracted, you can then run the program by double clicking on a binary named `RPST.exe`
 ![Screenshot_20230210_181933](https://user-images.githubusercontent.com/74001397/218142422-70f19a0a-db39-42ee-8ad4-22fe380e249b.png)
 
