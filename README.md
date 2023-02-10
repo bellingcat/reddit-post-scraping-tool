@@ -19,6 +19,19 @@ cd reddit-post-scraping-tool
 pip3 install -r requirements.txt
 ```
 
+# Usage
+
+```
+python3 reddit-post-scraping-tool.py --keyword [keyword] --subreddit [subreddit name (without 'r/')]
+```
+
+## Optional arguments
+| Option       | Argument    | Choices    | Usage     |
+| -------------|:-----------:|-----------:|:---------:|
+| -l/--listing | LISTING     | [controversial, hot, best, new, rising]  |  listing: controversial, hot, best, new, rising (default: top)  |
+| -c/--limit   | NUMBER      | 1-100      |  results limit (default: 10)|
+| -t/--timeframe| TIMEFRAME  | [hour, day, week, month, year]           |  timeframe: hour, day, week, month, year (default: all) |
+
 # Windows GUI
 ## Prerequisites
 * **.NET 6.0 or later**
@@ -37,17 +50,3 @@ Once extracted, you can then run the program by double clicking on a binary name
 ![Screenshot_20230210_181933](https://user-images.githubusercontent.com/74001397/218142422-70f19a0a-db39-42ee-8ad4-22fe380e249b.png)
 
 ![Screenshot_20230210_182210](https://user-images.githubusercontent.com/74001397/218142782-0a9ca4fb-7609-4855-a96b-c58885161166.png)
-
-
-# Usage
-
-```
-python3 reddit-post-scraping-tool.py --keyword [keyword] --subreddit [subreddit name (without 'r/')]
-```
-
-## Optional arguments
-| Option       | Argument    | Choices    | Usage     |
-| -------------|:-----------:|-----------:|:---------:|
-| -l/--listing | LISTING     | [controversial, hot, best, new, rising]  |  listing: controversial, hot, best, new, rising (default: top)  |
-| -c/--limit   | NUMBER      | 1-100      |  results limit (default: 10)|
-| -t/--timeframe| TIMEFRAME  | [hour, day, week, month, year]           |  timeframe: hour, day, week, month, year (default: all) |
