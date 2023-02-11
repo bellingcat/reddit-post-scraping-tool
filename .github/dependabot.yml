@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: nuget
     schedule:
       interval: "daily"
-    directory: "Reddit Post Scraping Tool"
+    directory: "/"
     schedule-expression: "cron(0 0 * * ? *)"
     label: "nuget"
     authors:
