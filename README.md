@@ -5,12 +5,12 @@ Given a subreddit name and a keyword, this script will return all posts from a s
 ![Screenshot_20230210_193329](https://user-images.githubusercontent.com/74001397/218158084-9295abb7-df33-4f86-8df8-e109cac7cde6.png)
 
 
-# Features
+# Features (GUI)
 - [x] Auto dark mode from 6pm - 6am
 - [x] Saves results to a JSON
 - [x] Other features coming soon...
 
-# TODO
+# TODO (GUI)
 - [x] Make it a stand alone executable
 - [x] Add comments to the code 😆
 
