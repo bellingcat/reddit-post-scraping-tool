@@ -8,18 +8,11 @@ updates:
   - package-ecosystem: nuget
     schedule:
       interval: "daily"
-    directory: "/Reddit Post Scraping Tool"
-    schedule-expression: "cron(0 0 * * ? *)"
-    label: "nuget"
-    authors:
-      - "dependabot[bot]"
+    directory: "Reddit Post Scraping Tool"
     ignore:
       - "Newtonsoft.Json"
   - package-ecosystem: pip
     schedule:
       interval: "daily"
-    directory: "reddit_post_scraping_tool"
-    schedule-expression: "cron(0 0 * * ? *)"
-    label: "pip"
-    authors:
-      - "dependabot[bot]"
+      directory: "reddit_post_scraping_tool"
+    
