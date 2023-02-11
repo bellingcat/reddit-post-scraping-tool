@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: nuget
     schedule:
       interval: "daily"
-    directory: "reddit-post-scraping-tool/Reddit Post Scraping Tool"
+    directory: "/Reddit Post Scraping Tool"
     schedule-expression: "cron(0 0 * * ? *)"
     label: "nuget"
     authors:
@@ -18,7 +18,7 @@ updates:
   - package-ecosystem: pip
     schedule:
       interval: "daily"
-    directory: "reddit-post-scraping-tool/reddit_post_scraping_tool"
+    directory: "reddit_post_scraping_tool"
     schedule-expression: "cron(0 0 * * ? *)"
     label: "pip"
     authors:
