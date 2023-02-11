@@ -15,7 +15,7 @@ Given a subreddit name and a keyword, this script will return all posts from a s
 - [x] Add comments to the code 😆
 
 # Wiki
-[Refer to the Wiki](https://github.com/bellingcat/reddit-post-scraping-tool/wiki) for installation instructions, in addition to all other documentation.
+[Refer to the Wiki](https://github.com/rly0nheart/reddit-post-scraping-tool/wiki) for installation instructions, in addition to all other documentation.
 
 # Note
 > This is one of the projects I am working on, while learning Visual Basic, so the implementation/code may be messed up. If that's the case, please feel free to open a pull request using the available templates. Otherwise, enjoy!
