@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as file:
 
 setuptools.setup(
     name="reddit-post-scraping-tool",
-    version="1.0.0",
+    version="1.1.0.0",
     author="Richard Mwewa",
     author_email="rly0nheart@duck.com",
     packages=["reddit_post_scraping_tool"],
