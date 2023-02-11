@@ -10,7 +10,7 @@ updates:
       interval: "daily"
     directory: "Reddit Post Scraping Tool"
     ignore:
-      - "Newtonsoft.Json"
+      - package-name: "Newtonsoft.Json"
   - package-ecosystem: "pip"
     schedule:
       interval: "daily"
