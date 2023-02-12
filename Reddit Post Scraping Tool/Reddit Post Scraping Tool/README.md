@@ -1,52 +1,28 @@
-![Screenshot 2022-10-15 231821](https://user-images.githubusercontent.com/74001397/197303749-45032662-810d-4577-b546-13b93d4986d5.png)
-
-
+# Reddit Post Scraping Tool
 Given a subreddit name and a keyword, this script will return all posts from a specified listing (default is 'top') that contain the provided keyword.
 
-# Installation
-**1. Clone the repo**
-```
-git clone https://github.com/rly0nheart/reddit-post-scraping-tool.git
-```
-
-**2. Move to reddit-post-scraping-tool directory**
-```
-cd reddit-post-scraping-tool
-```
-
-**3. Install dependencies**
-```
-pip3 install -r requirements.txt
-```
-
-# Usage
-
-```
-python3 reddit-post-scraping-tool.py --keyword [keyword] --subreddit [subreddit name (without 'r/')]
-```
-
-## Optional arguments
-| Option       | Argument    | Choices    | Usage     |
-| -------------|:-----------:|-----------:|:---------:|
-| -l/--listing | LISTING     | [controversial, hot, best, new, rising]  |  listing: controversial, hot, best, new, rising (default: top)  |
-| -c/--limit   | NUMBER      | 1-100      |  results limit (default: 10)|
-| -t/--timeframe| TIMEFRAME  | [hour, day, week, month, year]           |  timeframe: hour, day, week, month, year (default: all) |
-
-# Windows GUI
-## Prerequisites
-* **.NET 6.0 or later**
-
-### 1. Download the GUI from the releases page
-
-You can download the latest release of the gui from [here](https://github.com/bellingcat/octosuite/releases/latest)
+![Screenshot 2023-02-10 195818](https://user-images.githubusercontent.com/74001397/218163494-245f6676-1fb3-4680-a6b5-bd15fb1dea5e.png)
+![Screenshot_20230210_193329](https://user-images.githubusercontent.com/74001397/218158084-9295abb7-df33-4f86-8df8-e109cac7cde6.png)
 
 
-### 2. Extract the downloaded `.zip`
-![Screenshot_20230210_181651](https://user-images.githubusercontent.com/74001397/218141653-991a91cd-93d5-4640-b2f2-37d29e6a9c62.png)
+# Features (GUI)
+- [x] Auto dark mode from 6pm - 6am
+- [x] Saves results to a JSON
+- [x] Other features coming soon...
 
-### 3. Run the binary
+# TODO (GUI)
+- [x] Make it a stand alone executable
+- [x] Add comments to the code 😆
 
-Once extracted, you can then run the program by double clicking on a binary named `RPST.exe`
-![Screenshot_20230210_181933](https://user-images.githubusercontent.com/74001397/218142422-70f19a0a-db39-42ee-8ad4-22fe380e249b.png)
+# Wiki
+[Refer to the Wiki](https://github.com/rly0nheart/reddit-post-scraping-tool/wiki) for installation instructions, in addition to all other documentation.
 
-![Screenshot_20230210_182210](https://user-images.githubusercontent.com/74001397/218142782-0a9ca4fb-7609-4855-a96b-c58885161166.png)
+# Note
+> This is one of the projects I am working on, while learning Visual Basic, so the implementation/code may be messed up. If that's the case, please feel free to open a pull request using the available templates. Otherwise, enjoy!
+
+# Donations
+If you've got some change to spare and would like to show support, you can Buy Me A Coffee using the button below
+
+<a href="https://www.buymeacoffee.com/189381184" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
+Your support will be much appreciated😊
