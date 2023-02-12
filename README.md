@@ -1,6 +1,7 @@
 # Reddit Post Scraping Tool
 Given a subreddit name and a keyword, this script will return all posts from a specified listing (default is 'top') that contain the provided keyword.
 
+[![Upload Python Package](https://github.com/rly0nheart/reddit-post-scraping-tool/actions/workflows/python-publish.yml/badge.svg)](https://github.com/rly0nheart/reddit-post-scraping-tool/actions/workflows/python-publish.yml)
 ![Screenshot 2023-02-10 195818](https://user-images.githubusercontent.com/74001397/218163494-245f6676-1fb3-4680-a6b5-bd15fb1dea5e.png)
 ![Screenshot_20230210_193329](https://user-images.githubusercontent.com/74001397/218158084-9295abb7-df33-4f86-8df8-e109cac7cde6.png)
 
