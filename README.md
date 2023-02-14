@@ -9,11 +9,11 @@ Given a subreddit name and a keyword, this script will return all posts from a s
 # Features (GUI)
 - [x] Auto dark mode from 6pm - 6am
 - [x] Saves results to a JSON
-- [x] Other features coming soon...
+- [ ] Other features coming soon...
 
 # TODO (GUI)
-- [x] Make it a stand alone executable
-- [x] Add comments to the code 😆
+- [ ] Make it a stand alone executable
+- [ ] Add manual dark mode option, that will be remembered in all sessions
 
 # Wiki
 [Refer to the Wiki](https://github.com/rly0nheart/reddit-post-scraping-tool/wiki) for installation instructions, in addition to all other documentation.
@@ -22,7 +22,7 @@ Given a subreddit name and a keyword, this script will return all posts from a s
 > This is one of the projects I am working on, while learning Visual Basic, so the implementation/code may be messed up. If that's the case, please feel free to open a pull request using the available templates. Otherwise, enjoy!
 
 # Donations
-If you've got some change to spare and would like to show support, you can Buy Me A Coffee using the button below
+If you like `Reddit Post Scraping Tool` and would like to show support, you can Buy A Coffee for the developer using the button below
 
 <a href="https://www.buymeacoffee.com/189381184" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
