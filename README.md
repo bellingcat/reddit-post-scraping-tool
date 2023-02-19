@@ -14,6 +14,7 @@ Given a subreddit name and a keyword, this script will return all posts from a s
 # TODO (GUI)
 - [ ] Make it a stand alone executable
 - [ ] Add manual dark mode option, that will be remembered in all sessions
+- [ ] Make it save results to a CSV file
 
 # Wiki
 [Refer to the Wiki](https://github.com/rly0nheart/reddit-post-scraping-tool/wiki) for installation instructions, in addition to all other documentation.
