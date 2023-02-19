@@ -1,5 +1,4 @@
 ﻿Imports System.IO
-Imports System.Reflection
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 
@@ -15,6 +14,31 @@ Public Class StartForm
         Else
             ' DO NOTHING
         End If
+    End Sub
+
+
+    Private Sub LicenseNotice()
+        MessageBox.Show("MIT License
+
+Copyright (c) 2023 Richard Mwewa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the ""Software""), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.", "License", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
 
@@ -35,28 +59,7 @@ x64: {Environment.Is64BitOperatingSystem}
 First launched on: {DateTime.Now}"
 
         If Not File.Exists(filePath) Then
-            MessageBox.Show("MIT License
-
-Copyright (c) 2023 Richard Mwewa
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the ""Software""), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.", "License", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
-
+            LicenseNotice()
             File.WriteAllText(filePath, textToWrite)
         Else
             ' DO NOTHING
@@ -78,8 +81,11 @@ SOFTWARE.", "License", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
             SubredditTextBox.BackColor = ColorTranslator.FromHtml("#FFFFFFFF")
             SubredditTextBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
 
-            LimitTextBox.BackColor = ColorTranslator.FromHtml("#FFFFFFFF")
-            LimitTextBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
+            LimitNumericUpDown.BackColor = ColorTranslator.FromHtml("#FFFFFFFF")
+            LimitNumericUpDown.ForeColor = ColorTranslator.FromHtml("#FF121212")
+
+            LimitNumericUpDown.BackColor = ColorTranslator.FromHtml("#FFFFFFFF")
+            LimitNumericUpDown.ForeColor = ColorTranslator.FromHtml("#FF121212")
 
             ListingComboBox.BackColor = ColorTranslator.FromHtml("#FFFFFFFF")
             ListingComboBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
@@ -101,8 +107,10 @@ SOFTWARE.", "License", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
             SubredditTextBox.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
             SubredditTextBox.ForeColor = ColorTranslator.FromHtml("#FFFFFFFF")
 
-            LimitTextBox.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
-            LimitTextBox.ForeColor = ColorTranslator.FromHtml("#FFFFFFFF")
+            LimitNumericUpDown.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
+            LimitNumericUpDown.ForeColor = ColorTranslator.FromHtml("#FFFFFFFF")
+            LimitNumericUpDown.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
+            LimitNumericUpDown.ForeColor = ColorTranslator.FromHtml("#FFFFFFFF")
 
             ListingComboBox.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
             ListingComboBox.ForeColor = ColorTranslator.FromHtml("#FFFFFFFF")
@@ -124,7 +132,7 @@ SOFTWARE.", "License", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
         Dim Keyword As String = KeywordTextBox.Text
         Dim Subreddit As String = SubredditTextBox.Text
         Dim Listing As String = ListingComboBox.Text.ToLower()
-        Dim Limit As String = LimitTextBox.Text
+        Dim Limit As Integer = LimitNumericUpDown.Value
         Dim Timeframe As String = TimeframeComboBox.Text.ToLower()
         Dim FoundPosts As Integer = 0
         Dim TotalPosts As Integer = 0
@@ -156,9 +164,7 @@ SOFTWARE.", "License", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
         PostsForm.DataGridViewPosts.Columns.Add("PostApprovedAt", "Approved At")
         PostsForm.DataGridViewPosts.Columns.Add("PostApprovedBy", "Approved By")
 
-        If Limit = "" Then
-            Limit = "10"
-        ElseIf Limit > 100 Then
+        If Limit > 100 Then
             MessageBox.Show("Limit should not be over 100. Defaulting to 10", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
 
@@ -189,20 +195,29 @@ SOFTWARE.", "License", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
                                                                  Post("data")("approved_at_utc"), Post("data")("approved_by"))
                 End If
             Next
-            MessageBox.Show($"Keyword `{Keyword}` was found in {FoundPosts}/" + Posts("data")("children").Count.ToString _
-                                    + $" {Listing} posts from r/{Subreddit}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            PostsForm.Show()
-            If SaveResultsJSONToolStripMenuItem.Checked Then
+
+            'Don't show the results form if found posts are not greater than 0
+            If FoundPosts > 0 Then
+                MessageBox.Show($"Keyword `{Keyword}` was found in {FoundPosts}/" + Posts("data")("children").Count.ToString _
+                                   + $" {Listing} posts from r/{Subreddit}", "Found", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                PostsForm.Show()
+            Else
+                MessageBox.Show($"Keyword `{Keyword}` was not found in either one of the  " + Posts("data")("children").Count.ToString _
+                                    + $" {Listing} posts from r/{Subreddit}", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+
+
+            If JSONToolStripMenuItem.Checked Then
                 Dim saveFileDialog As New SaveFileDialog()
 
                 saveFileDialog.Filter = "JSON files (*.json)|*.json"
-                saveFileDialog.Title = "Save JSON File"
+                saveFileDialog.Title = "Save posts to JSON"
 
                 If saveFileDialog.ShowDialog() = DialogResult.OK Then
                     Dim fileName As String = saveFileDialog.FileName
                     Dim serializerSettings As New JsonSerializerSettings()
                     serializerSettings.Formatting = Formatting.Indented
-                    Dim json As String = JsonConvert.SerializeObject(Posts("data")("children")(0), serializerSettings)
+                    Dim json As String = JsonConvert.SerializeObject(Posts("data"), serializerSettings)
 
                     System.IO.File.WriteAllText(fileName, json)
 
@@ -212,6 +227,7 @@ SOFTWARE.", "License", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
         End If
     End Sub
 
+    ' StartForm load event
     Private Sub StartForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PathFinder()
         LogFirstTimeLaunch()
@@ -221,16 +237,7 @@ SOFTWARE.", "License", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        Dim response As DialogResult = MessageBox.Show("This will open the program's Wiki page in browser, continue?", "About", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If response = DialogResult.Yes Then
-            Shell("cmd /c start https:github.com/rly0nheart/reddit-post-scraping-tool/wiki")
-        Else
-            ' DO NOTHING
-        End If
-
-        ' About infomation, the description of the release is taken from the GitHub releases page
-        ' This will throw an exception if there is no internet
-        ' Check line 34 - 57 in the ApiHandler.vb class file
+        Shell("cmd /c start https:github.com/bellingcat/reddit-post-scraping-tool/wiki")
     End Sub
 
     Private Sub QuitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click
@@ -241,7 +248,7 @@ SOFTWARE.", "License", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
     End Sub
 
     Private Sub DeveloperToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeveloperToolStripMenuItem.Click
-        DeveloperForm.Show()
+        DeveloperForm.ShowDialog()
     End Sub
 
     Private Sub ChekUpdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChekUpdatesToolStripMenuItem.Click
@@ -256,9 +263,13 @@ What's new in v{data("tag_name")}?
 {data("body")}
 ", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If confirm = DialogResult.Yes Then
-                Shell($"cmd /c start https://github.com/rly0nheart/reddit-post-scraping-tool/releases/tag/{data("tag_name")}")
+                Shell($"cmd /c start https://github.com/bellingcat/reddit-post-scraping-tool/releases/tag/{data("tag_name")}")
             End If
         End If
 
+    End Sub
+
+    Private Sub LicensceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LicensceToolStripMenuItem.Click
+        LicenseNotice()
     End Sub
 End Class

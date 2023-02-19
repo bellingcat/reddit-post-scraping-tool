@@ -10,14 +10,17 @@
     <Company>Richard Mwewa</Company>
     <Description>Given a subreddit name and a keyword, this program returns all top (by default) posts that contain the specified keyword. </Description>
     <Copyright>Copyright (c) 2023 Richard Mwewa. All rights reserved.</Copyright>
-    <PackageProjectUrl>https://github.com/rly0nheart/reddit-post-scraping-tool</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/bellingcat/reddit-post-scraping-tool</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/rly0nheart/reddit-post-scraping-tool</RepositoryUrl>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <RepositoryUrl>https://github.com/bellingcat/reddit-post-scraping-tool</RepositoryUrl>
+    <AssemblyVersion>1.2.0.1</AssemblyVersion>
+    <FileVersion>1.2.0.1</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
+    <PackageTags>reddit;scraper;reddit-scraper;osint</PackageTags>
+    <PackageReleaseNotes>Deploys to new PyPI
+Minor improvements</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

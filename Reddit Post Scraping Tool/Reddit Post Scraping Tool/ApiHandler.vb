@@ -4,11 +4,9 @@ Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 
 Public Class ApiHandler
-    'Public currentDateTime As DateTime = DateTime.Now
-    'ReadOnly formattedDateTime As String = String.Format("{0:yyyy_MM_dd_HH_mm}", currentDateTime)
     Public logfile As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "RedditPostScrapingTool", "logs", $"debug.log")
     Public headers As String = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15"
-    Public UpdatesEndpoint As String = "https://api.github.com/repos/rly0nheart/reddit-post-scraping-tool/releases/latest"
+    Public UpdatesEndpoint As String = "https://api.github.com/repos/bellingcat/reddit-post-scraping-tool/releases/latest"
 
     Public Function ScrapeReddit(subreddit, listing, limit, timeframe) As JObject
         Dim ApiEndpoint As String = $"https://reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}').json()"
@@ -37,7 +35,7 @@ Public Class ApiHandler
     End Function
 
 
-    ' Get remote version information from the repository release page
+    ' Gets remote version information from the repository release page
     Public Function CheckUpdates() As JObject
         Try
             Dim httpClient As New HttpClient()

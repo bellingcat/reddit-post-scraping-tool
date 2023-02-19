@@ -73,6 +73,7 @@ Partial Class DeveloperForm
         Me.Name = "DeveloperForm"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Developer"
         Me.ResumeLayout(False)
         Me.PerformLayout()
