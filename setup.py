@@ -5,14 +5,14 @@ with open("README.md", "r", encoding="utf-8") as file:
 
 setuptools.setup(
     name="reddit-post-scraping-tool",
-    version="1.1.0.0",
+    version="1.1.0.2",
     author="Richard Mwewa",
     author_email="rly0nheart@duck.com",
     packages=["reddit_post_scraping_tool"],
     description="Given a subreddit name and a keyword, this program returns all top (by default) posts that contain the specified word.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/rly0nheart/reddit-post-scraping-tool",
+    url="https://github.com/bellingcat/reddit-post-scraping-tool",
     license="MIT License",
     install_requires=["rich", "requests"],
     classifiers=[
