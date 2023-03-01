@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reddit-post-scraping-tool"
+version = "1.3.0.1"
+description = "Given a subreddit name and a keyword, this program returns all top (by default) posts that contain the specified word."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+keywords = ["osint", "reddit-crawler", "reddit-scraping", "reddit"]
+authors = [{name = "Richard Mwewa", email = "rly0nheart@duck.com"}]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Visual Basic",
+  "Intended Audience :: Information Technology",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Natural Language :: English"
+]
+
+dependencies = [
+    "rich",
+    "requests",
+]
+
+[project.urls]
+homepage = "https://github.com/bellingcat/reddit-post-scraping-tool"
+documentation = "https://github.com/bellingcat/reddit-post-scraping-tool/wiki"
+repository = "https://github.com/bellingcat/reddit-post-scraping-tool.git"
+
+[project.scripts]
+reddit_post_scraping_tool = "reddit_post_scraping_tool.main:main"
