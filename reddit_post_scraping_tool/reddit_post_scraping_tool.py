@@ -4,13 +4,29 @@ import requests
 from rich.tree import Tree
 from datetime import datetime
 from rich import print as xprint
+from rich.markdown import Markdown
 from rich.logging import RichHandler
+
 
 start_time = datetime.now()
 logging.basicConfig(level="NOTSET", format="%(message)s", handlers=[RichHandler(markup=True, log_time_format='[%H:%M:%S%p]')])
 log = logging.getLogger("rich")
 
 
+# Check if the remote tag_name from the latest release matches the one in the program
+# if it does, it means the program is up-to-date.
+# If it doesn't match, notify the user about a new release
+def check_updates(version_tag):
+    response = requests.get("https://api.github.com/repos/bellingcat/reddit-post-scraping-tool/releases/latest").json()
+    if response['tag_name'] == version_tag:
+        pass
+    else:
+        raw_release_notes = response['body']
+        markdown_release_notes = Markdown(raw_release_notes)
+        log.info(f"A new release of reddit-post-scraping-tool is available ({response['tag_name']}). Run 'pip install --upgrade reddit-post-scraping-tool' to get the updates.")
+        xprint(markdown_release_notes)
+        
+        
 # Getting posts
 def get_posts(post):
     post_data = {'Author': post['data']['author'],
