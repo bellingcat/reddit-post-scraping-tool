@@ -13,14 +13,13 @@
     <PackageProjectUrl>https://github.com/bellingcat/reddit-post-scraping-tool</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/bellingcat/reddit-post-scraping-tool</RepositoryUrl>
-    <AssemblyVersion>1.2.0.1</AssemblyVersion>
-    <FileVersion>1.2.0.1</FileVersion>
+    <AssemblyVersion>1.3.0.1</AssemblyVersion>
+    <FileVersion>1.3.0.1</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <PackageTags>reddit;scraper;reddit-scraper;osint</PackageTags>
-    <PackageReleaseNotes>Deploys to new PyPI
-Minor improvements</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

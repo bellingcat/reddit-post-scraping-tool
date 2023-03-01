@@ -6,19 +6,7 @@ Public Class StartForm
 
     ' Create the program's directory
     ' We will store information about the user and current machine in it
-    Private Sub PathFinder()
-        Dim directoryPath As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "RedditPostScrapingTool", "logs")
-
-        If Not Directory.Exists(directoryPath) Then
-            Directory.CreateDirectory(directoryPath)
-        Else
-            ' DO NOTHING
-        End If
-    End Sub
-
-
-    Private Sub LicenseNotice()
-        MessageBox.Show("MIT License
+    Public LicenseText As String = "MIT License
 
 Copyright (c) 2023 Richard Mwewa
 
@@ -38,7 +26,20 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.", "License", MessageBoxButtons.OK, MessageBoxIcon.Information)
+SOFTWARE."
+    Private Sub PathFinder()
+        Dim directoryPath As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "RedditPostScrapingTool", "logs")
+
+        If Not Directory.Exists(directoryPath) Then
+            Directory.CreateDirectory(directoryPath)
+        Else
+            ' DO NOTHING
+        End If
+    End Sub
+
+
+    Private Sub LicenseNotice()
+        MessageBox.Show(LicenseText, "License", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
 
@@ -75,6 +76,7 @@ First launched on: {DateTime.Now}"
         If currentHour >= 6 And currentHour < 18 Then
             Me.BackColor = ColorTranslator.FromHtml("#FFFFFFFF")
 
+            ToolsToolStripMenuTools.ForeColor = ColorTranslator.FromHtml("#FF121212")
             KeywordTextBox.BackColor = ColorTranslator.FromHtml("#FFFFFFFF")
             KeywordTextBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
 
@@ -101,6 +103,7 @@ First launched on: {DateTime.Now}"
         Else
             Me.BackColor = ColorTranslator.FromHtml("#FF121212")
 
+            ToolsToolStripMenuTools.ForeColor = ColorTranslator.FromHtml("#FFFFFFFF")
             KeywordTextBox.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
             KeywordTextBox.ForeColor = ColorTranslator.FromHtml("#FFFFFFFF")
 
@@ -127,7 +130,7 @@ First launched on: {DateTime.Now}"
     End Sub
 
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub ScrapeButton_Click(sender As Object, e As EventArgs) Handles ScrapeButton.Click
         Dim ApiHandler As New ApiHandler
         Dim Keyword As String = KeywordTextBox.Text
         Dim Subreddit As String = SubredditTextBox.Text
@@ -237,7 +240,7 @@ First launched on: {DateTime.Now}"
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        Shell("cmd /c start https:github.com/bellingcat/reddit-post-scraping-tool/wiki")
+        AboutForm.ShowDialog()
     End Sub
 
     Private Sub QuitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click
@@ -269,7 +272,12 @@ What's new in v{data("tag_name")}?
 
     End Sub
 
-    Private Sub LicensceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LicensceToolStripMenuItem.Click
-        LicenseNotice()
+    Private Sub ToolsToolStripMenuTools_Click(sender As Object, e As EventArgs) Handles ToolsToolStripMenuTools.Click
+        ToolsToolStripMenuTools.ForeColor = ColorTranslator.FromHtml("#FF121212")
     End Sub
+
+    Private Sub ToolsToolStripMenuTools_DropDownClosed(sender As Object, e As EventArgs) Handles ToolsToolStripMenuTools.DropDownClosed
+        ToolsToolStripMenuTools.ForeColor = ColorTranslator.FromHtml("#FFFFFFFF")
+    End Sub
+
 End Class
