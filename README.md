@@ -7,13 +7,13 @@ Given a subreddit name and a keyword, this script will return all posts from a s
 
 
 # Features (GUI)
-- [x] Auto dark mode from 6pm - 6am
-- [x] Saves results to a JSON
+- [x] Dark mode (Right-click)
+- [x] Saves results to a JSON (Right-click)
 - [ ] Other features coming soon...
 
 # TODO (GUI)
 - [ ] Make it a stand alone executable
-- [ ] Add manual dark mode option, that will be remembered in all sessions
+- [x] Add manual dark mode option, that will be remembered in all sessions
 - [ ] Make it save results to a CSV file
 
 # Wiki
