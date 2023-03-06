@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "reddit-post-scraping-tool"
-version = "1.3.0.1"
+version = "1.4.0.0"
 description = "Given a subreddit name and a keyword, this program returns all top (by default) posts that contain the specified word."
 readme = "README.md"
 requires-python = ">=3.8"
