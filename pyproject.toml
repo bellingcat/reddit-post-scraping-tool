@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "reddit-post-scraping-tool"
 version = "1.4.0.0"
-description = "Given a subreddit name and a keyword, this program returns all top (by default) posts that contain the specified word."
+description = "Given a subreddit name and a keyword, RPST returns all top (by default) posts that contain the specified keyword."
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
@@ -27,9 +27,9 @@ dependencies = [
 ]
 
 [project.urls]
-homepage = "https://github.com/bellingcat/reddit-post-scraping-tool"
+homepage = "https://github.com/bellingcat"
 documentation = "https://github.com/bellingcat/reddit-post-scraping-tool/wiki"
 repository = "https://github.com/bellingcat/reddit-post-scraping-tool.git"
 
 [project.scripts]
-reddit_post_scraping_tool = "reddit_post_scraping_tool.main:main"
+rpst = "rpst.__main:run"
