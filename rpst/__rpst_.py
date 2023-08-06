@@ -1,3 +1,4 @@
+import json
 import logging
 import argparse
 import requests
@@ -7,9 +8,24 @@ from rich.markdown import Markdown
 from rich.logging import RichHandler
 
 
+def write_post_data(post_data: dict, filename: str):
+    """
+    Writes post data to a specified JSON file.
+
+    :param post_data: A dictionary containing post data.
+    :param filename: The name of the file to which post data will be written.
+    """
+    # Write the data to a JSON file
+    with open(filename + ".json", 'a') as file:
+        file.write(json.dumps(post_data))
+        file.write('\n')  # write a newline to separate posts
+    
+    log.info(f"Post data written to '{file.name}'")
+
+
 def check_updates(version_tag: str):
     """
-    Checks if there's a new release of a project on GitHub. If there is, it logs an
+    This function checks if there's a new release of a project on GitHub. If there is, it logs an
     information message and prints the release notes.
 
     :param version_tag: A string representing the current version of the project.
@@ -35,12 +51,14 @@ def check_updates(version_tag: str):
         xprint(markdown_release_notes)
 
 
-def get_post_data(post: dict):
+def format_post_data(post: dict, keyword: str, output: bool):
     """
-    Extracts relevant data from a Reddit post and displays it in a tree structure,
+    This function extracts relevant data from a Reddit post and displays it in a tree structure,
     followed by the post's selftext.
 
     :param post: A dictionary containing the data of a Reddit post.
+    :param keyword: The keyword that is used to find posts, in his case gets uses as the filename.
+    :param output: If specified, all found posts will be written to a json file.
     """
     # Define the data to extract from the post
     post_data = {
@@ -64,7 +82,8 @@ def get_post_data(post: dict):
         'Approved at': post['data']['approved_at_utc'],
         'Approved by': post['data']['approved_by'],
     }
-
+    if output:
+        write_post_data(filename=keyword, post_data=post_data)
     # Create a tree structure with the post's title as the root
     post_tree = Tree("\n" + post['data']['title'])
 
@@ -79,19 +98,31 @@ def get_post_data(post: dict):
     print(post['data']['selftext'] + "\n")
 
 
-def start_scraper(keyword: str, subreddit: str, listing: str, timeframe: str, limit: int):
+def get_posts(arguments: argparse):
     """
     Scrapes a given subreddit for posts that contain a specified keyword.
-    The search is limited by the number of posts and timeframe specified.
+    The search is limited by the number of posts and timeframe specified. The results are either
+    printed to the console or saved to a specified file, based on the 'output' argument.
 
-    :param keyword: The keyword to search for in the posts.
-    :param subreddit: The subreddit to scrape.
-    :param listing: The type of posts to scrape. This could be 'hot', 'new', etc.
-    :param timeframe: The timeframe from which to scrape posts. This could be 'day', 'week', etc.
-    :param limit: The maximum number of posts to scrape.
+    :param arguments: Namespace object from argparse.
 
-    This function logs the number of posts in which the keyword was found.
+    Expected Object Attributes
+    --------------------------
+        - keyword: The keyword to search for in the posts.
+        - subreddit: The subreddit to scrape.
+        - listing: The type of posts to scrape. This could be 'hot', 'new', etc.
+        - timeframe: The timeframe from which to scrape posts. This could be 'day', 'week', etc.
+        - limit: The maximum number of posts to scrape.
+        - json: If specified, all found posts will be written to a json file.
+
+    Also logs the number of posts in which the keyword was found.
     """
+    keyword = arguments.keyword
+    subreddit = arguments.subreddit
+    listing = arguments.listing
+    timeframe = arguments.timeframe
+    limit = arguments.limit
+    json_output = arguments.json
 
     # Start a new session
     session = requests.session()
@@ -101,7 +132,8 @@ def start_scraper(keyword: str, subreddit: str, listing: str, timeframe: str, li
 
     # Send a GET request to the specified subreddit and listing,
     # limiting the response by the specified limit and timeframe
-    response = session.get(f'https://reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}').json()
+    response = session.get(f'https://reddit.com/r/{subreddit}/{listing}'
+                           f'.json?limit={limit}&t={timeframe}').json()
 
     # Initialize a counter for the number of posts found that contain the keyword
     found_posts = 0
@@ -111,7 +143,7 @@ def start_scraper(keyword: str, subreddit: str, listing: str, timeframe: str, li
         # If the keyword is found in the post's selftext or title, increment the counter and process the post
         if keyword.lower() in post['data']['selftext'] or keyword.lower() in post['data']['title']:
             found_posts += 1
-            get_post_data(post=post)
+            format_post_data(post=post, keyword=keyword, output=json_output)
 
     # Log the number of posts in which the keyword was found
     log.info(f"Keyword ('{keyword}') was found in {found_posts}/{len(response['data']['children'])} "
@@ -136,7 +168,6 @@ def create_parser():
         '-c', '--limit',
         help='The maximum number of posts to scrape (1-100). (default: %(default)s)',
         default=10,
-        const=10,
         type=int,
         choices=range(1, 101)  # This enforces that the limit must be between 1 and 100 inclusive.
     )
@@ -155,6 +186,11 @@ def create_parser():
         nargs='?',
         choices=['hour', 'day', 'week', 'month', 'year', 'all'],
         help='The timeframe from which to scrape posts (default: %(default)s)'
+    )
+    parser.add_argument(
+        '-j', '--json',
+        help='Write all found posts to a json file.',
+        action='store_true'
     )
 
     return parser
