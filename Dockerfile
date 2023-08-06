@@ -6,6 +6,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install --upgrade pip && pip install build && python -m build && pip install dist/*.whl
+RUN pip install --upgrade pip && pip install .
 
-ENTRYPOINT ["reddit_post_scraping_tool"]
+ENTRYPOINT ["rpst"]

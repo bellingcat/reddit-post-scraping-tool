@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class AboutForm
+Partial Class AboutBox
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,11 +22,11 @@ Partial Class AboutForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(AboutForm))
+        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(AboutBox))
         PictureBox1 = New PictureBox()
         LicenseRichTextBox = New RichTextBox()
-        Label1 = New Label()
-        Label2 = New Label()
+        LicenseLabel = New Label()
+        ProgramNameLabel = New Label()
         DescriptionLabel = New Label()
         VersionLabel = New Label()
         WikiLinkLabel = New LinkLabel()
@@ -51,33 +51,37 @@ Partial Class AboutForm
         LicenseRichTextBox.ReadOnly = True
         LicenseRichTextBox.Size = New Size(513, 342)
         LicenseRichTextBox.TabIndex = 1
-        LicenseRichTextBox.Text = ""' 
-        ' Label1
+        LicenseRichTextBox.Text = "License notice"
         ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point)
-        Label1.Location = New Point(28, 150)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(52, 17)
-        Label1.TabIndex = 2
-        Label1.Text = "License"' 
-        ' Label2
+        ' LicenseLabel
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Microsoft JhengHei", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Label2.Location = New Point(126, 47)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(246, 24)
-        Label2.TabIndex = 3
-        Label2.Text = "Reddit Post Scraping Tool"' 
+        LicenseLabel.AutoSize = True
+        LicenseLabel.Font = New Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point)
+        LicenseLabel.Location = New Point(28, 150)
+        LicenseLabel.Name = "LicenseLabel"
+        LicenseLabel.Size = New Size(52, 17)
+        LicenseLabel.TabIndex = 2
+        LicenseLabel.Text = "License"
+        ' 
+        ' ProgramNameLabel
+        ' 
+        ProgramNameLabel.AutoSize = True
+        ProgramNameLabel.Font = New Font("Microsoft JhengHei", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
+        ProgramNameLabel.Location = New Point(126, 47)
+        ProgramNameLabel.Name = "ProgramNameLabel"
+        ProgramNameLabel.Size = New Size(66, 24)
+        ProgramNameLabel.TabIndex = 3
+        ProgramNameLabel.Text = "Name"
+        ' 
         ' DescriptionLabel
         ' 
         DescriptionLabel.AutoSize = True
         DescriptionLabel.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
         DescriptionLabel.Location = New Point(126, 81)
         DescriptionLabel.Name = "DescriptionLabel"
-        DescriptionLabel.Size = New Size(0, 15)
+        DescriptionLabel.Size = New Size(67, 15)
         DescriptionLabel.TabIndex = 4
+        DescriptionLabel.Text = "Description"
         ' 
         ' VersionLabel
         ' 
@@ -85,9 +89,10 @@ Partial Class AboutForm
         VersionLabel.Font = New Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point)
         VersionLabel.Location = New Point(500, 54)
         VersionLabel.Name = "VersionLabel"
-        VersionLabel.Size = New Size(42, 15)
+        VersionLabel.Size = New Size(46, 15)
         VersionLabel.TabIndex = 5
-        VersionLabel.Text = "Label4"' 
+        VersionLabel.Text = "Version"
+        ' 
         ' WikiLinkLabel
         ' 
         WikiLinkLabel.AutoSize = True
@@ -96,8 +101,9 @@ Partial Class AboutForm
         WikiLinkLabel.Size = New Size(30, 15)
         WikiLinkLabel.TabIndex = 6
         WikiLinkLabel.TabStop = True
-        WikiLinkLabel.Text = "Wiki"' 
-        ' AboutForm
+        WikiLinkLabel.Text = "Wiki"
+        ' 
+        ' AboutBox
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
@@ -106,18 +112,18 @@ Partial Class AboutForm
         Controls.Add(WikiLinkLabel)
         Controls.Add(VersionLabel)
         Controls.Add(DescriptionLabel)
-        Controls.Add(Label2)
-        Controls.Add(Label1)
+        Controls.Add(ProgramNameLabel)
+        Controls.Add(LicenseLabel)
         Controls.Add(LicenseRichTextBox)
         Controls.Add(PictureBox1)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         MinimizeBox = False
-        Name = "AboutForm"
+        Name = "AboutBox"
         ShowInTaskbar = False
         StartPosition = FormStartPosition.CenterScreen
-        Text = "About - Reddit Post Scraping Tool"
+        Text = "About"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
@@ -125,8 +131,8 @@ Partial Class AboutForm
 
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents LicenseRichTextBox As RichTextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents LicenseLabel As Label
+    Friend WithEvents ProgramNameLabel As Label
     Friend WithEvents DescriptionLabel As Label
     Friend WithEvents VersionLabel As Label
     Friend WithEvents WikiLinkLabel As LinkLabel

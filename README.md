@@ -7,13 +7,13 @@ Given a subreddit name and a keyword, this script will return all posts from a s
 
 
 # Features (GUI)
-- [x] Auto dark mode from 6pm - 6am
-- [x] Saves results to a JSON
+- [x] Dark mode (Right-click)
+- [x] Saves results to a JSON (Right-click)
 - [ ] Other features coming soon...
 
 # TODO (GUI)
 - [ ] Make it a stand alone executable
-- [ ] Add manual dark mode option, that will be remembered in all sessions
+- [x] Add manual dark mode option, that will be remembered in all sessions
 - [ ] Make it save results to a CSV file
 
 # Wiki
@@ -25,6 +25,6 @@ Given a subreddit name and a keyword, this script will return all posts from a s
 # Donations
 If you like `Reddit Post Scraping Tool` and would like to show support, you can Buy A Coffee for the developer using the button below
 
-<a href="https://www.buymeacoffee.com/189381184" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+<a href="https://www.buymeacoffee.com/_rly0nheart" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 Your support will be much appreciated😊

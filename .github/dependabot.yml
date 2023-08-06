@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: "nuget"
     schedule:
       interval: "daily"
-    directory: "Reddit Post Scraping Tool"
+    directory: "RPST GUI"
     ignore:
       - dependency-name: "Newtonsoft.Json"
   - package-ecosystem: "pip"
