@@ -28,7 +28,7 @@ Given a subreddit name and a keyword, this script will return all posts from a s
 [Refer to the Wiki](https://github.com/rly0nheart/reddit-post-scraping-tool/wiki) for installation instructions, in addition to all other documentation.
 
 # 😁 Donations
-If you like `Reddit Post Scraping Tool` and would like to show support, you can Buy A Coffee for the developer using the button below
+If you like `RPST` and would like to show support, you can Buy A Coffee for the developer using the button below
 
 <a href="https://www.buymeacoffee.com/_rly0nheart" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
