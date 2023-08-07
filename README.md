@@ -2,8 +2,9 @@
 Given a subreddit name and a keyword, this script will return all posts from a specified listing (default is 'top') that contain the provided keyword.
 
 [![Upload Python Package](https://github.com/rly0nheart/reddit-post-scraping-tool/actions/workflows/python-publish.yml/badge.svg)](https://github.com/rly0nheart/reddit-post-scraping-tool/actions/workflows/python-publish.yml) [![CodeQL](https://github.com/rly0nheart/reddit-post-scraping-tool/actions/workflows/codeql.yml/badge.svg)](https://github.com/rly0nheart/reddit-post-scraping-tool/actions/workflows/codeql.yml) ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=flat&logo=.net&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54)
-![2023-08-06_04-30](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/e924ec32-8786-41ab-af59-bd5fca0cdb57)
-![2023-08-06_04-32](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/04d6de20-2e02-4dea-a1cc-30c611802acf)
+![2023-08-07_02-13_1](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/5ea98745-8b5f-4a93-9a53-befa491f7b6a)
+![2023-08-07_02-13](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/f303abc7-8a83-44b0-97c9-a447c459cef9)
+
 
 
 
