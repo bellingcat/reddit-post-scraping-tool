@@ -29,11 +29,11 @@ Partial Class StartForm
         ScrapeButton = New Button()
         TimeframeComboBox = New ComboBox()
         ListingComboBox = New ComboBox()
-        Label1 = New Label()
-        Label2 = New Label()
-        Label3 = New Label()
-        Label4 = New Label()
-        Label5 = New Label()
+        LabelKeyword = New Label()
+        LabelSubreddit = New Label()
+        LabelLimit = New Label()
+        LabelListing = New Label()
+        LabelTimeframe = New Label()
         ContextMenuStrip1 = New ContextMenuStrip(components)
         SaveResultsStripMenuItem = New ToolStripMenuItem()
         JSONToolStripMenuItem = New ToolStripMenuItem()
@@ -100,60 +100,60 @@ Partial Class StartForm
         ListingComboBox.TabIndex = 9
         ListingComboBox.Text = "Top"
         ' 
-        ' Label1
+        ' LabelKeyword
         ' 
-        Label1.AutoEllipsis = True
-        Label1.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Underline, GraphicsUnit.Point)
-        Label1.ForeColor = Color.Black
-        Label1.Location = New Point(12, 60)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(56, 23)
-        Label1.TabIndex = 10
-        Label1.Text = "Keyword"
+        LabelKeyword.AutoEllipsis = True
+        LabelKeyword.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Underline, GraphicsUnit.Point)
+        LabelKeyword.ForeColor = Color.Black
+        LabelKeyword.Location = New Point(12, 60)
+        LabelKeyword.Name = "LabelKeyword"
+        LabelKeyword.Size = New Size(56, 23)
+        LabelKeyword.TabIndex = 10
+        LabelKeyword.Text = "Keyword"
         ' 
-        ' Label2
+        ' LabelSubreddit
         ' 
-        Label2.AutoEllipsis = True
-        Label2.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Underline, GraphicsUnit.Point)
-        Label2.ForeColor = Color.Black
-        Label2.Location = New Point(12, 92)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(63, 23)
-        Label2.TabIndex = 11
-        Label2.Text = "Subreddit"
+        LabelSubreddit.AutoEllipsis = True
+        LabelSubreddit.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Underline, GraphicsUnit.Point)
+        LabelSubreddit.ForeColor = Color.Black
+        LabelSubreddit.Location = New Point(12, 92)
+        LabelSubreddit.Name = "LabelSubreddit"
+        LabelSubreddit.Size = New Size(63, 23)
+        LabelSubreddit.TabIndex = 11
+        LabelSubreddit.Text = "Subreddit"
         ' 
-        ' Label3
+        ' LabelLimit
         ' 
-        Label3.AutoEllipsis = True
-        Label3.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
-        Label3.ForeColor = Color.Black
-        Label3.Location = New Point(12, 125)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(56, 23)
-        Label3.TabIndex = 12
-        Label3.Text = "Limit"
+        LabelLimit.AutoEllipsis = True
+        LabelLimit.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
+        LabelLimit.ForeColor = Color.Black
+        LabelLimit.Location = New Point(12, 125)
+        LabelLimit.Name = "LabelLimit"
+        LabelLimit.Size = New Size(56, 23)
+        LabelLimit.TabIndex = 12
+        LabelLimit.Text = "Limit"
         ' 
-        ' Label4
+        ' LabelListing
         ' 
-        Label4.AutoEllipsis = True
-        Label4.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
-        Label4.ForeColor = Color.Black
-        Label4.Location = New Point(12, 157)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(56, 23)
-        Label4.TabIndex = 13
-        Label4.Text = "Listing"
+        LabelListing.AutoEllipsis = True
+        LabelListing.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
+        LabelListing.ForeColor = Color.Black
+        LabelListing.Location = New Point(12, 157)
+        LabelListing.Name = "LabelListing"
+        LabelListing.Size = New Size(56, 23)
+        LabelListing.TabIndex = 13
+        LabelListing.Text = "Listing"
         ' 
-        ' Label5
+        ' LabelTimeframe
         ' 
-        Label5.AutoEllipsis = True
-        Label5.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
-        Label5.ForeColor = Color.Black
-        Label5.Location = New Point(12, 191)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(71, 23)
-        Label5.TabIndex = 14
-        Label5.Text = "Timeframe"
+        LabelTimeframe.AutoEllipsis = True
+        LabelTimeframe.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
+        LabelTimeframe.ForeColor = Color.Black
+        LabelTimeframe.Location = New Point(12, 191)
+        LabelTimeframe.Name = "LabelTimeframe"
+        LabelTimeframe.Size = New Size(71, 23)
+        LabelTimeframe.TabIndex = 14
+        LabelTimeframe.Text = "Timeframe"
         ' 
         ' ContextMenuStrip1
         ' 
@@ -221,7 +221,7 @@ Partial Class StartForm
         AboutToolStripMenuItem.AutoToolTip = True
         AboutToolStripMenuItem.Image = CType(resources.GetObject("AboutToolStripMenuItem.Image"), Image)
         AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        AboutToolStripMenuItem.Size = New Size(180, 22)
+        AboutToolStripMenuItem.Size = New Size(152, 22)
         AboutToolStripMenuItem.Text = "About"
         ' 
         ' DeveloperToolStripMenuItem
@@ -229,7 +229,7 @@ Partial Class StartForm
         DeveloperToolStripMenuItem.AutoToolTip = True
         DeveloperToolStripMenuItem.Image = CType(resources.GetObject("DeveloperToolStripMenuItem.Image"), Image)
         DeveloperToolStripMenuItem.Name = "DeveloperToolStripMenuItem"
-        DeveloperToolStripMenuItem.Size = New Size(180, 22)
+        DeveloperToolStripMenuItem.Size = New Size(152, 22)
         DeveloperToolStripMenuItem.Text = "Developer"
         ' 
         ' CheckUpdatesToolStripMenuItem
@@ -237,20 +237,20 @@ Partial Class StartForm
         CheckUpdatesToolStripMenuItem.AutoToolTip = True
         CheckUpdatesToolStripMenuItem.Image = CType(resources.GetObject("CheckUpdatesToolStripMenuItem.Image"), Image)
         CheckUpdatesToolStripMenuItem.Name = "CheckUpdatesToolStripMenuItem"
-        CheckUpdatesToolStripMenuItem.Size = New Size(180, 22)
+        CheckUpdatesToolStripMenuItem.Size = New Size(152, 22)
         CheckUpdatesToolStripMenuItem.Text = "Check updates"
         ' 
         ' ToolStripSeparator2
         ' 
         ToolStripSeparator2.Name = "ToolStripSeparator2"
-        ToolStripSeparator2.Size = New Size(177, 6)
+        ToolStripSeparator2.Size = New Size(149, 6)
         ' 
         ' QuitToolStripMenuItem
         ' 
         QuitToolStripMenuItem.AutoToolTip = True
         QuitToolStripMenuItem.Image = CType(resources.GetObject("QuitToolStripMenuItem.Image"), Image)
         QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
-        QuitToolStripMenuItem.Size = New Size(180, 22)
+        QuitToolStripMenuItem.Size = New Size(152, 22)
         QuitToolStripMenuItem.Text = "Quit"
         ' 
         ' LimitNumericUpDown
@@ -267,16 +267,16 @@ Partial Class StartForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.White
+        BackColor = SystemColors.Control
         ClientSize = New Size(355, 255)
         ContextMenuStrip = ContextMenuStrip1
         Controls.Add(LimitNumericUpDown)
         Controls.Add(FileMenuStrip)
-        Controls.Add(Label5)
-        Controls.Add(Label4)
-        Controls.Add(Label3)
-        Controls.Add(Label2)
-        Controls.Add(Label1)
+        Controls.Add(LabelTimeframe)
+        Controls.Add(LabelListing)
+        Controls.Add(LabelLimit)
+        Controls.Add(LabelSubreddit)
+        Controls.Add(LabelKeyword)
         Controls.Add(ListingComboBox)
         Controls.Add(TimeframeComboBox)
         Controls.Add(SubredditTextBox)
@@ -302,11 +302,11 @@ Partial Class StartForm
     Friend WithEvents ScrapeButton As Button
     Friend WithEvents TimeframeComboBox As ComboBox
     Friend WithEvents ListingComboBox As ComboBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
+    Friend WithEvents LabelKeyword As Label
+    Friend WithEvents LabelSubreddit As Label
+    Friend WithEvents LabelLimit As Label
+    Friend WithEvents LabelListing As Label
+    Friend WithEvents LabelTimeframe As Label
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents FileMenuStrip As MenuStrip
     Friend WithEvents ToolsToolStripMenuTools As ToolStripMenuItem

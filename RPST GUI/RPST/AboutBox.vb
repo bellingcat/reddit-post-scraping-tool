@@ -1,7 +1,10 @@
-﻿Public Class AboutBox
-    Public Property LicenseText As String = "MIT License
+﻿Imports System.Runtime
 
-Copyright (c) 2023-2024 Richard Mwewa
+Public Class AboutBox
+    ReadOnly settings As New SettingsManager()
+    Public Property LicenseText As String = $"MIT License
+
+{My.Application.Info.Copyright}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the ""Software""), to deal
@@ -21,16 +24,30 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE."
 
-    Private Sub AboutForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ProgramNameLabel.Text = My.Application.Info.AssemblyName
-        DescriptionLabel.Text = "Given a subreddit name and a keyword,
+    ''' <summary>
+    ''' Handles the Load event for the AboutBox form.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The event data.</param>
+    Private Sub AboutBox_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        settings.LoadSettings()
+        settings.ToggleDarkMode(settings.DarkMode)
+
+        LabelProgramName.Text = My.Application.Info.AssemblyName
+        LabelProgramDescription.Text = "Given a subreddit name and a keyword,
 RPST returns all top posts
 (by default) that contain the specified keyword."
-        VersionLabel.Text = $"v{My.Application.Info.Version}"
+        LabelVersion.Text = $"v{My.Application.Info.Version}"
         LicenseRichTextBox.Text = LicenseText
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles WikiLinkLabel.LinkClicked
+    ''' <summary>
+    ''' Handles the LinkClicked event for the LinkLabelReadtheWiki control. 
+    ''' Opens the Wiki URL in the default browser.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The event data.</param>
+    Private Sub LinkLabelReadtheWiki_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelReadtheWiki.LinkClicked
         Shell("cmd /c start https://github.com/bellingcat/reddit-post-scraping-tool/wiki")
     End Sub
 End Class
