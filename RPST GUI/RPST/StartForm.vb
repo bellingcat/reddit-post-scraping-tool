@@ -35,12 +35,12 @@ Public Class StartForm
 
     ''' <summary>
     ''' Event handler for the 'About' menu item click.
-    ''' It shows the 'About' dialog box.
+    ''' It shows the 'About' box.
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        AboutBox.ShowDialog()
+        AboutBox.Show()
     End Sub
 
     ''' <summary>
