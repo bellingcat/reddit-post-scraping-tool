@@ -1,4 +1,4 @@
-﻿Public Class DeveloperForm
+﻿Public Class DeveloperBox
     Private Sub DeveloperForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GreetingLabel.BackColor = Color.Transparent
         AboutMeLinkLabel.BackColor = Color.Transparent

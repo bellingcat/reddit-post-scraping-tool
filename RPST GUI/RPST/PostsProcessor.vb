@@ -1,7 +1,7 @@
 ﻿Imports Newtonsoft.Json.Linq
 
 Public Class PostsProcessor
-    Private ApiHandler As New ApiHandler
+    Private ReadOnly ApiHandler As New ApiHandler
 
     ''' <summary>
     ''' Fetches Reddit posts based on the given parameters and returns them as a JObject.
@@ -23,7 +23,7 @@ Public Class PostsProcessor
     ''' <param name="keyword">The keyword to check for.</param>
     ''' <returns>True if the post contains the keyword, False otherwise.</returns>
     Public Shared Function PostContainsKeyword(post As JObject, keyword As String) As Boolean
-        Return post("data")("selftext").ToString.ToLower(System.Globalization.CultureInfo.InvariantCulture).Contains(keyword.ToLower(System.Globalization.CultureInfo.InvariantCulture))
+        Return post("data")("selftext").ToString.ToLower(Globalization.CultureInfo.InvariantCulture).Contains(keyword.ToLower(System.Globalization.CultureInfo.InvariantCulture))
     End Function
 
 End Class

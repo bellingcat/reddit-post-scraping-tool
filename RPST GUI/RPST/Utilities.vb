@@ -17,7 +17,7 @@ Public Class Utilities
 
         If inputs.HasValue Then
             ' Initialize the DataGridView
-            DataGridViewHandler.AddColumn(PostsForm.DataGridViewPosts)
+            DataGridViewHandler.AddColumn(ResultsForm.DataGridViewResults)
 
             ' Fetch Reddit posts based on the inputs
             Dim processor As New PostsProcessor()
@@ -29,17 +29,17 @@ Public Class Utilities
             For Each post In posts("data")("children")
                 totalPosts += 1
                 ' Check if the post contains the keyword
-                If PostsProcessor.PostContainsKeyword(post, inputs.Value.Keyword.ToLower(System.Globalization.CultureInfo.InvariantCulture)) Then
+                If PostsProcessor.PostContainsKeyword(post, inputs.Value.Keyword.ToLower(Globalization.CultureInfo.InvariantCulture)) Then
                     ' Add the post to the DataGridView
-                    DataGridViewHandler.AddRow(PostsForm.DataGridViewPosts, post, totalPosts)
-                    PostsForm.Show()
+                    DataGridViewHandler.AddRow(ResultsForm.DataGridViewResults, post, totalPosts)
+                    ResultsForm.Show()
                     keywordFound = True
                 End If
             Next
 
             ' Check if the keyword was found in any posts
             If Not keywordFound Then
-                MessageBox.Show($"Keyword `{inputs.Value.Keyword}` was not found in any of the " + posts("data")("children").Count.ToString(System.Globalization.CultureInfo.InvariantCulture) _
+                MessageBox.Show($"Keyword `{inputs.Value.Keyword}` was not found in any of the " + posts("data")("children").Count.ToString(Globalization.CultureInfo.InvariantCulture) _
                                 + $" {inputs.Value.Listing} posts from r/{inputs.Value.Subreddit}", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
 
@@ -48,7 +48,6 @@ Public Class Utilities
                 Utilities.SavePostsToJson(posts("data"))
             End If
         Else
-            MessageBox.Show("Inputs cannot be empty. Please enter a keyword and a subreddit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
 
@@ -88,25 +87,22 @@ Public Class Utilities
     Public Shared Function CollectInputs() As (Keyword As String, Subreddit As String, Listing As String, Limit As Integer, Timeframe As String)?
         Dim keyword As String = StartForm.KeywordTextBox.Text.Trim()
         Dim subreddit As String = StartForm.SubredditTextBox.Text.Trim()
-        ' Convert the Keyword and Subreddit to lowercase using InvariantCulture
-        Dim listing As String = If(String.IsNullOrEmpty(StartForm.ListingComboBox.Text), "top", StartForm.ListingComboBox.Text.ToLower(System.Globalization.CultureInfo.InvariantCulture).Trim())
+        ' Convert the Listing and Subreddit to lowercase using InvariantCulture
+        Dim listing As String = If(String.IsNullOrEmpty(StartForm.ListingComboBox.Text), "top", StartForm.ListingComboBox.Text.ToLower(Globalization.CultureInfo.InvariantCulture).Trim())
+        Dim timeframe As String = If(String.IsNullOrEmpty(StartForm.TimeframeComboBox.Text), "all", StartForm.TimeframeComboBox.Text.ToLower(Globalization.CultureInfo.InvariantCulture).Trim())
         Dim limit As Integer = StartForm.LimitNumericUpDown.Value
-        Dim timeframe As String = If(String.IsNullOrEmpty(StartForm.TimeframeComboBox.Text), "all", StartForm.TimeframeComboBox.Text.ToLower(System.Globalization.CultureInfo.InvariantCulture).Trim())
 
         ' Validate inputs
-        If String.IsNullOrEmpty(keyword) Then
-            MessageBox.Show("Keyword should not be empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If String.IsNullOrEmpty(keyword) AndAlso String.IsNullOrEmpty(subreddit) Then
+            MessageBox.Show("Keyword and Subreddit fields should not be empty.", "Invalid Inputs", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return Nothing
+        ElseIf String.IsNullOrEmpty(keyword) Then
+            MessageBox.Show("Keyword field should not be empty.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return Nothing
+        ElseIf String.IsNullOrEmpty(subreddit) Then
+            MessageBox.Show("Subreddit field should not be empty.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return Nothing
         End If
-        If String.IsNullOrEmpty(subreddit) Then
-            MessageBox.Show("Subreddit should not be empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return Nothing
-        End If
-        If limit > 100 Then
-            MessageBox.Show("Limit should not be over 100. Defaulting to 10", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            limit = 10
-        End If
-
         Return (keyword, subreddit, listing, limit, timeframe)
     End Function
 
@@ -174,7 +170,6 @@ First launched on: {DateTime.Now}"
             LicenseNotice()
             File.WriteAllText(filePath, textToWrite)
         Else
-            ' DO NOTHING
         End If
     End Sub
 End Class

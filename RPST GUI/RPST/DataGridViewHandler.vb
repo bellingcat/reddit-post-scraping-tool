@@ -7,31 +7,31 @@ Public Class DataGridViewHandler
     ''' <param name="dataGridView">The DataGridView to be initialized.</param>
     Public Shared Sub AddColumn(dataGridView As DataGridView)
         ' Clear the Columns and Rows before adding Items to them 
-        PostsForm.DataGridViewPosts.Rows.Clear()
-        PostsForm.DataGridViewPosts.Columns.Clear()
+        dataGridView.Rows.Clear()
+        dataGridView.Columns.Clear()
 
-        PostsForm.DataGridViewPosts.Columns.Add("PostCount", "Post Number")
-        PostsForm.DataGridViewPosts.Columns.Add("PostAuthor", "Author")
-        PostsForm.DataGridViewPosts.Columns.Add("PostID", "ID")
-        PostsForm.DataGridViewPosts.Columns.Add("PostSubreddit", "Subreddit")
-        PostsForm.DataGridViewPosts.Columns.Add("SubredditVisibility", "Subreddit Visibility")
-        PostsForm.DataGridViewPosts.Columns.Add("PostThumbnail", "Thumbnail")
-        PostsForm.DataGridViewPosts.Columns.Add("PostIsNSFW", "NSFW")
-        PostsForm.DataGridViewPosts.Columns.Add("PostIsGilded", "Gilded")
-        PostsForm.DataGridViewPosts.Columns.Add("PostUpvotes", "Upvotes")
-        PostsForm.DataGridViewPosts.Columns.Add("PostUpvoteRatio", "Upvote Ratio")
-        PostsForm.DataGridViewPosts.Columns.Add("PostDownvotes", "Downvotes")
-        PostsForm.DataGridViewPosts.Columns.Add("PostAwards", "Awards")
-        PostsForm.DataGridViewPosts.Columns.Add("PostTopAward", "Top Award")
-        PostsForm.DataGridViewPosts.Columns.Add("PostIsCrosspostable", "Is Crosspostable?")
-        PostsForm.DataGridViewPosts.Columns.Add("PostScore", "Score")
-        PostsForm.DataGridViewPosts.Columns.Add("PostText", "Text")
-        PostsForm.DataGridViewPosts.Columns.Add("PostCategory", "Category")
-        PostsForm.DataGridViewPosts.Columns.Add("PostDomain", "Domain")
-        PostsForm.DataGridViewPosts.Columns.Add("PostPermalink", "Permalink")
-        PostsForm.DataGridViewPosts.Columns.Add("PostCreatedAt", "Created At")
-        PostsForm.DataGridViewPosts.Columns.Add("PostApprovedAt", "Approved At")
-        PostsForm.DataGridViewPosts.Columns.Add("PostApprovedBy", "Approved By")
+        dataGridView.Columns.Add("PostCount", "Index")
+        dataGridView.Columns.Add("PostAuthor", "Author")
+        dataGridView.Columns.Add("PostID", "Post ID")
+        dataGridView.Columns.Add("PostText", "Post Text")
+        dataGridView.Columns.Add("PostSubreddit", "Subreddit")
+        dataGridView.Columns.Add("SubredditVisibility", "Subreddit Visibility")
+        dataGridView.Columns.Add("PostThumbnail", "Thumbnail")
+        dataGridView.Columns.Add("PostIsNSFW", "NSFW")
+        dataGridView.Columns.Add("PostIsGilded", "Gilded")
+        dataGridView.Columns.Add("PostUpvotes", "Upvotes")
+        dataGridView.Columns.Add("PostUpvoteRatio", "Upvote Ratio")
+        dataGridView.Columns.Add("PostDownvotes", "Downvotes")
+        dataGridView.Columns.Add("PostAwards", "Awards")
+        dataGridView.Columns.Add("PostTopAward", "Top Award")
+        dataGridView.Columns.Add("PostIsCrosspostable", "Is Crosspostable?")
+        dataGridView.Columns.Add("PostScore", "Score")
+        dataGridView.Columns.Add("PostCategory", "Category")
+        dataGridView.Columns.Add("PostDomain", "Domain")
+        dataGridView.Columns.Add("PostPermalink", "Permalink")
+        dataGridView.Columns.Add("PostCreatedAt", "Created At")
+        dataGridView.Columns.Add("PostApprovedAt", "Approved At")
+        dataGridView.Columns.Add("PostApprovedBy", "Approved By")
     End Sub
 
     Public Shared Sub AddRow(dataGridView As DataGridView, post As JObject, postNumber As Integer)
@@ -41,9 +41,10 @@ Public Class DataGridViewHandler
         ''' <param name="dataGridView">The DataGridView to which the row will be added.</param>
         ''' <param name="post">A JObject representing the Reddit post.</param>
         ''' <param name="postNumber">The number of the post.</param>
-        PostsForm.DataGridViewPosts.Rows.Add(postNumber,
+        dataGridView.Rows.Add(postNumber,
                               post("data")("author"),
                               post("data")("id"),
+                              post("data")("selftext"),
                               post("data")("subreddit_name_prefixed"),
                               post("data")("subreddit_type"),
                               post("data")("thumbnail"),
@@ -56,7 +57,6 @@ Public Class DataGridViewHandler
                               post("data")("top_awarded_type"),
                               post("data")("is_crosspostable"),
                               post("data")("score"),
-                              post("data")("selftext"),
                               post("data")("category"),
                               post("data")("domain"),
                               post("data")("permalink"),

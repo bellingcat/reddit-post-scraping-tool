@@ -59,32 +59,32 @@ Partial Class AboutBox
         ' LabelProgramDescription
         ' 
         LabelProgramDescription.AutoSize = True
-        LabelProgramDescription.Font = New Font("Comic Sans MS", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        LabelProgramDescription.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point)
         LabelProgramDescription.ForeColor = SystemColors.ControlText
         LabelProgramDescription.Location = New Point(4, 54)
         LabelProgramDescription.Name = "LabelProgramDescription"
-        LabelProgramDescription.Size = New Size(73, 17)
+        LabelProgramDescription.Size = New Size(68, 15)
         LabelProgramDescription.TabIndex = 4
         LabelProgramDescription.Text = "Description"
         ' 
         ' LabelVersion
         ' 
         LabelVersion.AutoSize = True
-        LabelVersion.Font = New Font("Comic Sans MS", 9F, FontStyle.Underline, GraphicsUnit.Point)
+        LabelVersion.Font = New Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point)
         LabelVersion.ForeColor = SystemColors.ControlText
         LabelVersion.Location = New Point(372, 17)
         LabelVersion.Name = "LabelVersion"
-        LabelVersion.Size = New Size(50, 17)
+        LabelVersion.Size = New Size(45, 15)
         LabelVersion.TabIndex = 5
         LabelVersion.Text = "Version"
         ' 
         ' LinkLabelReadtheWiki
         ' 
         LinkLabelReadtheWiki.AutoSize = True
-        LinkLabelReadtheWiki.Font = New Font("Comic Sans MS", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        LinkLabelReadtheWiki.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
         LinkLabelReadtheWiki.Location = New Point(337, 54)
         LinkLabelReadtheWiki.Name = "LinkLabelReadtheWiki"
-        LinkLabelReadtheWiki.Size = New Size(85, 17)
+        LinkLabelReadtheWiki.Size = New Size(79, 15)
         LinkLabelReadtheWiki.TabIndex = 6
         LinkLabelReadtheWiki.TabStop = True
         LinkLabelReadtheWiki.Text = "Read the Wiki"

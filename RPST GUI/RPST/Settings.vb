@@ -25,7 +25,7 @@ Public Class SettingsManager
             Dim options As New JsonSerializerOptions With {.PropertyNameCaseInsensitive = True}
             Dim settings = Text.Json.JsonSerializer.Deserialize(Of SettingsManager)(json, options)
             Me.DarkMode = settings.DarkMode
-            StartForm.DarkModeToolStripMenuItem.Checked = settings.DarkMode
+            StartForm.ToolStripMenuItemDarkMode.Checked = settings.DarkMode
         Else
             ' Settings file does not exist
             ' Create a new file with default settings 'False'
@@ -34,7 +34,7 @@ Public Class SettingsManager
             File.WriteAllText(settingsFilePath, jsonOutput)
 
             Me.DarkMode = False
-            StartForm.DarkModeToolStripMenuItem.Checked = False
+            StartForm.ToolStripMenuItemDarkMode.Checked = False
         End If
     End Sub
 
@@ -46,7 +46,7 @@ Public Class SettingsManager
     Public Sub ToggleDarkMode(enabled As Boolean)
         Dim json As String = File.ReadAllText(settingsFilePath)
         Dim options As New JsonSerializerOptions With {.PropertyNameCaseInsensitive = True}
-        Dim settings As SettingsManager = Text.Json.JsonSerializer.Deserialize(Of SettingsManager)(json, options)
+        Dim settings As SettingsManager = JsonSerializer.Deserialize(Of SettingsManager)(json, options)
         settings.DarkMode = enabled
         SaveSettings(settings)
         ApplyTheme()
@@ -57,7 +57,7 @@ Public Class SettingsManager
     ''' </summary>
     ''' <param name="settings">An instance of the SettingsManager containing the configurations to be saved.</param>
     Private Sub SaveSettings(settings)
-        Dim jsonOutput = Text.Json.JsonSerializer.Serialize(settings)
+        Dim jsonOutput = JsonSerializer.Serialize(settings)
         File.WriteAllText(settingsFilePath, jsonOutput)
     End Sub
 
@@ -70,68 +70,127 @@ Public Class SettingsManager
         Dim DarkMode As Boolean = GetDarkMode()
         If DarkMode Then
             ' Enable dark mode for the Main form
+            ' Background colours (I know 'Colours'/'Colors'😆)
             StartForm.BackColor = ColorTranslator.FromHtml("#FF121212")
-            StartForm.ToolsToolStripMenuTools.ForeColor = ColorTranslator.FromHtml("#FFFFFFFF")
-            StartForm.KeywordTextBox.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
-            StartForm.KeywordTextBox.ForeColor = SystemColors.Control
             StartForm.SubredditTextBox.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
-            StartForm.SubredditTextBox.ForeColor = SystemColors.Control
+            StartForm.KeywordTextBox.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
             StartForm.LimitNumericUpDown.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
-            StartForm.LimitNumericUpDown.ForeColor = SystemColors.Control
             StartForm.LimitNumericUpDown.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
-            StartForm.LimitNumericUpDown.ForeColor = SystemColors.Control
             StartForm.ListingComboBox.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
-            StartForm.ListingComboBox.ForeColor = SystemColors.Control
             StartForm.TimeframeComboBox.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
+            ' Foreground colours
+            StartForm.KeywordTextBox.ForeColor = SystemColors.Control
+            StartForm.SubredditTextBox.ForeColor = SystemColors.Control
+            StartForm.LimitNumericUpDown.ForeColor = SystemColors.Control
+            StartForm.LimitNumericUpDown.ForeColor = SystemColors.Control
+            StartForm.ListingComboBox.ForeColor = SystemColors.Control
             StartForm.TimeframeComboBox.ForeColor = SystemColors.Control
+            StartForm.LabelRPST.ForeColor = SystemColors.Control
             StartForm.LabelKeyword.ForeColor = SystemColors.Control
             StartForm.LabelSubreddit.ForeColor = SystemColors.Control
             StartForm.LabelLimit.ForeColor = SystemColors.Control
             StartForm.LabelListing.ForeColor = SystemColors.Control
             StartForm.LabelTimeframe.ForeColor = SystemColors.Control
 
+            ResultsForm.BackColor = ColorTranslator.FromHtml("#FF121212")
+
+            ' Enable dark mode on 'Right Click Menu' items
+            ' Background colours
+            StartForm.ToolStripMenuItemDarkMode.BackColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.ToolStripMenuItemSavePosts.BackColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.ToolStripMenuItemtoJSON.BackColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.ToolStripMenuItemtoCSV.BackColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.ToolStripMenuItemAbout.BackColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.ToolStripMenuItemDeveloper.BackColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.ToolStripMenuItemCheckUpdates.BackColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.ToolStripMenuItemQuit.BackColor = ColorTranslator.FromHtml("#FF121212")
+            ' Foreground colours
+            StartForm.ToolStripMenuItemDarkMode.ForeColor = SystemColors.Control
+            StartForm.ToolStripMenuItemSavePosts.ForeColor = SystemColors.Control
+            StartForm.ToolStripMenuItemtoJSON.ForeColor = SystemColors.Control
+            StartForm.ToolStripMenuItemtoCSV.ForeColor = SystemColors.Control
+            StartForm.ToolStripMenuItemAbout.ForeColor = SystemColors.Control
+            StartForm.ToolStripMenuItemDeveloper.ForeColor = SystemColors.Control
+            StartForm.ToolStripMenuItemCheckUpdates.ForeColor = SystemColors.Control
+            StartForm.ToolStripMenuItemQuit.ForeColor = SystemColors.Control
+
+
             ' Enable dark mode for the About box
+            ' Background colours
             AboutBox.BackColor = ColorTranslator.FromHtml("#FF121212")
-            AboutBox.ForeColor = SystemColors.Control
             AboutBox.LicenseRichTextBox.BackColor = ColorTranslator.FromHtml("#FF2E2E2E")
-            AboutBox.LicenseRichTextBox.ForeColor = SystemColors.Control
             AboutBox.Panel1.BackColor = ColorTranslator.FromHtml("#FF121212")
+            ' Foreground colours
+            AboutBox.ForeColor = SystemColors.Control
+            AboutBox.LicenseRichTextBox.ForeColor = SystemColors.Control
             AboutBox.LabelProgramName.ForeColor = SystemColors.Control
             AboutBox.LabelProgramDescription.ForeColor = SystemColors.Control
             AboutBox.LabelVersion.ForeColor = SystemColors.Control
+
+            ' If dark mode is enabled, set the 'Dark Mode' text value to 'Light mode'
+            StartForm.ToolStripMenuItemDarkMode.Text = "Light Mode"
         Else
-            StartForm.BackColor = SystemColors.Control
-            StartForm.ToolsToolStripMenuTools.ForeColor = ColorTranslator.FromHtml("#FF121212")
+            ' Disable dark mode for the Main Form
+            ' Background colours
+            StartForm.BackColor = Color.Gainsboro
             StartForm.KeywordTextBox.BackColor = SystemColors.Control
-            StartForm.KeywordTextBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
             StartForm.SubredditTextBox.BackColor = SystemColors.Control
-            StartForm.SubredditTextBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
             StartForm.LimitNumericUpDown.BackColor = SystemColors.Control
-            StartForm.LimitNumericUpDown.ForeColor = ColorTranslator.FromHtml("#FF121212")
             StartForm.LimitNumericUpDown.BackColor = SystemColors.Control
-            StartForm.LimitNumericUpDown.ForeColor = ColorTranslator.FromHtml("#FF121212")
-            StartForm.ListingComboBox.BackColor = SystemColors.Control
-            StartForm.ListingComboBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
             StartForm.TimeframeComboBox.BackColor = SystemColors.Control
+            StartForm.ListingComboBox.BackColor = SystemColors.Control
+            ' Foreground colours
+            StartForm.KeywordTextBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.SubredditTextBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.LimitNumericUpDown.ForeColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.LimitNumericUpDown.ForeColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.ListingComboBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
             StartForm.TimeframeComboBox.ForeColor = ColorTranslator.FromHtml("#FF121212")
+            StartForm.LabelRPST.ForeColor = ColorTranslator.FromHtml("#FF121212")
             StartForm.LabelKeyword.ForeColor = ColorTranslator.FromHtml("#FF121212")
             StartForm.LabelSubreddit.ForeColor = ColorTranslator.FromHtml("#FF121212")
             StartForm.LabelLimit.ForeColor = ColorTranslator.FromHtml("#FF121212")
             StartForm.LabelListing.ForeColor = ColorTranslator.FromHtml("#FF121212")
             StartForm.LabelTimeframe.ForeColor = ColorTranslator.FromHtml("#FF121212")
 
+            ' Disable dark mode on 'Right Click Menu' items
+            ' Background colours
+            StartForm.ToolStripMenuItemDarkMode.BackColor = Color.Gainsboro
+            StartForm.ToolStripMenuItemSavePosts.BackColor = Color.Gainsboro
+            StartForm.ToolStripMenuItemtoJSON.BackColor = Color.Gainsboro
+            StartForm.ToolStripMenuItemtoCSV.BackColor = Color.Gainsboro
+            StartForm.ToolStripMenuItemAbout.BackColor = Color.Gainsboro
+            StartForm.ToolStripMenuItemDeveloper.BackColor = Color.Gainsboro
+            StartForm.ToolStripMenuItemCheckUpdates.BackColor = Color.Gainsboro
+            StartForm.ToolStripMenuItemQuit.BackColor = Color.Gainsboro
+            ' Foreground colours
+            StartForm.ToolStripMenuItemDarkMode.ForeColor = Color.Black
+            StartForm.ToolStripMenuItemSavePosts.ForeColor = Color.Black
+            StartForm.ToolStripMenuItemtoJSON.ForeColor = Color.Black
+            StartForm.ToolStripMenuItemtoCSV.ForeColor = Color.Black
+            StartForm.ToolStripMenuItemAbout.ForeColor = Color.Black
+            StartForm.ToolStripMenuItemDeveloper.ForeColor = Color.Black
+            StartForm.ToolStripMenuItemCheckUpdates.ForeColor = Color.Black
+            StartForm.ToolStripMenuItemQuit.ForeColor = Color.Black
+
             ' Disable dark mode for the About box
+            ' Background colours
             AboutBox.BackColor = Color.Gainsboro
             AboutBox.ForeColor = SystemColors.WindowText
             AboutBox.LicenseRichTextBox.BackColor = SystemColors.Control
             AboutBox.LicenseRichTextBox.ForeColor = SystemColors.WindowText
             AboutBox.Panel1.BackColor = Color.Gainsboro
+            ' Foreground colours
             AboutBox.Panel1.ForeColor = SystemColors.WindowText
             AboutBox.LabelProgramName.ForeColor = SystemColors.WindowText
             AboutBox.LabelProgramDescription.ForeColor = SystemColors.WindowText
             AboutBox.LabelVersion.ForeColor = SystemColors.WindowText
+
+            ' If dark mode is disabled, set the 'Light Mode' text value to 'Dark Mode'
+            StartForm.ToolStripMenuItemDarkMode.Text = "Dark Mode"
         End If
     End Sub
+
 
     ''' <summary>
     ''' Retrieves the Dark Mode setting value from 'settings.json'. 

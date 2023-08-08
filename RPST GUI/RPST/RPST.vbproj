@@ -13,19 +13,19 @@
     <PackageProjectUrl>https://github.com/bellingcat/reddit-post-scraping-tool</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/bellingcat/reddit-post-scraping-tool</RepositoryUrl>
-    <AssemblyVersion>1.4.1.0</AssemblyVersion>
-    <FileVersion>1.4.1.0</FileVersion>
+    <AssemblyVersion>1.5.0.0</AssemblyVersion>
+    <FileVersion>1.5.0.0</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>1.4.1</Version>
+    <Version>1.5.0</Version>
     <PackageTags>reddit;scraper;reddit-scraper;osint</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
-    <PackageId>RPST (Reddit Post Scraping Tool)</PackageId>
+    <PackageId>RPST</PackageId>
     <Authors>Richard Mwewa</Authors>
     <NeutralLanguage>en</NeutralLanguage>
-    <Product>$(AssemblyName)</Product>
-    <AssemblyName>RPST (Reddit Post Scraping Tool)</AssemblyName>
+    <Product>$(AssemblyName) (Reddit Post Scraping Tool)</Product>
+    <AssemblyName>RPST</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
