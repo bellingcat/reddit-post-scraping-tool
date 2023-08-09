@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="AboutBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DeveloperBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormPosts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
