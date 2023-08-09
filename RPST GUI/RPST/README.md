@@ -5,9 +5,6 @@ Given a subreddit name and a keyword, RPST will return all posts from a specifie
 ![2023-08-08_07-04](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/3c30bf8d-f56b-47fd-948d-d4c667c894f2)
 ![2023-08-08_07-04_1](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/1675121f-06b6-4b15-bad2-3d5e951bf3bf)
 
-
-
-
 # ✅ Features
 ## GUI
 - [x] Dark mode (Right-click)
