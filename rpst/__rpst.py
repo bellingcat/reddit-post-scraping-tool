@@ -8,6 +8,18 @@ from rich.markdown import Markdown
 from rich.logging import RichHandler
 
 
+def convert_timestamp_to_datetime(timestamp: int) -> str:
+    """
+    Converts a Unix timestamp to a formatted datetime string.
+
+    :param timestamp: The Unix timestamp to be converted.
+    :return: A formatted datetime string in the format "dd MMMM yyyy, hh:mm:ssAM/PM".
+    """
+    utc_from_timestamp = datetime.utcfromtimestamp(timestamp)
+    datetime_object = utc_from_timestamp.strftime("%d %B %Y, %I:%M:%S%p")
+    return datetime_object
+    
+
 def write_post_data(post_data: dict, filename: str):
     """
     Writes post data to a specified JSON file.
@@ -78,7 +90,7 @@ def format_post_data(post: dict, keyword: str, output: bool):
         'Score': post["data"]["score"],
         'Category': post['data']['category'],
         'Domain': post["data"]["domain"],
-        'Created': post['data']['created'],
+        'Created on': convert_timestamp_to_datetime(post['data']['created']),
         'Approved at': post['data']['approved_at_utc'],
         'Approved by': post['data']['approved_by'],
     }
