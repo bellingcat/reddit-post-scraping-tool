@@ -17,7 +17,7 @@ Public Class Utilities
 
         If inputs.HasValue Then
             ' Initialize the DataGridView
-            DataGridViewHandler.AddColumn(ResultsForm.DataGridViewResults)
+            DataGridViewHandler.AddColumn(FormPosts.DataGridViewPosts)
 
             ' Fetch Reddit posts based on the inputs
             Dim processor As New PostsProcessor()
@@ -31,8 +31,8 @@ Public Class Utilities
                 ' Check if the post contains the keyword
                 If PostsProcessor.PostContainsKeyword(post, inputs.Value.Keyword.ToLower(Globalization.CultureInfo.InvariantCulture)) Then
                     ' Add the post to the DataGridView
-                    DataGridViewHandler.AddRow(ResultsForm.DataGridViewResults, post, totalPosts)
-                    ResultsForm.Show()
+                    DataGridViewHandler.AddRow(FormPosts.DataGridViewPosts, post, totalPosts)
+                    FormPosts.Show()
                     keywordFound = True
                 End If
             Next
@@ -75,8 +75,8 @@ Public Class Utilities
     ''' </summary>
     ''' <returns>
     ''' Tuple containing:
-    ''' Keyword (String) - Keyword entered by user in the StartForm.
-    ''' Subreddit (String) - Subreddit entered by user in the StartForm.
+    ''' Keyword (String) - Keyword entered by user in theFormMain.
+    ''' Subreddit (String) - Subreddit entered by user in theFormMain.
     ''' Listing (String) - Listing chosen by user in the StartForm, defaults to 'top' if none is selected.
     ''' Limit (Integer) - Limit entered by user in the StartForm, defaults to 10 if the entered value is over 100.
     ''' Timeframe (String) - Timeframe chosen by user in the StartForm, defaults to 'all' if none is selected.
@@ -85,12 +85,12 @@ Public Class Utilities
     ''' If keyword or subreddit are empty, Displays a warning and returns nothing.
     ''' </remarks>
     Public Shared Function CollectInputs() As (Keyword As String, Subreddit As String, Listing As String, Limit As Integer, Timeframe As String)?
-        Dim keyword As String = StartForm.KeywordTextBox.Text.Trim()
-        Dim subreddit As String = StartForm.SubredditTextBox.Text.Trim()
+        Dim keyword As String = FormMain.TextBoxKeyword.Text.Trim()
+        Dim subreddit As String = FormMain.TextBoxSubreddit.Text.Trim()
         ' Convert the Listing and Subreddit to lowercase using InvariantCulture
-        Dim listing As String = If(String.IsNullOrEmpty(StartForm.ListingComboBox.Text), "top", StartForm.ListingComboBox.Text.ToLower(Globalization.CultureInfo.InvariantCulture).Trim())
-        Dim timeframe As String = If(String.IsNullOrEmpty(StartForm.TimeframeComboBox.Text), "all", StartForm.TimeframeComboBox.Text.ToLower(Globalization.CultureInfo.InvariantCulture).Trim())
-        Dim limit As Integer = StartForm.LimitNumericUpDown.Value
+        Dim listing As String = If(String.IsNullOrEmpty(FormMain.ComboBoxListing.Text), "top", FormMain.ComboBoxListing.Text.ToLower(Globalization.CultureInfo.InvariantCulture).Trim())
+        Dim timeframe As String = If(String.IsNullOrEmpty(FormMain.ComboBoxTimeframe.Text), "all", FormMain.ComboBoxTimeframe.Text.ToLower(Globalization.CultureInfo.InvariantCulture).Trim())
+        Dim limit As Integer = FormMain.NumericUpDownLimit.Value
 
         ' Validate inputs
         If String.IsNullOrEmpty(keyword) AndAlso String.IsNullOrEmpty(subreddit) Then

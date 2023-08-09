@@ -40,7 +40,7 @@ Partial Class AboutBox
         PictureBoxLogo.Image = CType(resources.GetObject("PictureBoxLogo.Image"), Image)
         PictureBoxLogo.Location = New Point(12, 12)
         PictureBoxLogo.Name = "PictureBoxLogo"
-        PictureBoxLogo.Size = New Size(99, 111)
+        PictureBoxLogo.Size = New Size(88, 93)
         PictureBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBoxLogo.TabIndex = 0
         PictureBoxLogo.TabStop = False
@@ -48,11 +48,11 @@ Partial Class AboutBox
         ' LabelProgramName
         ' 
         LabelProgramName.AutoSize = True
-        LabelProgramName.Font = New Font("Ink Free", 14.25F, FontStyle.Bold, GraphicsUnit.Point)
+        LabelProgramName.Font = New Font("Segoe Script", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LabelProgramName.ForeColor = SystemColors.ControlText
-        LabelProgramName.Location = New Point(4, 11)
+        LabelProgramName.Location = New Point(3, 15)
         LabelProgramName.Name = "LabelProgramName"
-        LabelProgramName.Size = New Size(60, 23)
+        LabelProgramName.Size = New Size(48, 20)
         LabelProgramName.TabIndex = 3
         LabelProgramName.Text = "Name"
         ' 
@@ -61,7 +61,7 @@ Partial Class AboutBox
         LabelProgramDescription.AutoSize = True
         LabelProgramDescription.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point)
         LabelProgramDescription.ForeColor = SystemColors.ControlText
-        LabelProgramDescription.Location = New Point(4, 54)
+        LabelProgramDescription.Location = New Point(3, 43)
         LabelProgramDescription.Name = "LabelProgramDescription"
         LabelProgramDescription.Size = New Size(68, 15)
         LabelProgramDescription.TabIndex = 4
@@ -72,7 +72,7 @@ Partial Class AboutBox
         LabelVersion.AutoSize = True
         LabelVersion.Font = New Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point)
         LabelVersion.ForeColor = SystemColors.ControlText
-        LabelVersion.Location = New Point(372, 17)
+        LabelVersion.Location = New Point(347, 17)
         LabelVersion.Name = "LabelVersion"
         LabelVersion.Size = New Size(45, 15)
         LabelVersion.TabIndex = 5
@@ -82,7 +82,7 @@ Partial Class AboutBox
         ' 
         LinkLabelReadtheWiki.AutoSize = True
         LinkLabelReadtheWiki.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
-        LinkLabelReadtheWiki.Location = New Point(337, 54)
+        LinkLabelReadtheWiki.Location = New Point(313, 43)
         LinkLabelReadtheWiki.Name = "LinkLabelReadtheWiki"
         LinkLabelReadtheWiki.Size = New Size(79, 15)
         LinkLabelReadtheWiki.TabIndex = 6
@@ -96,18 +96,18 @@ Partial Class AboutBox
         Panel1.Controls.Add(LabelProgramName)
         Panel1.Controls.Add(LinkLabelReadtheWiki)
         Panel1.Controls.Add(LabelVersion)
-        Panel1.Location = New Point(117, 12)
+        Panel1.Location = New Point(106, 12)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(440, 111)
+        Panel1.Size = New Size(409, 93)
         Panel1.TabIndex = 7
         ' 
         ' LicenseRichTextBox
         ' 
         LicenseRichTextBox.Font = New Font("Cambria", 9.75F, FontStyle.Regular, GraphicsUnit.Point)
-        LicenseRichTextBox.Location = New Point(12, 135)
+        LicenseRichTextBox.Location = New Point(12, 113)
         LicenseRichTextBox.Name = "LicenseRichTextBox"
         LicenseRichTextBox.ReadOnly = True
-        LicenseRichTextBox.Size = New Size(545, 305)
+        LicenseRichTextBox.Size = New Size(503, 329)
         LicenseRichTextBox.TabIndex = 1
         LicenseRichTextBox.Text = "License notice"
         ' 
@@ -116,7 +116,7 @@ Partial Class AboutBox
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.Gainsboro
-        ClientSize = New Size(569, 454)
+        ClientSize = New Size(526, 453)
         Controls.Add(LicenseRichTextBox)
         Controls.Add(Panel1)
         Controls.Add(PictureBoxLogo)

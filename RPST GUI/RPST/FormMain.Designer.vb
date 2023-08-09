@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class StartForm
+Partial Class FormMain
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,12 +23,12 @@ Partial Class StartForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(StartForm))
-        KeywordTextBox = New TextBox()
-        SubredditTextBox = New TextBox()
+        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(FormMain))
+        TextBoxKeyword = New TextBox()
+        TextBoxSubreddit = New TextBox()
         ButtonScrape = New Button()
-        TimeframeComboBox = New ComboBox()
-        ListingComboBox = New ComboBox()
+        ComboBoxTimeframe = New ComboBox()
+        ComboBoxListing = New ComboBox()
         LabelKeyword = New Label()
         LabelSubreddit = New Label()
         LabelLimit = New Label()
@@ -43,67 +43,76 @@ Partial Class StartForm
         ToolStripMenuItemDeveloper = New ToolStripMenuItem()
         ToolStripMenuItemCheckUpdates = New ToolStripMenuItem()
         ToolStripMenuItemQuit = New ToolStripMenuItem()
-        LimitNumericUpDown = New NumericUpDown()
-        PictureBoxLogo = New PictureBox()
-        LabelRPST = New Label()
+        NumericUpDownLimit = New NumericUpDown()
+        ToolTip = New ToolTip(components)
         ContextMenuStripRightClick.SuspendLayout()
-        CType(LimitNumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDownLimit, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' KeywordTextBox
+        ' TextBoxKeyword
         ' 
-        KeywordTextBox.BackColor = SystemColors.Window
-        KeywordTextBox.ForeColor = SystemColors.WindowText
-        KeywordTextBox.Location = New Point(159, 75)
-        KeywordTextBox.Name = "KeywordTextBox"
-        KeywordTextBox.PlaceholderText = "Keyword"
-        KeywordTextBox.Size = New Size(100, 23)
-        KeywordTextBox.TabIndex = 0
+        TextBoxKeyword.BackColor = SystemColors.Window
+        TextBoxKeyword.ForeColor = SystemColors.WindowText
+        TextBoxKeyword.Location = New Point(118, 20)
+        TextBoxKeyword.Name = "TextBoxKeyword"
+        TextBoxKeyword.PlaceholderText = "Keyword"
+        TextBoxKeyword.Size = New Size(100, 23)
+        TextBoxKeyword.TabIndex = 0
+        ToolTip.SetToolTip(TextBoxKeyword, "Enter the keyword you want to search for.")
         ' 
-        ' SubredditTextBox
+        ' TextBoxSubreddit
         ' 
-        SubredditTextBox.Location = New Point(159, 106)
-        SubredditTextBox.Name = "SubredditTextBox"
-        SubredditTextBox.PlaceholderText = "Subreddit"
-        SubredditTextBox.Size = New Size(100, 23)
-        SubredditTextBox.TabIndex = 4
+        TextBoxSubreddit.Location = New Point(118, 49)
+        TextBoxSubreddit.Name = "TextBoxSubreddit"
+        TextBoxSubreddit.PlaceholderText = "Subreddit"
+        TextBoxSubreddit.Size = New Size(100, 23)
+        TextBoxSubreddit.TabIndex = 4
+        ToolTip.SetToolTip(TextBoxSubreddit, "Provide the subreddit to search in.")
         ' 
         ' ButtonScrape
         ' 
-        ButtonScrape.Location = New Point(208, 29)
+        ButtonScrape.Location = New Point(167, 174)
         ButtonScrape.Name = "ButtonScrape"
         ButtonScrape.Size = New Size(51, 28)
         ButtonScrape.TabIndex = 6
         ButtonScrape.Text = "Scrape"
+        ToolTip.SetToolTip(ButtonScrape, "You can also just hit ENTER to start scraping.")
         ButtonScrape.UseVisualStyleBackColor = True
         ' 
-        ' TimeframeComboBox
+        ' ComboBoxTimeframe
         ' 
-        TimeframeComboBox.FormattingEnabled = True
-        TimeframeComboBox.Items.AddRange(New Object() {"Hour", "Day", "Week", "Month", "Year"})
-        TimeframeComboBox.Location = New Point(159, 200)
-        TimeframeComboBox.Name = "TimeframeComboBox"
-        TimeframeComboBox.Size = New Size(100, 23)
-        TimeframeComboBox.TabIndex = 8
-        TimeframeComboBox.Text = "All"
+        ComboBoxTimeframe.AutoCompleteCustomSource.AddRange(New String() {"Hour", "Day", "Week", "Month", "Year"})
+        ComboBoxTimeframe.AutoCompleteMode = AutoCompleteMode.Append
+        ComboBoxTimeframe.AutoCompleteSource = AutoCompleteSource.CustomSource
+        ComboBoxTimeframe.FormattingEnabled = True
+        ComboBoxTimeframe.Items.AddRange(New Object() {"Hour", "Day", "Week", "Month", "Year"})
+        ComboBoxTimeframe.Location = New Point(118, 136)
+        ComboBoxTimeframe.Name = "ComboBoxTimeframe"
+        ComboBoxTimeframe.Size = New Size(100, 23)
+        ComboBoxTimeframe.TabIndex = 8
+        ComboBoxTimeframe.Text = "All"
+        ToolTip.SetToolTip(ComboBoxTimeframe, "Select the time period for the posts. Default value is `All`.")
         ' 
-        ' ListingComboBox
+        ' ComboBoxListing
         ' 
-        ListingComboBox.FormattingEnabled = True
-        ListingComboBox.Items.AddRange(New Object() {"Controversial", "Hot", "Best", "New", "Rising"})
-        ListingComboBox.Location = New Point(159, 168)
-        ListingComboBox.Name = "ListingComboBox"
-        ListingComboBox.Size = New Size(100, 23)
-        ListingComboBox.TabIndex = 9
-        ListingComboBox.Text = "Top"
+        ComboBoxListing.AutoCompleteCustomSource.AddRange(New String() {"Controversial", "Hot", "Best", "New", "Rising"})
+        ComboBoxListing.AutoCompleteMode = AutoCompleteMode.Append
+        ComboBoxListing.AutoCompleteSource = AutoCompleteSource.CustomSource
+        ComboBoxListing.FormattingEnabled = True
+        ComboBoxListing.Items.AddRange(New Object() {"Controversial", "Hot", "Best", "New", "Rising"})
+        ComboBoxListing.Location = New Point(118, 107)
+        ComboBoxListing.Name = "ComboBoxListing"
+        ComboBoxListing.Size = New Size(100, 23)
+        ComboBoxListing.TabIndex = 9
+        ComboBoxListing.Text = "Top"
+        ToolTip.SetToolTip(ComboBoxListing, "Choose the type of post listings. Default value is `Top`.")
         ' 
         ' LabelKeyword
         ' 
         LabelKeyword.AutoEllipsis = True
         LabelKeyword.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
         LabelKeyword.ForeColor = Color.Black
-        LabelKeyword.Location = New Point(19, 78)
+        LabelKeyword.Location = New Point(19, 23)
         LabelKeyword.Name = "LabelKeyword"
         LabelKeyword.Size = New Size(71, 20)
         LabelKeyword.TabIndex = 10
@@ -114,7 +123,7 @@ Partial Class StartForm
         LabelSubreddit.AutoEllipsis = True
         LabelSubreddit.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
         LabelSubreddit.ForeColor = Color.Black
-        LabelSubreddit.Location = New Point(19, 109)
+        LabelSubreddit.Location = New Point(19, 52)
         LabelSubreddit.Name = "LabelSubreddit"
         LabelSubreddit.Size = New Size(71, 23)
         LabelSubreddit.TabIndex = 11
@@ -125,7 +134,7 @@ Partial Class StartForm
         LabelLimit.AutoEllipsis = True
         LabelLimit.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
         LabelLimit.ForeColor = Color.Black
-        LabelLimit.Location = New Point(19, 137)
+        LabelLimit.Location = New Point(19, 75)
         LabelLimit.Name = "LabelLimit"
         LabelLimit.Size = New Size(56, 23)
         LabelLimit.TabIndex = 12
@@ -136,7 +145,7 @@ Partial Class StartForm
         LabelListing.AutoEllipsis = True
         LabelListing.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
         LabelListing.ForeColor = Color.Black
-        LabelListing.Location = New Point(19, 168)
+        LabelListing.Location = New Point(19, 107)
         LabelListing.Name = "LabelListing"
         LabelListing.Size = New Size(56, 23)
         LabelListing.TabIndex = 13
@@ -147,7 +156,7 @@ Partial Class StartForm
         LabelTimeframe.AutoEllipsis = True
         LabelTimeframe.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
         LabelTimeframe.ForeColor = Color.Black
-        LabelTimeframe.Location = New Point(19, 200)
+        LabelTimeframe.Location = New Point(19, 136)
         LabelTimeframe.Name = "LabelTimeframe"
         LabelTimeframe.Size = New Size(81, 23)
         LabelTimeframe.TabIndex = 14
@@ -228,76 +237,61 @@ Partial Class StartForm
         ToolStripMenuItemQuit.Size = New Size(153, 22)
         ToolStripMenuItemQuit.Text = "Quit"
         ' 
-        ' LimitNumericUpDown
+        ' NumericUpDownLimit
         ' 
-        LimitNumericUpDown.Location = New Point(159, 137)
-        LimitNumericUpDown.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
-        LimitNumericUpDown.Name = "LimitNumericUpDown"
-        LimitNumericUpDown.ReadOnly = True
-        LimitNumericUpDown.Size = New Size(100, 23)
-        LimitNumericUpDown.TabIndex = 15
-        LimitNumericUpDown.Value = New Decimal(New Integer() {10, 0, 0, 0})
+        NumericUpDownLimit.Location = New Point(118, 78)
+        NumericUpDownLimit.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
+        NumericUpDownLimit.Name = "NumericUpDownLimit"
+        NumericUpDownLimit.ReadOnly = True
+        NumericUpDownLimit.Size = New Size(100, 23)
+        NumericUpDownLimit.TabIndex = 15
+        ToolTip.SetToolTip(NumericUpDownLimit, "Set how many posts you want to go through. Default value is `10`.")
+        NumericUpDownLimit.Value = New Decimal(New Integer() {10, 0, 0, 0})
         ' 
-        ' PictureBoxLogo
+        ' ToolTip
         ' 
-        PictureBoxLogo.BackColor = Color.Transparent
-        PictureBoxLogo.Image = CType(resources.GetObject("PictureBoxLogo.Image"), Image)
-        PictureBoxLogo.Location = New Point(19, 12)
-        PictureBoxLogo.Name = "PictureBoxLogo"
-        PictureBoxLogo.Size = New Size(41, 45)
-        PictureBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBoxLogo.TabIndex = 17
-        PictureBoxLogo.TabStop = False
+        ToolTip.AutoPopDelay = 5000
+        ToolTip.BackColor = Color.Gainsboro
+        ToolTip.InitialDelay = 500
+        ToolTip.ReshowDelay = 100
+        ToolTip.ToolTipIcon = ToolTipIcon.Info
+        ToolTip.ToolTipTitle = "Tip"
         ' 
-        ' LabelRPST
-        ' 
-        LabelRPST.AutoSize = True
-        LabelRPST.BackColor = Color.Transparent
-        LabelRPST.Font = New Font("Ink Free", 9F, FontStyle.Regular, GraphicsUnit.Point)
-        LabelRPST.Location = New Point(50, 51)
-        LabelRPST.Name = "LabelRPST"
-        LabelRPST.Size = New Size(36, 15)
-        LabelRPST.TabIndex = 18
-        LabelRPST.Text = "RPST"
-        ' 
-        ' StartForm
+        ' FormMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.Control
-        ClientSize = New Size(281, 244)
+        ClientSize = New Size(239, 221)
         ContextMenuStrip = ContextMenuStripRightClick
-        Controls.Add(LabelRPST)
-        Controls.Add(PictureBoxLogo)
-        Controls.Add(TimeframeComboBox)
-        Controls.Add(KeywordTextBox)
+        Controls.Add(ComboBoxTimeframe)
+        Controls.Add(TextBoxKeyword)
         Controls.Add(LabelTimeframe)
         Controls.Add(LabelKeyword)
-        Controls.Add(ListingComboBox)
-        Controls.Add(LimitNumericUpDown)
+        Controls.Add(ComboBoxListing)
+        Controls.Add(NumericUpDownLimit)
         Controls.Add(LabelListing)
         Controls.Add(ButtonScrape)
         Controls.Add(LabelLimit)
         Controls.Add(LabelSubreddit)
-        Controls.Add(SubredditTextBox)
+        Controls.Add(TextBoxSubreddit)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
-        Name = "StartForm"
+        Name = "FormMain"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "ProgramName ProgramVersion"
+        Text = "RPST"
         ContextMenuStripRightClick.ResumeLayout(False)
-        CType(LimitNumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        CType(PictureBoxLogo, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDownLimit, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents KeywordTextBox As TextBox
-    Friend WithEvents SubredditTextBox As TextBox
+    Friend WithEvents TextBoxKeyword As TextBox
+    Friend WithEvents TextBoxSubreddit As TextBox
     Friend WithEvents ButtonScrape As Button
-    Friend WithEvents TimeframeComboBox As ComboBox
-    Friend WithEvents ListingComboBox As ComboBox
+    Friend WithEvents ComboBoxTimeframe As ComboBox
+    Friend WithEvents ComboBoxListing As ComboBox
     Friend WithEvents LabelKeyword As Label
     Friend WithEvents LabelSubreddit As Label
     Friend WithEvents LabelLimit As Label
@@ -307,12 +301,11 @@ Partial Class StartForm
     Friend WithEvents ToolStripMenuItemSavePosts As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItemtoJSON As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItemtoCSV As ToolStripMenuItem
-    Friend WithEvents LimitNumericUpDown As NumericUpDown
+    Friend WithEvents NumericUpDownLimit As NumericUpDown
     Friend WithEvents ToolStripMenuItemDarkMode As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItemAbout As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItemDeveloper As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItemCheckUpdates As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItemQuit As ToolStripMenuItem
-    Friend WithEvents PictureBoxLogo As PictureBox
-    Friend WithEvents LabelRPST As Label
+    Friend WithEvents ToolTip As ToolTip
 End Class

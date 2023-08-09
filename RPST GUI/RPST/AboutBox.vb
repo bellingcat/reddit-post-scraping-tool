@@ -35,8 +35,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 
         LabelProgramName.Text = My.Application.Info.ProductName
         LabelProgramDescription.Text = "Given a subreddit name and a keyword,
-RPST returns all top posts
-(by default) that contain the specified keyword."
+RPST returns all top posts (by default)
+that contain the specified keyword."
         LabelVersion.Text = $"v{My.Application.Info.Version}"
         LicenseRichTextBox.Text = LicenseText
     End Sub

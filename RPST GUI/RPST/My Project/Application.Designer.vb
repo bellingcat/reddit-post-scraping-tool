@@ -33,7 +33,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.RPST.StartForm
+            Me.MainForm = Global.RPST.FormMain
         End Sub
     End Class
 End Namespace
