@@ -37,7 +37,7 @@ def write_post_data(post_data: dict, filename: str) -> str:
     # Write the data to a JSON file
     with open(file_path, "a") as file:
         file.write(json.dumps(post_data))
-        file.write("\n")  # write a newline to separate posts
+        file.write("\n")  # write a newline to separate posts.
 
     return file.name
 
@@ -50,24 +50,24 @@ def check_updates(version_tag: str):
     :param version_tag: A string representing the current version of the project.
     """
 
-    # Make a GET request to the GitHub API to get the latest release of the project
+    # Make a GET request to the GitHub API to get the latest release of the project.
     response = requests.get(
         "https://api.github.com/repos/bellingcat/reddit-post-scraping-tool/releases/latest"
     ).json()
 
-    # Check if the latest release's tag matches the current version tag
+    # Check if the latest release's tag matches the current version tag.
     if response["tag_name"] != version_tag:
-        # If not, convert the release notes from Markdown to HTML
+        # If not, convert the release notes from Markdown to HTML.
         raw_release_notes = response["body"]
         markdown_release_notes = Markdown(raw_release_notes)
 
-        # Log an info message about the new release
+        # Log an info message about the new release.
         log.info(
             f"A new release of RPST is available ({response['tag_name']}). "
             f"Run 'pip install --upgrade reddit-post-scraping-tool' to get the updates."
         )
 
-        # Print the release notes
+        # Print the release notes.
         xprint(markdown_release_notes)
 
 
@@ -82,20 +82,20 @@ def create_post_branch(post: dict, keyword: str, output: bool, tree: Tree) -> Tr
     :param tree: Tree where the post branch will be added.
     :returns: The main tree with added post branches.
     """
-    # Define the data to extract from the post
+    # Define the data to extract from the post.
     post_data = {
-        # 'Author': post['data']['author'],
+        # "Author": post["data"]["author"],
         "ID": post["data"]["id"],
         "Subreddit": post["data"]["subreddit_name_prefixed"],
         "Visibility": post["data"]["subreddit_type"],
         "Thumbnail": post["data"]["thumbnail"],
-        "NSFW": post["data"]["over_18"],
         "Gilded": post["data"]["gilded"],
         "Upvotes": post["data"]["ups"],
         "Upvote ratio": post["data"]["upvote_ratio"],
         "Downvotes": post["data"]["downs"],
         "Awards": post["data"]["total_awards_received"],
         "Top award": post["data"]["top_awarded_type"],
+        "Is NSFW?": post["data"]["over_18"],
         "Is crosspostable?": post["data"]["is_crosspostable"],
         "Score": post["data"]["score"],
         "Category": post["data"]["category"],
@@ -104,19 +104,23 @@ def create_post_branch(post: dict, keyword: str, output: bool, tree: Tree) -> Tr
         "Approved at": post["data"]["approved_at_utc"],
         "Approved by": post["data"]["approved_by"],
     }
+
+    # Add the post's branch to the main tree.
+    post_branch = tree.add(f":scroll: {post['data']['title']}")
+
+    # Add each piece of extracted data as a branch of the post_branch.
+    for post_key, post_value in post_data.items():
+        post_branch.add(f"{post_key}: {post_value}", style="dim")
+
+    # If -j/--json is passed, write found posts to a json file.
     if output:
+        # This ensures that the post's selftext is also added to the written json file.
+        post_data["Text"] = post["data"]["selftext"]
         output_file = write_post_data(filename=keyword, post_data=post_data)
         tree.add(
             f":page_facing_up: Post data written/appended to "
             f"[italic][link file://{output_file}]{output_file}[/]"
         )
-
-    # Add the post's branch to the main tree.
-    post_branch = tree.add(f":scroll: {post['data']['title']}")
-
-    # Add each piece of extracted data as a branch of the post_branch
-    for post_key, post_value in post_data.items():
-        post_branch.add(f"{post_key}: {post_value}", style="dim")
     post_branch.add(post["data"]["selftext"], style="italic")
 
     return tree
@@ -150,25 +154,25 @@ def get_posts(arguments: argparse):
 
     # Start a new session
     session = requests.session()
-    # Set the User-Agent to mimic a Safari browser on a Mac
+    # Set the User-Agent to mimic a Safari browser on a Mac.
     session.headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, "
         "like Gecko) Version/14.1.1 Safari/605.1.15"
     }
 
     # Send a GET request to the specified subreddit and listing,
-    # limiting the response by the specified limit and timeframe
+    # limiting the response by the specified limit and timeframe.
     response = session.get(
         f"https://reddit.com/r/{subreddit}/{listing}"
         f".json?limit={limit}&t={timeframe}"
     ).json()
 
-    # Initialize a counter for the number of posts found that contain the keyword
+    # Initialize a counter for the number of posts found that contain the keyword.
     found_posts = 0
 
     # Loop through each post in the response
     for post_index, post in enumerate(response["data"]["children"], start=1):
-        # If the keyword is found in the post's selftext or title, increment the counter and process the post
+        # If the keyword is found in the post's selftext or title, increment the counter and process the post.
         if (
             keyword.lower() in post["data"]["selftext"]
             or keyword.lower() in post["data"]["title"]
