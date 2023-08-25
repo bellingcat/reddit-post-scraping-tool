@@ -27,7 +27,7 @@ Given a subreddit name and a keyword, RPST will return all posts from a specifie
 
 ## CLI
 * ![2023-08-25_15-39](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/4bca09b3-271f-452d-81a7-39c9986539f2)
-* ![2023-08-25_15-33](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/145016bd-57c8-48f5-91a9-76e26d0ac26e)
+* ![2023-08-25_15-30](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/2b39bdfa-87d0-4038-90cd-14e7d3b6a84b)
 * ![2023-08-25_15-35](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/47ba23ad-8d32-49c5-8c16-34a903fbc581)
 
 
