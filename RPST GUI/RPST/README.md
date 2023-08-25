@@ -20,7 +20,7 @@ Given a subreddit name and a keyword, RPST will return all posts from a specifie
 - [x] Add manual dark mode option, that will be persistent in all sessions
 - [ ] Make it save results to a CSV file
 
-# Images
+# Images & Screenshots
 ## GUI
 * ![2023-08-09_04-05](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/d8917a35-3eac-44ce-aa96-1f9685095254)
 * ![2023-08-09_04-05_1](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/d2fe7269-91d4-49ad-87fb-44282c5637a7)
