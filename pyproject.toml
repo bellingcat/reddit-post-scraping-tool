@@ -7,18 +7,18 @@ packages = ["rpst"]
 
 [project]
 name = "reddit-post-scraping-tool"
-version = "1.6.2.0"
+version = "1.7.0.0"
 description = "Given a subreddit name and a keyword, RPST returns all top (by default) posts that contain the specified keyword."
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
-keywords = ["osint", "reddit-crawler", "reddit-scraping", "reddit"]
+keywords = ["reddit-crawler", "reddit-scraping", "reddit", "reddit-api"]
 authors = [{name = "Richard Mwewa", email = "rly0nheart@duck.com"}]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Programming Language :: Python :: 3",
   "Programming Language :: Visual Basic",
-  "Intended Audience :: Information Technology",
+  "Intended Audience :: End Users/Desktop",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Natural Language :: English"
@@ -26,6 +26,7 @@ classifiers = [
 
 dependencies = [
     "rich",
+    "glyphoji",
     "requests",
 ]
 
@@ -35,4 +36,4 @@ documentation = "https://github.com/bellingcat/reddit-post-scraping-tool/wiki"
 repository = "https://github.com/bellingcat/reddit-post-scraping-tool.git"
 
 [project.scripts]
-rpst = "rpst.__main:run"
+rpst = "rpst.main:run"
