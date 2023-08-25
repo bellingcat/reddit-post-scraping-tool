@@ -48,7 +48,7 @@ def create_post_branch(post: dict, keyword: str, tree: Tree, args: argparse) -> 
     }
 
     # Add the post's branch to the main tree.
-    post_branch = tree.add(f"{glyph.scroll} {post['data']['title']}")
+    post_branch = tree.add(f"{glyph.page_with_curl} {post['data']['title']}")
 
     # Add each piece of extracted data as a branch of the post_branch.
     for post_key, post_value in post_data.items():
