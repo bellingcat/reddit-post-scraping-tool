@@ -27,7 +27,7 @@ def create_post_branch(post: dict, keyword: str, tree: Tree, args: argparse) -> 
         f"{glyph.people_hugging} Subreddit": post["data"]["subreddit_name_prefixed"],
         f"{glyph.face_with_peeking_eye} Visibility": post["data"]["subreddit_type"],
         f"{glyph.framed_picture} Thumbnail": post["data"]["thumbnail"],
-        f"{glyph.white_question_mark}  Gilded": post["data"]["gilded"],
+        f"{glyph.white_question_mark} Gilded": post["data"]["gilded"],
         f"{glyph.up_arrow} Upvotes": post["data"]["ups"],
         f"{glyph.chart_increasing} Upvote ratio": post["data"]["upvote_ratio"],
         f"{glyph.down_arrow} Downvotes": post["data"]["downs"],
@@ -125,7 +125,7 @@ def get_posts(args: argparse):
 
     # Log the number of posts in which the keyword was found
     main_tree.add(
-        f"{glyph.check_mark_button}  Keyword ('{keyword}') was found in "
+        f"{glyph.check_mark_button} Keyword ('{keyword}') was found in "
         f"{found_posts}/{len(response['data']['children'])} {listing} posts from r/{subreddit}."
     )
     xprint(main_tree)
