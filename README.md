@@ -20,25 +20,9 @@ Given a subreddit name and a keyword, RPST will return all posts from a specifie
 - [x] Add manual dark mode option, that will be persistent in all sessions
 - [ ] Make it save results to a CSV file
 
-# Images & Screenshots
-## GUI
-* ![2023-08-09_04-05](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/d8917a35-3eac-44ce-aa96-1f9685095254)
-* ![2023-08-09_04-05_1](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/d2fe7269-91d4-49ad-87fb-44282c5637a7)
-
-## CLI
-* ![2023-08-25_15-39](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/4bca09b3-271f-452d-81a7-39c9986539f2)
-* ![2023-08-25_15-30](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/2b39bdfa-87d0-4038-90cd-14e7d3b6a84b)
-* ![2023-08-25_15-35](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/47ba23ad-8d32-49c5-8c16-34a903fbc581)
-
-
-
-
 # 📖 Wiki
 [Refer to the Wiki](https://github.com/bellingcat/reddit-post-scraping-tool/wiki) for installation instructions, in addition to all other documentation.
+***
+<a href="https://www.buymeacoffee.com/_rly0nheart"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=_rly0nheart&button_colour=40DCA5&font_colour=ffffff&font_family=Comic&outline_colour=000000&coffee_colour=FFDD00" /></a>
 
-# 😁 Donations
-If you like `RPST` and would like to show support, you can Buy A Coffee for the developer using the button below
-
-<a href="https://www.buymeacoffee.com/_rly0nheart" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
-
-Your support will be much appreciated😊
+![me](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/21e0bb33-7a84-45d6-92ba-00e40891ba31)
