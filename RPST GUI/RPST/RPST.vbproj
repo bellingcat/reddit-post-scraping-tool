@@ -13,8 +13,8 @@
     <PackageProjectUrl>https://github.com/bellingcat/reddit-post-scraping-tool</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/bellingcat/reddit-post-scraping-tool</RepositoryUrl>
-    <AssemblyVersion>1.7.0.0</AssemblyVersion>
-    <FileVersion>1.7.0.0</FileVersion>
+    <AssemblyVersion>1.7.0.1</AssemblyVersion>
+    <FileVersion>1.7.0.1</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <Version>1.7.0</Version>
