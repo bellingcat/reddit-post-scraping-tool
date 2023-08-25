@@ -179,7 +179,7 @@ def write_post_data(post_data: dict, filename: str, args, tree_branch: Tree):
         )
     else:
         tree_branch.add(
-            f"{glyph.cross_mark_button}  JSON data writing operation was skipped. No changes made."
+            f"{glyph.cross_mark_button} JSON data writing operation was skipped. No changes made."
         )
 
     if args.csv:
@@ -198,5 +198,5 @@ def write_post_data(post_data: dict, filename: str, args, tree_branch: Tree):
         )
     else:
         tree_branch.add(
-            f"{glyph.cross_mark_button}  CSV data writing operation was skipped. No changes made."
+            f"{glyph.cross_mark_button} CSV data writing operation was skipped. No changes made."
         )
