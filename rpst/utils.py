@@ -7,8 +7,9 @@ from datetime import datetime
 
 import requests
 from glyphoji import glyph
+from rich import print
 from rich.tree import Tree
-from rich import print as xprint
+
 from rich.markdown import Markdown
 from rich.logging import RichHandler
 
@@ -84,7 +85,7 @@ def create_parser():
     parser.add_argument(
         "-d",
         "--debug",
-        help="run rpst in debug mode (show network logs)",
+        help="run rpst in debug mode",
         action="store_true",
     )
 
@@ -110,50 +111,30 @@ def check_updates(version_tag: str):
         raw_release_notes = response["body"]
 
         # Log an info message about the new release.
-        xprint(
+        print(
             f"{glyph.up_arrow} A new release of RPST is available ({response['tag_name']}). "
             f"Run 'pip install --upgrade reddit-post-scraping-tool' to get the updates."
         )
 
         # Print the release notes.
-        xprint(Markdown(raw_release_notes))
+        print(Markdown(raw_release_notes))
 
 
-def set_loglevel(args: argparse) -> logging.getLogger:
+def set_loglevel(debug_mode: bool) -> logging.getLogger:
     """
-    Configures the logging level based on the provided arguments.
+    Configure and return a logging object with the specified log level.
 
-    If `args.debug` is True, the logging level is set to "NOTSET," allowing all log messages to be displayed.
-    Otherwise, the logging level is set to "INFO," and only informational and higher-severity messages are displayed.
-
-    The function also configures a RichHandler for formatting the log messages,
-     including a specific time format and hiding the log level.
-
-    :param args: A namespace object from argparse containing the debugging option (args.debug).
-    :return: A logger object associated with the name "rich."
+    :param debug_mode: If True, the log level is set to "NOTSET". Otherwise, it is set to "INFO".
+    :return: A logging object configured with the specified log level.
     """
-    if args.debug:
-        logging.basicConfig(
-            level="NOTSET",
-            format="%(message)s",
-            handlers=[
-                RichHandler(
-                    markup=True, log_time_format="[%H:%M:%S%p]", show_level=False
-                )
-            ],
-        )
-    else:
-        logging.basicConfig(
-            level="INFO",
-            format="%(message)s",
-            handlers=[
-                RichHandler(
-                    markup=True, log_time_format="[%H:%M:%S%p]", show_level=False
-                )
-            ],
-        )
-
-    return logging.getLogger("rich")
+    logging.basicConfig(
+        level="NOTSET" if debug_mode else "INFO",
+        format="%(message)s",
+        handlers=[
+            RichHandler(markup=True, log_time_format="[%I:%M:%S %p]", show_level=False)
+        ],
+    )
+    return logging.getLogger("RPST")
 
 
 def write_post_data(post_data: dict, filename: str, args, tree_branch: Tree):

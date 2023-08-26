@@ -3,8 +3,8 @@ from datetime import datetime
 
 import requests
 from glyphoji import glyph
+from rich import print
 from rich.tree import Tree
-from rich import print as xprint
 
 from .utils import convert_timestamp_to_datetime, write_post_data
 
@@ -128,4 +128,4 @@ def get_posts(args: argparse):
         f"{glyph.check_mark_button} Keyword ('{keyword}') was found in "
         f"{found_posts}/{len(response['data']['children'])} {listing} posts from r/{subreddit}."
     )
-    xprint(main_tree)
+    print(main_tree)

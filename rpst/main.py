@@ -14,20 +14,20 @@ def run():
     parser = create_parser()
     args = parser.parse_args()
 
-    log = set_loglevel(args=args)
+    log = set_loglevel(debug_mode=args.debug)
 
     # Record the start time
     start_time = datetime.now()
 
     try:
         # Check for updates
-        check_updates(version_tag="1.7.0.1")
+        check_updates(version_tag="1.7.1.0")
 
         # Get posts with the provided/parsed arguments
         get_posts(args=args)
     except KeyboardInterrupt:
-        log.warning("User interruption detected.")
+        log.warning("User interruption detected ([yellow]Ctrl+C[/]).")
     except Exception as e:
-        log.error(f"An error occurred: {e}")
+        log.error(f"An error occurred: [red]{e}[/]")
     finally:
         log.info(f"Finished in {datetime.now() - start_time} seconds.")
