@@ -61,7 +61,7 @@ Partial Class DeveloperBox
         GreetingLabel.TabIndex = 3
         GreetingLabel.Text = "👋🏾Hello, I'm Ritchie"
         ' 
-        ' DeveloperForm
+        ' DeveloperBox
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
@@ -73,7 +73,7 @@ Partial Class DeveloperBox
         FormBorderStyle = FormBorderStyle.FixedSingle
         MaximizeBox = False
         MinimizeBox = False
-        Name = "DeveloperForm"
+        Name = "DeveloperBox"
         ShowIcon = False
         ShowInTaskbar = False
         StartPosition = FormStartPosition.CenterParent
