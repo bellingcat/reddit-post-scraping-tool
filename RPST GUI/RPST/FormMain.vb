@@ -1,7 +1,4 @@
-﻿Imports System.IO
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
-Imports Newtonsoft.Json
-Imports Newtonsoft.Json.Linq
+﻿Imports Newtonsoft.Json.Linq
 
 Public Class FormMain
     ReadOnly settings As New SettingsManager()
@@ -14,22 +11,15 @@ Public Class FormMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         settings.LoadSettings()
-        settings.ToggleDarkMode(settings.DarkMode)
+        settings.ToggleSettings(settings.DarkMode, "darkmode")
+        settings.ToggleSettings(settings.SaveToJson, "json")
+        settings.ToggleSettings(settings.SaveToCsv, "csv")
+
         Utilities.PathFinder()
         Utilities.LogFirstTimeLaunch()
         Me.Text = My.Application.Info.AssemblyName
-    End Sub
-
-
-    ''' <summary>
-    ''' Event handler for the 'Dark Mode' checkbox change event.
-    ''' It toggles the dark mode of the application based on the checkbox status.
-    ''' </summary>
-    ''' <param name="sender">The source of the event.</param>
-    ''' <param name="e">An EventArgs that contains the event data.</param>
-    Private Sub DarkModeToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles ToolStripMenuItemDarkMode.CheckedChanged
-        settings.ToggleDarkMode(ToolStripMenuItemDarkMode.Checked)
     End Sub
 
 
@@ -39,7 +29,7 @@ Public Class FormMain
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
-    Private Sub ToolStripMenuItemAbout_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemAbout.Click
+    Private Sub ToolStripMenuItemAbout_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         AboutBox.Show()
     End Sub
 
@@ -50,7 +40,7 @@ Public Class FormMain
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
-    Private Sub ToolStripMenuItemDeveloper_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemDeveloper.Click
+    Private Sub ToolStripMenuItemDeveloper_Click(sender As Object, e As EventArgs) Handles DeveloperToolStripMenuItem.Click
         DeveloperBox.ShowDialog()
     End Sub
 
@@ -61,7 +51,7 @@ Public Class FormMain
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
-    Private Sub ToolStripMenuItemCheckUpdates_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemCheckUpdates.Click
+    Private Sub ToolStripMenuItemCheckUpdates_Click(sender As Object, e As EventArgs) Handles CheckForUpdatesToolStripMenuItem.Click
         Dim data As JObject = ApiHandler.CheckUpdates()
         If data("tag_name").ToString = My.Application.Info.Version.ToString Then
             MessageBox.Show($"You're running the latest version v{My.Application.Info.Version} of {Me.Text}. Check again soon! :)", $"{Me.Text} v{My.Application.Info.Version}", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -83,7 +73,7 @@ Public Class FormMain
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
-    Private Sub ToolStripMenuItemQuit_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemQuit.Click
+    Private Sub ToolStripMenuItemQuit_Click(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click
         Dim result As DialogResult = MessageBox.Show("This will close the program, continue?", "Quit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Me.Close()
@@ -99,7 +89,8 @@ Public Class FormMain
     ''' <param name="sender">The sender of the event.</param>
     ''' <param name="e">The EventArgs instance containing the event data.</param>
     Private Sub ButtonScrape_Click(sender As Object, e As EventArgs) Handles ButtonScrape.Click
-        Utilities.ProcessRedditPosts(ToolStripMenuItemtoJSON)
+        settings.LoadSettings()
+        PostsProcessor.ProcessRedditPosts(settings:=settings)
     End Sub
 
 
@@ -110,11 +101,13 @@ Public Class FormMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
     Private Sub TextBoxKeyword_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBoxKeyword.KeyDown
+        settings.LoadSettings()
+
         ' Check if the Enter key is pressed
         If e.KeyCode = Keys.Enter Then
             ' Prevent the beep sound that usually comes with the Enter key in a single-line TextBox
             e.SuppressKeyPress = True
-            Utilities.ProcessRedditPosts(ToolStripMenuItemtoJSON)
+            PostsProcessor.ProcessRedditPosts(settings:=settings)
         End If
     End Sub
 
@@ -126,11 +119,13 @@ Public Class FormMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
     Private Sub TextBoxSubreddit_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBoxSubreddit.KeyDown
+        settings.LoadSettings()
+
         ' Check if the Enter key is pressed
         If e.KeyCode = Keys.Enter Then
             ' Prevent the beep sound that usually comes with the Enter key in a single-line TextBox
             e.SuppressKeyPress = True
-            Utilities.ProcessRedditPosts(ToolStripMenuItemtoJSON)
+            PostsProcessor.ProcessRedditPosts(settings:=settings)
         End If
     End Sub
 
@@ -142,11 +137,13 @@ Public Class FormMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
     Private Sub NumericUpDownLimit_KeyDown(sender As Object, e As KeyEventArgs) Handles NumericUpDownLimit.KeyDown
+        settings.LoadSettings()
+
         ' Check if the Enter key is pressed
         If e.KeyCode = Keys.Enter Then
             ' Prevent the beep sound that usually comes with the Enter key in a single-line TextBox
             e.SuppressKeyPress = True
-            Utilities.ProcessRedditPosts(ToolStripMenuItemtoJSON)
+            PostsProcessor.ProcessRedditPosts(settings:=settings)
         End If
     End Sub
 
@@ -158,11 +155,13 @@ Public Class FormMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
     Private Sub ComboBoxListing_KeyDown(sender As Object, e As KeyEventArgs) Handles ComboBoxListing.KeyDown
+        settings.LoadSettings()
+
         ' Check if the Enter key is pressed
         If e.KeyCode = Keys.Enter Then
             ' Prevent the beep sound that usually comes with the Enter key in a single-line TextBox
             e.SuppressKeyPress = True
-            Utilities.ProcessRedditPosts(ToolStripMenuItemtoJSON)
+            PostsProcessor.ProcessRedditPosts(settings:=settings)
         End If
     End Sub
 
@@ -174,11 +173,43 @@ Public Class FormMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
     Private Sub ComboBoxTimeframe_KeyDown(sender As Object, e As KeyEventArgs) Handles ComboBoxTimeframe.KeyDown
+        settings.LoadSettings()
+
         ' Check if the Enter key is pressed
         If e.KeyCode = Keys.Enter Then
             ' Prevent the beep sound that usually comes with the Enter key in a single-line TextBox
             e.SuppressKeyPress = True
-            Utilities.ProcessRedditPosts(ToolStripMenuItemtoJSON)
+            PostsProcessor.ProcessRedditPosts(settings:=settings)
         End If
+    End Sub
+
+    ''' <summary>
+    ''' Event handler for the 'Dark Mode' checkbox change event.
+    ''' It toggles the dark mode of the application based on the checkbox status.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">An EventArgs that contains the event data.</param>
+    Private Sub ToolStripMenuItemDarkMode_CheckedChanged(sender As Object, e As EventArgs) Handles DarkModeToolStripMenuItem.CheckedChanged
+        settings.ToggleSettings(DarkModeToolStripMenuItem.Checked, "darkmode")
+    End Sub
+
+    ''' <summary>
+    ''' Event handler for the 'to CSV' checkbox change event.
+    ''' It toggles the dark mode of the application based on the checkbox status.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">An EventArgs that contains the event data.</param>
+    Private Sub ToCSVToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles ToCSVToolStripMenuItem.CheckedChanged
+        settings.ToggleSettings(ToCSVToolStripMenuItem.Checked, "csv")
+    End Sub
+
+    ''' <summary>
+    ''' Event handler for the 'to JSON' checkbox change event.
+    ''' It toggles the dark mode of the application based on the checkbox status.
+    ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">An EventArgs that contains the event data.</param>
+    Private Sub ToJSONToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles ToJSONToolStripMenuItem.CheckedChanged
+        settings.ToggleSettings(ToJSONToolStripMenuItem.Checked, "json")
     End Sub
 End Class

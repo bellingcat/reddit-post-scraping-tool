@@ -21,7 +21,7 @@ def run():
 
     try:
         # Check for updates
-        check_updates(version_tag="1.7.1.0")
+        check_updates(version_tag="1.8.0.0")
 
         # Get posts with the provided/parsed arguments
         get_posts(args=args)

@@ -31,13 +31,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
     ''' <param name="e">The event data.</param>
     Private Sub AboutBox_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         settings.LoadSettings()
-        settings.ToggleDarkMode(settings.DarkMode)
+        settings.ToggleSettings(settings.DarkMode, "darkmode")
 
         LabelProgramName.Text = My.Application.Info.ProductName
         LabelProgramDescription.Text = "Given a subreddit name and a keyword,
 RPST returns all top posts (by default)
 that contain the specified keyword."
-        LabelVersion.Text = $"v{My.Application.Info.Version}"
+        LinkLabelVersion.Text = $"v{My.Application.Info.Version}"
         LicenseRichTextBox.Text = LicenseText
     End Sub
 
@@ -49,5 +49,9 @@ that contain the specified keyword."
     ''' <param name="e">The event data.</param>
     Private Sub LinkLabelReadtheWiki_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelReadtheWiki.LinkClicked
         Shell("cmd /c start https://github.com/bellingcat/reddit-post-scraping-tool/wiki")
+    End Sub
+
+    Private Sub LinkLabelVersion_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelVersion.LinkClicked
+        Shell($"cmd /c start https://github.com/bellingcat/reddit-post-scraping-tool/releases/tag/{My.Application.Info.Version}")
     End Sub
 End Class

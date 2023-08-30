@@ -3,54 +3,6 @@ Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 
 Public Class Utilities
-    ''' <summary>
-    ''' Collects user inputs, fetches Reddit posts based on the inputs, checks if posts contain the keyword, and saves posts to a JSON file if necessary.
-    ''' </summary>
-    ''' <param name="JSONToolStripMenuItem">Indicates whether to save the posts to a JSON file.</param>
-    ''' <remarks>
-    ''' This function initializes the DataGridView, iterates over each post, adds the posts containing the keyword to the DataGridView and updates the UI.
-    ''' It also shows a message if the keyword was not found in any of the posts or if the inputs are empty.
-    ''' </remarks>
-    Public Shared Sub ProcessRedditPosts(JSONToolStripMenuItem As ToolStripMenuItem)
-        ' Collect inputs from the user
-        Dim inputs = CollectInputs()
-
-        If inputs.HasValue Then
-            ' Initialize the DataGridView
-            DataGridViewHandler.AddColumn(FormPosts.DataGridViewPosts)
-
-            ' Fetch Reddit posts based on the inputs
-            Dim processor As New PostsProcessor()
-            Dim posts As JObject = processor.FetchPosts(inputs.Value.Subreddit, inputs.Value.Listing, inputs.Value.Limit, inputs.Value.Timeframe)
-            Dim totalPosts As Integer = 0
-            Dim keywordFound As Boolean = False
-
-            ' Iterate over each post
-            For Each post In posts("data")("children")
-                totalPosts += 1
-                ' Check if the post contains the keyword
-                If PostsProcessor.PostContainsKeyword(post, inputs.Value.Keyword.ToLower(Globalization.CultureInfo.InvariantCulture)) Then
-                    ' Add the post to the DataGridView
-                    DataGridViewHandler.AddRow(FormPosts.DataGridViewPosts, post, totalPosts)
-                    FormPosts.Show()
-                    keywordFound = True
-                End If
-            Next
-
-            ' Check if the keyword was found in any posts
-            If Not keywordFound Then
-                MessageBox.Show($"Keyword `{inputs.Value.Keyword}` was not found in any of the " + posts("data")("children").Count.ToString(Globalization.CultureInfo.InvariantCulture) _
-                                + $" {inputs.Value.Listing} posts from r/{inputs.Value.Subreddit}", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
-
-            If JSONToolStripMenuItem.Checked Then
-                ' Save posts to a JSON file if the JSONToolStripMenuItem is checked
-                Utilities.SavePostsToJson(posts("data"))
-            End If
-        Else
-        End If
-    End Sub
-
 
     ''' <summary>
     ''' Checks for the existence of the 'logs' directory under the 'RPST' directory within the user's AppData\Roaming folder. 
@@ -87,14 +39,18 @@ Public Class Utilities
     Public Shared Function CollectInputs() As (Keyword As String, Subreddit As String, Listing As String, Limit As Integer, Timeframe As String)?
         Dim keyword As String = FormMain.TextBoxKeyword.Text.Trim()
         Dim subreddit As String = FormMain.TextBoxSubreddit.Text.Trim()
-        ' Convert the Listing and Subreddit to lowercase using InvariantCulture
+        ''' <summary>
+        ''' Convert the Listing and Subreddit to lowercase using InvariantCulture.
+        ''' <summary>
         Dim listing As String = If(String.IsNullOrEmpty(FormMain.ComboBoxListing.Text), "top", FormMain.ComboBoxListing.Text.ToLower(Globalization.CultureInfo.InvariantCulture).Trim())
         Dim timeframe As String = If(String.IsNullOrEmpty(FormMain.ComboBoxTimeframe.Text), "all", FormMain.ComboBoxTimeframe.Text.ToLower(Globalization.CultureInfo.InvariantCulture).Trim())
         Dim limit As Integer = FormMain.NumericUpDownLimit.Value
 
-        ' Validate inputs
+        ''' <summary>
+        ''' Validate inputs.
+        ''' <summary>
         If String.IsNullOrEmpty(keyword) AndAlso String.IsNullOrEmpty(subreddit) Then
-            MessageBox.Show("Keyword and Subreddit fields should not be empty.", "Invalid Inputs", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Keyword and Subreddit should not be empty.", "Invalid Inputs", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return Nothing
         ElseIf String.IsNullOrEmpty(keyword) Then
             MessageBox.Show("Keyword field should not be empty.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -135,6 +91,42 @@ Public Class Utilities
             MessageBox.Show($"Posts saved to {fileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
+
+
+    ''' <summary>
+    ''' Saves Reddit posts contained in a JArray to a CSV file.
+    ''' </summary>
+    ''' <param name="posts">A JArray containing the Reddit posts to be saved.</param>
+    ''' <remarks>
+    ''' This function displays a SaveFileDialog to allow the user to specify the file name and location.
+    ''' It then iterates through the JArray to write each post's details (totalPosts, title, subreddit, author, score) into the selected CSV file.
+    ''' </remarks>
+    Public Shared Sub SavePostsToCSV(posts As JArray)
+        Dim saveFileDialog As New SaveFileDialog With {
+        .Filter = "CSV files (*.csv)|*.csv",
+        .Title = "Save posts to CSV"
+    }
+
+        If saveFileDialog.ShowDialog() = DialogResult.OK Then
+            Dim fileName As String = saveFileDialog.FileName
+            Using csvWriter As New StreamWriter(fileName)
+                ''' <summary>
+                ''' Write the header.
+                ''' <summary>
+                csvWriter.WriteLine("Index,Author,ID,Subreddit,Visibility,Thumbnail,NSFW,Gilded,Upvotes,Upvote Ratio,Downvotes,Award,Top Award,Is cross-postable?,Score,Category,Text,Domain,Permalink,Created At,Approved At,Approved By")
+
+                Dim postCount As Integer = 0
+                For Each post In posts
+                    postCount += 1
+                    csvWriter.WriteLine($"{postCount},{post("data")("author")},{post("data")("id")},{post("data")("subreddit_name_prefixed")},{post("data")("subreddit_type")},{post("data")("thumbnail")},{post("data")("over_18")},{post("data")("gilded")},{post("data")("ups")},{post("data")("upvote_ratio")},{post("data")("downs")},{post("data")("total_awards_received")},{post("data")("top_awarded_type")},{post("data")("is_crosspostable")},{post("data")("score")},{post("data")("category")},{post("data")("selftext")},{post("data")("domain")},{post("data")("permalink")},{post("data")("created")},{post("data")("approved_at_utc")},{post("data")("approved_by")}")
+                Next
+            End Using
+
+            MessageBox.Show($"Posts saved to {fileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+    End Sub
+
+
 
 
     ''' <summary>

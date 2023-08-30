@@ -26,9 +26,9 @@ Partial Class AboutBox
         PictureBoxLogo = New PictureBox()
         LabelProgramName = New Label()
         LabelProgramDescription = New Label()
-        LabelVersion = New Label()
         LinkLabelReadtheWiki = New LinkLabel()
         Panel1 = New Panel()
+        LinkLabelVersion = New LinkLabel()
         LicenseRichTextBox = New RichTextBox()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -67,17 +67,6 @@ Partial Class AboutBox
         LabelProgramDescription.TabIndex = 4
         LabelProgramDescription.Text = "Description"
         ' 
-        ' LabelVersion
-        ' 
-        LabelVersion.AutoSize = True
-        LabelVersion.Font = New Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point)
-        LabelVersion.ForeColor = SystemColors.ControlText
-        LabelVersion.Location = New Point(347, 17)
-        LabelVersion.Name = "LabelVersion"
-        LabelVersion.Size = New Size(45, 15)
-        LabelVersion.TabIndex = 5
-        LabelVersion.Text = "Version"
-        ' 
         ' LinkLabelReadtheWiki
         ' 
         LinkLabelReadtheWiki.AutoSize = True
@@ -92,14 +81,24 @@ Partial Class AboutBox
         ' Panel1
         ' 
         Panel1.BackColor = SystemColors.Control
+        Panel1.Controls.Add(LinkLabelVersion)
         Panel1.Controls.Add(LabelProgramDescription)
         Panel1.Controls.Add(LabelProgramName)
         Panel1.Controls.Add(LinkLabelReadtheWiki)
-        Panel1.Controls.Add(LabelVersion)
         Panel1.Location = New Point(106, 12)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(409, 93)
         Panel1.TabIndex = 7
+        ' 
+        ' LinkLabelVersion
+        ' 
+        LinkLabelVersion.AutoSize = True
+        LinkLabelVersion.Location = New Point(347, 17)
+        LinkLabelVersion.Name = "LinkLabelVersion"
+        LinkLabelVersion.Size = New Size(45, 15)
+        LinkLabelVersion.TabIndex = 7
+        LinkLabelVersion.TabStop = True
+        LinkLabelVersion.Text = "Version"
         ' 
         ' LicenseRichTextBox
         ' 
@@ -137,8 +136,8 @@ Partial Class AboutBox
     Friend WithEvents PictureBoxLogo As PictureBox
     Friend WithEvents LabelProgramName As Label
     Friend WithEvents LabelProgramDescription As Label
-    Friend WithEvents LabelVersion As Label
     Friend WithEvents LinkLabelReadtheWiki As LinkLabel
     Friend WithEvents Panel1 As Panel
     Friend WithEvents LicenseRichTextBox As RichTextBox
+    Friend WithEvents LinkLabelVersion As LinkLabel
 End Class

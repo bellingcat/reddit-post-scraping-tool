@@ -35,14 +35,15 @@ Partial Class FormMain
         LabelListing = New Label()
         LabelTimeframe = New Label()
         ContextMenuStripRightClick = New ContextMenuStrip(components)
-        ToolStripMenuItemDarkMode = New ToolStripMenuItem()
-        ToolStripMenuItemSavePosts = New ToolStripMenuItem()
-        ToolStripMenuItemtoJSON = New ToolStripMenuItem()
-        ToolStripMenuItemtoCSV = New ToolStripMenuItem()
-        ToolStripMenuItemAbout = New ToolStripMenuItem()
-        ToolStripMenuItemDeveloper = New ToolStripMenuItem()
-        ToolStripMenuItemCheckUpdates = New ToolStripMenuItem()
-        ToolStripMenuItemQuit = New ToolStripMenuItem()
+        SettingsToolStripMenuItem = New ToolStripMenuItem()
+        DarkModeToolStripMenuItem = New ToolStripMenuItem()
+        SavePostsToolStripMenuItem = New ToolStripMenuItem()
+        ToJSONToolStripMenuItem = New ToolStripMenuItem()
+        ToCSVToolStripMenuItem = New ToolStripMenuItem()
+        AboutToolStripMenuItem = New ToolStripMenuItem()
+        DeveloperToolStripMenuItem = New ToolStripMenuItem()
+        CheckForUpdatesToolStripMenuItem = New ToolStripMenuItem()
+        QuitToolStripMenuItem = New ToolStripMenuItem()
         NumericUpDownLimit = New NumericUpDown()
         ToolTip = New ToolTip(components)
         ContextMenuStripRightClick.SuspendLayout()
@@ -55,19 +56,19 @@ Partial Class FormMain
         TextBoxKeyword.ForeColor = SystemColors.WindowText
         TextBoxKeyword.Location = New Point(118, 20)
         TextBoxKeyword.Name = "TextBoxKeyword"
-        TextBoxKeyword.PlaceholderText = "Keyword"
+        TextBoxKeyword.PlaceholderText = "*Keyword"
         TextBoxKeyword.Size = New Size(100, 23)
         TextBoxKeyword.TabIndex = 0
-        ToolTip.SetToolTip(TextBoxKeyword, "Enter the keyword you want to search for.")
+        ToolTip.SetToolTip(TextBoxKeyword, "[required] The keyword to search for.")
         ' 
         ' TextBoxSubreddit
         ' 
         TextBoxSubreddit.Location = New Point(118, 49)
         TextBoxSubreddit.Name = "TextBoxSubreddit"
-        TextBoxSubreddit.PlaceholderText = "Subreddit"
+        TextBoxSubreddit.PlaceholderText = "*Subreddit"
         TextBoxSubreddit.Size = New Size(100, 23)
         TextBoxSubreddit.TabIndex = 4
-        ToolTip.SetToolTip(TextBoxSubreddit, "Provide the subreddit to search in.")
+        ToolTip.SetToolTip(TextBoxSubreddit, "[required] The subreddit to search in.")
         ' 
         ' ButtonScrape
         ' 
@@ -76,7 +77,7 @@ Partial Class FormMain
         ButtonScrape.Size = New Size(51, 28)
         ButtonScrape.TabIndex = 6
         ButtonScrape.Text = "Scrape"
-        ToolTip.SetToolTip(ButtonScrape, "You can also just hit ENTER to start scraping.")
+        ToolTip.SetToolTip(ButtonScrape, "Hitting ENTER will also start the scraping process.")
         ButtonScrape.UseVisualStyleBackColor = True
         ' 
         ' ComboBoxTimeframe
@@ -91,7 +92,7 @@ Partial Class FormMain
         ComboBoxTimeframe.Size = New Size(100, 23)
         ComboBoxTimeframe.TabIndex = 8
         ComboBoxTimeframe.Text = "All"
-        ToolTip.SetToolTip(ComboBoxTimeframe, "Select the time period for the posts. Default value is `All`.")
+        ToolTip.SetToolTip(ComboBoxTimeframe, "The time period for the posts. Default value is `All`.")
         ' 
         ' ComboBoxListing
         ' 
@@ -105,7 +106,7 @@ Partial Class FormMain
         ComboBoxListing.Size = New Size(100, 23)
         ComboBoxListing.TabIndex = 9
         ComboBoxListing.Text = "Top"
-        ToolTip.SetToolTip(ComboBoxListing, "Choose the type of post listings. Default value is `Top`.")
+        ToolTip.SetToolTip(ComboBoxListing, "The type of post listings. Default value is `Top`.")
         ' 
         ' LabelKeyword
         ' 
@@ -123,7 +124,7 @@ Partial Class FormMain
         LabelSubreddit.AutoEllipsis = True
         LabelSubreddit.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
         LabelSubreddit.ForeColor = Color.Black
-        LabelSubreddit.Location = New Point(19, 52)
+        LabelSubreddit.Location = New Point(19, 51)
         LabelSubreddit.Name = "LabelSubreddit"
         LabelSubreddit.Size = New Size(71, 23)
         LabelSubreddit.TabIndex = 11
@@ -134,7 +135,7 @@ Partial Class FormMain
         LabelLimit.AutoEllipsis = True
         LabelLimit.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
         LabelLimit.ForeColor = Color.Black
-        LabelLimit.Location = New Point(19, 75)
+        LabelLimit.Location = New Point(19, 80)
         LabelLimit.Name = "LabelLimit"
         LabelLimit.Size = New Size(56, 23)
         LabelLimit.TabIndex = 12
@@ -145,7 +146,7 @@ Partial Class FormMain
         LabelListing.AutoEllipsis = True
         LabelListing.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
         LabelListing.ForeColor = Color.Black
-        LabelListing.Location = New Point(19, 107)
+        LabelListing.Location = New Point(19, 108)
         LabelListing.Name = "LabelListing"
         LabelListing.Size = New Size(56, 23)
         LabelListing.TabIndex = 13
@@ -156,7 +157,7 @@ Partial Class FormMain
         LabelTimeframe.AutoEllipsis = True
         LabelTimeframe.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point)
         LabelTimeframe.ForeColor = Color.Black
-        LabelTimeframe.Location = New Point(19, 136)
+        LabelTimeframe.Location = New Point(19, 137)
         LabelTimeframe.Name = "LabelTimeframe"
         LabelTimeframe.Size = New Size(81, 23)
         LabelTimeframe.TabIndex = 14
@@ -164,78 +165,85 @@ Partial Class FormMain
         ' 
         ' ContextMenuStripRightClick
         ' 
-        ContextMenuStripRightClick.Items.AddRange(New ToolStripItem() {ToolStripMenuItemDarkMode, ToolStripMenuItemSavePosts, ToolStripMenuItemAbout, ToolStripMenuItemDeveloper, ToolStripMenuItemCheckUpdates, ToolStripMenuItemQuit})
+        ContextMenuStripRightClick.Items.AddRange(New ToolStripItem() {AboutToolStripMenuItem, DeveloperToolStripMenuItem, CheckForUpdatesToolStripMenuItem, SettingsToolStripMenuItem, QuitToolStripMenuItem})
         ContextMenuStripRightClick.Name = "ContextMenuStrip1"
-        ContextMenuStripRightClick.Size = New Size(154, 136)
+        ContextMenuStripRightClick.Size = New Size(172, 114)
         ' 
-        ' ToolStripMenuItemDarkMode
+        ' SettingsToolStripMenuItem
         ' 
-        ToolStripMenuItemDarkMode.AutoToolTip = True
-        ToolStripMenuItemDarkMode.CheckOnClick = True
-        ToolStripMenuItemDarkMode.Image = CType(resources.GetObject("ToolStripMenuItemDarkMode.Image"), Image)
-        ToolStripMenuItemDarkMode.Name = "ToolStripMenuItemDarkMode"
-        ToolStripMenuItemDarkMode.Size = New Size(153, 22)
-        ToolStripMenuItemDarkMode.Text = "Dark Mode"
+        SettingsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {DarkModeToolStripMenuItem, SavePostsToolStripMenuItem})
+        SettingsToolStripMenuItem.Image = CType(resources.GetObject("SettingsToolStripMenuItem.Image"), Image)
+        SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
+        SettingsToolStripMenuItem.Size = New Size(171, 22)
+        SettingsToolStripMenuItem.Text = "Settings"
         ' 
-        ' ToolStripMenuItemSavePosts
+        ' DarkModeToolStripMenuItem
         ' 
-        ToolStripMenuItemSavePosts.AutoToolTip = True
-        ToolStripMenuItemSavePosts.DropDownItems.AddRange(New ToolStripItem() {ToolStripMenuItemtoJSON, ToolStripMenuItemtoCSV})
-        ToolStripMenuItemSavePosts.Image = CType(resources.GetObject("ToolStripMenuItemSavePosts.Image"), Image)
-        ToolStripMenuItemSavePosts.Name = "ToolStripMenuItemSavePosts"
-        ToolStripMenuItemSavePosts.Size = New Size(153, 22)
-        ToolStripMenuItemSavePosts.Text = "Save Posts"
-        ToolStripMenuItemSavePosts.ToolTipText = "Save found posts to..."
+        DarkModeToolStripMenuItem.CheckOnClick = True
+        DarkModeToolStripMenuItem.Image = CType(resources.GetObject("DarkModeToolStripMenuItem.Image"), Image)
+        DarkModeToolStripMenuItem.Name = "DarkModeToolStripMenuItem"
+        DarkModeToolStripMenuItem.Size = New Size(180, 22)
+        DarkModeToolStripMenuItem.Text = "Dark Mode"
         ' 
-        ' ToolStripMenuItemtoJSON
+        ' SavePostsToolStripMenuItem
         ' 
-        ToolStripMenuItemtoJSON.AutoToolTip = True
-        ToolStripMenuItemtoJSON.CheckOnClick = True
-        ToolStripMenuItemtoJSON.Image = CType(resources.GetObject("ToolStripMenuItemtoJSON.Image"), Image)
-        ToolStripMenuItemtoJSON.Name = "ToolStripMenuItemtoJSON"
-        ToolStripMenuItemtoJSON.Size = New Size(116, 22)
-        ToolStripMenuItemtoJSON.Text = "to JSON"
+        SavePostsToolStripMenuItem.AutoToolTip = True
+        SavePostsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ToJSONToolStripMenuItem, ToCSVToolStripMenuItem})
+        SavePostsToolStripMenuItem.Image = CType(resources.GetObject("SavePostsToolStripMenuItem.Image"), Image)
+        SavePostsToolStripMenuItem.Name = "SavePostsToolStripMenuItem"
+        SavePostsToolStripMenuItem.Size = New Size(180, 22)
+        SavePostsToolStripMenuItem.Text = "Save posts"
         ' 
-        ' ToolStripMenuItemtoCSV
+        ' ToJSONToolStripMenuItem
         ' 
-        ToolStripMenuItemtoCSV.AutoToolTip = True
-        ToolStripMenuItemtoCSV.Enabled = False
-        ToolStripMenuItemtoCSV.Image = CType(resources.GetObject("ToolStripMenuItemtoCSV.Image"), Image)
-        ToolStripMenuItemtoCSV.Name = "ToolStripMenuItemtoCSV"
-        ToolStripMenuItemtoCSV.Size = New Size(116, 22)
-        ToolStripMenuItemtoCSV.Text = "to CSV"
+        ToJSONToolStripMenuItem.AutoToolTip = True
+        ToJSONToolStripMenuItem.CheckOnClick = True
+        ToJSONToolStripMenuItem.Image = CType(resources.GetObject("ToJSONToolStripMenuItem.Image"), Image)
+        ToJSONToolStripMenuItem.Name = "ToJSONToolStripMenuItem"
+        ToJSONToolStripMenuItem.Size = New Size(180, 22)
+        ToJSONToolStripMenuItem.Text = "to JSON"
         ' 
-        ' ToolStripMenuItemAbout
+        ' ToCSVToolStripMenuItem
         ' 
-        ToolStripMenuItemAbout.AutoToolTip = True
-        ToolStripMenuItemAbout.Image = CType(resources.GetObject("ToolStripMenuItemAbout.Image"), Image)
-        ToolStripMenuItemAbout.Name = "ToolStripMenuItemAbout"
-        ToolStripMenuItemAbout.Size = New Size(153, 22)
-        ToolStripMenuItemAbout.Text = "About"
+        ToCSVToolStripMenuItem.AutoToolTip = True
+        ToCSVToolStripMenuItem.CheckOnClick = True
+        ToCSVToolStripMenuItem.Image = CType(resources.GetObject("ToCSVToolStripMenuItem.Image"), Image)
+        ToCSVToolStripMenuItem.Name = "ToCSVToolStripMenuItem"
+        ToCSVToolStripMenuItem.Size = New Size(180, 22)
+        ToCSVToolStripMenuItem.Text = "to CSV"
         ' 
-        ' ToolStripMenuItemDeveloper
+        ' AboutToolStripMenuItem
         ' 
-        ToolStripMenuItemDeveloper.AutoToolTip = True
-        ToolStripMenuItemDeveloper.Image = CType(resources.GetObject("ToolStripMenuItemDeveloper.Image"), Image)
-        ToolStripMenuItemDeveloper.Name = "ToolStripMenuItemDeveloper"
-        ToolStripMenuItemDeveloper.Size = New Size(153, 22)
-        ToolStripMenuItemDeveloper.Text = "Developer"
+        AboutToolStripMenuItem.AutoToolTip = True
+        AboutToolStripMenuItem.Image = CType(resources.GetObject("AboutToolStripMenuItem.Image"), Image)
+        AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        AboutToolStripMenuItem.Size = New Size(171, 22)
+        AboutToolStripMenuItem.Text = "About"
         ' 
-        ' ToolStripMenuItemCheckUpdates
+        ' DeveloperToolStripMenuItem
         ' 
-        ToolStripMenuItemCheckUpdates.AutoToolTip = True
-        ToolStripMenuItemCheckUpdates.Image = CType(resources.GetObject("ToolStripMenuItemCheckUpdates.Image"), Image)
-        ToolStripMenuItemCheckUpdates.Name = "ToolStripMenuItemCheckUpdates"
-        ToolStripMenuItemCheckUpdates.Size = New Size(153, 22)
-        ToolStripMenuItemCheckUpdates.Text = "Check Updates"
+        DeveloperToolStripMenuItem.AutoToolTip = True
+        DeveloperToolStripMenuItem.Image = CType(resources.GetObject("DeveloperToolStripMenuItem.Image"), Image)
+        DeveloperToolStripMenuItem.Name = "DeveloperToolStripMenuItem"
+        DeveloperToolStripMenuItem.Size = New Size(171, 22)
+        DeveloperToolStripMenuItem.Text = "Developer"
         ' 
-        ' ToolStripMenuItemQuit
+        ' CheckForUpdatesToolStripMenuItem
         ' 
-        ToolStripMenuItemQuit.AutoToolTip = True
-        ToolStripMenuItemQuit.Image = CType(resources.GetObject("ToolStripMenuItemQuit.Image"), Image)
-        ToolStripMenuItemQuit.Name = "ToolStripMenuItemQuit"
-        ToolStripMenuItemQuit.Size = New Size(153, 22)
-        ToolStripMenuItemQuit.Text = "Quit"
+        CheckForUpdatesToolStripMenuItem.AutoToolTip = True
+        CheckForUpdatesToolStripMenuItem.Image = CType(resources.GetObject("CheckForUpdatesToolStripMenuItem.Image"), Image)
+        CheckForUpdatesToolStripMenuItem.Name = "CheckForUpdatesToolStripMenuItem"
+        CheckForUpdatesToolStripMenuItem.Size = New Size(171, 22)
+        CheckForUpdatesToolStripMenuItem.Text = "Check for Updates"
+        ' 
+        ' QuitToolStripMenuItem
+        ' 
+        QuitToolStripMenuItem.AutoToolTip = True
+        QuitToolStripMenuItem.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        QuitToolStripMenuItem.Image = CType(resources.GetObject("QuitToolStripMenuItem.Image"), Image)
+        QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
+        QuitToolStripMenuItem.Size = New Size(171, 22)
+        QuitToolStripMenuItem.Text = "Quit"
         ' 
         ' NumericUpDownLimit
         ' 
@@ -245,7 +253,7 @@ Partial Class FormMain
         NumericUpDownLimit.ReadOnly = True
         NumericUpDownLimit.Size = New Size(100, 23)
         NumericUpDownLimit.TabIndex = 15
-        ToolTip.SetToolTip(NumericUpDownLimit, "Set how many posts you want to go through. Default value is `10`.")
+        ToolTip.SetToolTip(NumericUpDownLimit, "Number of posts to go through. Default value is `10`.")
         NumericUpDownLimit.Value = New Decimal(New Integer() {10, 0, 0, 0})
         ' 
         ' ToolTip
@@ -298,14 +306,16 @@ Partial Class FormMain
     Friend WithEvents LabelListing As Label
     Friend WithEvents LabelTimeframe As Label
     Friend WithEvents ContextMenuStripRightClick As ContextMenuStrip
-    Friend WithEvents ToolStripMenuItemSavePosts As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItemtoJSON As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItemtoCSV As ToolStripMenuItem
+    Friend WithEvents SavePostsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToJSONToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToCSVToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NumericUpDownLimit As NumericUpDown
-    Friend WithEvents ToolStripMenuItemDarkMode As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItemAbout As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItemDeveloper As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItemCheckUpdates As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItemQuit As ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeveloperToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckForUpdatesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents QuitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolTip As ToolTip
+    Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DarkModeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveFoundPostsToolStripMenuItem As ToolStripMenuItem
 End Class
