@@ -5,21 +5,22 @@ Given a subreddit name and a keyword, RPST will return all posts from a specifie
 
 # ✅ Features
 ## *GUI*
-- [x] Dark mode (*Right-click*)
-- [x] Saves results to a JSON file (*Right-click*)
-- [x] Logs errors to a file 
-- [x] In-App feature to check for Updates
+- [x] Dark mode (*Right-click*).
+- [x] Saves results to a JSON file (*Right-click*).
+- [x] Logs errors to a file.
+- [x] In-App feature to check for Updates.
 
 ## *CLI*
-- [x] Saves results to JSON (*specifiy* `--json`)
-- [x] Saves results to CSV (*specify* `--csv`)
+- [x] Saves results to JSON (*specifiy* `--json`).
+- [x] Saves results to CSV (*specify* `--csv`).
 - [x] Automatically checks for new updates, and notifies user if updates were found.
 
 # 📃 TODO
 ## *GUI*
 - [ ] Make it installable with a setup.exe/setup.msi file.
-- [x] Add manual dark mode option, that will be persistent in all sessions
-- [ ] Make it save results to a CSV file
+- [x] Add manual dark mode option, that will be persistent in all sessions.
+- [x] Make settings persistent in all sessions.
+- [x] Make it save results to a CSV file.
 
 # 🖥️ Tested environments
 ## *GUI*
