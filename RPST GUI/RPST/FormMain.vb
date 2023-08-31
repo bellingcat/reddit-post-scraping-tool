@@ -11,11 +11,10 @@ Public Class FormMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         settings.LoadSettings()
-        settings.ToggleSettings(settings.DarkMode, "darkmode")
-        settings.ToggleSettings(settings.SaveToJson, "json")
-        settings.ToggleSettings(settings.SaveToCsv, "csv")
+        settings.ToggleSettings(enabled:=settings.DarkMode, saveTo:="darkmode")
+        settings.ToggleSettings(enabled:=settings.SaveToJson, saveTo:="json")
+        settings.ToggleSettings(enabled:=settings.SaveToCsv, saveTo:="csv")
 
         Utilities.PathFinder()
         Utilities.LogFirstTimeLaunch()
@@ -35,31 +34,20 @@ Public Class FormMain
 
 
     ''' <summary>
-    ''' Event handler for the 'Developer' menu item click.
-    ''' It shows the 'Developer' dialog box.
-    ''' </summary>
-    ''' <param name="sender">The source of the event.</param>
-    ''' <param name="e">An EventArgs that contains the event data.</param>
-    Private Sub ToolStripMenuItemDeveloper_Click(sender As Object, e As EventArgs) Handles DeveloperToolStripMenuItem.Click
-        DeveloperBox.ShowDialog()
-    End Sub
-
-
-    ''' <summary>
     ''' Event handler for the 'Check Updates' menu item click.
     ''' It checks for application updates and provides update information if a newer version is available.
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
-    Private Sub ToolStripMenuItemCheckUpdates_Click(sender As Object, e As EventArgs) Handles CheckForUpdatesToolStripMenuItem.Click
-        Dim data As JObject = ApiHandler.CheckUpdates()
+    Private Async Sub ToolStripMenuItemCheckUpdates_Click(sender As Object, e As EventArgs) Handles CheckForUpdatesToolStripMenuItem.Click
+        Dim data As JObject = Await ApiHandler.CheckUpdatesAsync()
         If data("tag_name").ToString = My.Application.Info.Version.ToString Then
             MessageBox.Show($"You're running the latest version v{My.Application.Info.Version} of {Me.Text}. Check again soon! :)", $"{Me.Text} v{My.Application.Info.Version}", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             Dim confirm As DialogResult = MessageBox.Show($"A new version v{data("tag_name")} of {Me.Text} is available, would you like to get it?
 
 {data("body")}
-", $"{Me.Text} v{data("tag_name")}".ToString, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+", $"{Me.Text} v{data("tag_name")}", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If confirm = DialogResult.Yes Then
                 Shell($"cmd /c start {data("html_url")}")
             End If
@@ -88,7 +76,7 @@ Public Class FormMain
     ''' </summary>
     ''' <param name="sender">The sender of the event.</param>
     ''' <param name="e">The EventArgs instance containing the event data.</param>
-    Private Sub ButtonScrape_Click(sender As Object, e As EventArgs) Handles ButtonScrape.Click
+    Private Sub ButtonScrape_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
         settings.LoadSettings()
         PostsProcessor.ProcessRedditPosts(settings:=settings)
     End Sub
@@ -190,7 +178,7 @@ Public Class FormMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
     Private Sub ToolStripMenuItemDarkMode_CheckedChanged(sender As Object, e As EventArgs) Handles DarkModeToolStripMenuItem.CheckedChanged
-        settings.ToggleSettings(DarkModeToolStripMenuItem.Checked, "darkmode")
+        settings.ToggleSettings(enabled:=DarkModeToolStripMenuItem.Checked, saveTo:="darkmode")
     End Sub
 
     ''' <summary>
@@ -200,7 +188,7 @@ Public Class FormMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
     Private Sub ToCSVToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles ToCSVToolStripMenuItem.CheckedChanged
-        settings.ToggleSettings(ToCSVToolStripMenuItem.Checked, "csv")
+        settings.ToggleSettings(enabled:=ToCSVToolStripMenuItem.Checked, saveTo:="csv")
     End Sub
 
     ''' <summary>
@@ -210,6 +198,6 @@ Public Class FormMain
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
     Private Sub ToJSONToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles ToJSONToolStripMenuItem.CheckedChanged
-        settings.ToggleSettings(ToJSONToolStripMenuItem.Checked, "json")
+        settings.ToggleSettings(enabled:=ToJSONToolStripMenuItem.Checked, saveTo:="json")
     End Sub
 End Class

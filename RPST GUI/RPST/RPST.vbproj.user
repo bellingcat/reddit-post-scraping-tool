@@ -4,13 +4,13 @@
     <Compile Update="AboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="DeveloperBox.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="FormMain.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormPosts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SplashScreen.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

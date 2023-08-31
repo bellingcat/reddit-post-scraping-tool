@@ -12,27 +12,32 @@ Public Class ApiHandler
     Public Property UpdatesEndpoint As String = "https://api.github.com/repos/bellingcat/reddit-post-scraping-tool/releases/latest"
 
     ''' <summary>
-    ''' Scrape Reddit data.
+    ''' Asyncrosnously scrape Reddit data.
     ''' </summary>
     ''' <returns>Json object containing scraped data.</returns>
-    Public Function ScrapeReddit(subreddit As String, listing As String, limit As Integer, timeframe As String) As JObject
+    Public Async Function ScrapeRedditAsync(subreddit As String, listing As String, limit As Integer, timeframe As String) As Task(Of JObject)
         Dim ApiEndpoint As String = $"https://reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}"
-        Return GetJObjectFromEndpoint(ApiEndpoint)
+        Return Await GetJObjectFromEndpointAsync(endpoint:=ApiEndpoint)
     End Function
 
     ''' <summary>
-    ''' Gets remote version information from the repository release page.
+    ''' Asyncrosnously gets remote version information from the repository release page.
     ''' </summary>
     ''' <returns>Json object containing update data.</returns>
-    Public Function CheckUpdates() As JObject
-        Return GetJObjectFromEndpoint(UpdatesEndpoint)
+    Public Async Function CheckUpdatesAsync() As Task(Of JObject)
+        Return Await GetJObjectFromEndpointAsync(endpoint:=UpdatesEndpoint)
     End Function
 
-    Private Function GetJObjectFromEndpoint(endpoint As String) As JObject
+    ''' <summary>
+    ''' Asyncronously retrieves a JObject from the specified endpoint.
+    ''' </summary>
+    ''' <param name="endpoint">The URL endpoint to retrieve data from.</param>
+    ''' <returns>A JObject containing the retrieved data.</returns>
+    Private Async Function GetJObjectFromEndpointAsync(endpoint As String) As Task(Of JObject)
         Try
             Using httpClient As New HttpClient()
-                httpClient.DefaultRequestHeaders.Add("User-Agent", headers)
-                Dim response As HttpResponseMessage = httpClient.GetAsync(endpoint).Result
+                httpClient.DefaultRequestHeaders.Add("User-Agent", Headers)
+                Dim response As HttpResponseMessage = Await httpClient.GetAsync(endpoint)
                 If response.IsSuccessStatusCode Then
                     Dim json As String = response.Content.ReadAsStringAsync().Result
                     Dim data As JObject = JsonConvert.DeserializeObject(Of JObject)(json)

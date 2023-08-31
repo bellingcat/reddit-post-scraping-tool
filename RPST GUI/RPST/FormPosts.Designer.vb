@@ -48,7 +48,6 @@ Partial Class FormPosts
         Controls.Add(DataGridViewPosts)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "FormPosts"
-        ShowInTaskbar = False
         StartPosition = FormStartPosition.CenterScreen
         Text = "Posts"
         CType(DataGridViewPosts, ComponentModel.ISupportInitialize).EndInit()

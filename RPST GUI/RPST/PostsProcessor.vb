@@ -4,15 +4,15 @@ Public Class PostsProcessor
     Private ReadOnly ApiHandler As New ApiHandler
 
     ''' <summary>
-    ''' Fetches Reddit posts based on the given parameters and returns them as a JObject.
+    ''' Asyncronously fetches Reddit posts based on the given parameters and returns them as a JObject.
     ''' </summary>
     ''' <param name="subreddit">The subreddit to fetch posts from.</param>
     ''' <param name="listing">The type of listing (e.g., "new", "top", etc.).</param>
     ''' <param name="limit">The maximum number of posts to fetch.</param>
     ''' <param name="timeframe">The timeframe to consider for the posts (e.g., "day", "week", "month", "year", "all").</param>
     ''' <returns>A JObject containing the fetched Reddit posts.</returns>
-    Public Function FetchPosts(subreddit As String, listing As String, limit As Integer, timeframe As String) As JObject
-        Dim posts As JObject = ApiHandler.ScrapeReddit(subreddit, listing, limit, timeframe)
+    Public Async Function FetchPostsAsync(subreddit As String, listing As String, limit As Integer, timeframe As String) As Task(Of JObject)
+        Dim posts As JObject = Await ApiHandler.ScrapeRedditAsync(subreddit, listing, limit, timeframe)
         Return posts
     End Function
 
@@ -35,7 +35,7 @@ Public Class PostsProcessor
     ''' This function initializes the DataGridView, iterates over each post, adds the posts containing the keyword to the DataGridView and updates the UI.
     ''' It also shows a message if the keyword was not found in any of the posts or if the inputs are empty.
     ''' </remarks>
-    Public Shared Sub ProcessRedditPosts(settings)
+    Public Shared Async Sub ProcessRedditPosts(settings)
         ' Collect inputs from the user.
         Dim inputs = Utilities.CollectInputs()
 
@@ -45,7 +45,7 @@ Public Class PostsProcessor
 
             ' Fetch Reddit posts based on the inputs.
             Dim processor As New PostsProcessor()
-            Dim posts As JObject = processor.FetchPosts(inputs.Value.Subreddit, inputs.Value.Listing, inputs.Value.Limit, inputs.Value.Timeframe)
+            Dim posts As JObject = Await processor.FetchPostsAsync(subreddit:=inputs.Value.Subreddit, listing:=inputs.Value.Listing, limit:=inputs.Value.Limit, timeframe:=inputs.Value.Timeframe)
             Dim totalPosts As Integer = 0
             Dim keywordFound As Boolean = False
             Dim foundPosts As Integer = 0
@@ -74,12 +74,12 @@ Public Class PostsProcessor
 
             If settings.SaveToJson Then
                 ' Save posts to a JSON file if SaveToJson is True.
-                Utilities.SavePostsToJson(foundPostsList)
+                Utilities.SavePostsToJson(posts:=foundPostsList)
             End If
 
             If settings.SaveToCsv Then
                 ' Save posts to a CSV file if SaveToCsv is True.
-                Utilities.SavePostsToCSV(foundPostsList)
+                Utilities.SavePostsToCSV(posts:=foundPostsList)
             End If
         Else
         End If
