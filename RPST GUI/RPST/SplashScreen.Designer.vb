@@ -103,7 +103,7 @@ Partial Class SplashScreen
         ApplicationTitle.Name = "ApplicationTitle"
         ApplicationTitle.Size = New Size(207, 223)
         ApplicationTitle.TabIndex = 0
-        ApplicationTitle.Text = "Reddit Post ScrapingTool."
+        ApplicationTitle.Text = "Reddit Post Scraping Tool."
         ApplicationTitle.TextAlign = ContentAlignment.BottomLeft
         ' 
         ' SplashScreen
