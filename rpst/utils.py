@@ -34,8 +34,7 @@ def create_parser():
     """
     parser = argparse.ArgumentParser(
         description="RPST (Reddit Post Scraping Tool)  —by Richard Mwewa | https://about.me/rly0nheart",
-        epilog="Given a subreddit name and a keyword, "
-        "RPST returns all top (by default) posts that contain the specified keyword.",
+        epilog="Retrieve Reddit posts that contain the specified keyword from a specified subreddit."
     )
 
     parser.add_argument(

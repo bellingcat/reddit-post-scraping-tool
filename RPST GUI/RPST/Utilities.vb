@@ -3,6 +3,36 @@ Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 
 Public Class Utilities
+    ''' <summary>
+    ''' Shows the license notice in a messagebox.
+    ''' </summary>
+    ''' <returns>
+    ''' Result of the Dialog (Yes/No).
+    ''' </returns>
+    Public Shared Function LicenseAgreement()
+        Dim result As DialogResult = MessageBox.Show($"MIT License
+
+{My.Application.Info.Copyright}
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the ""Software""), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.", "License Agreement", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+
+        Return result
+    End Function
 
     ''' <summary>
     ''' Checks for the existence of the 'logs' directory under the 'RPST' directory within the user's AppData\Roaming folder. 
@@ -39,24 +69,20 @@ Public Class Utilities
     Public Shared Function CollectInputs() As (Keyword As String, Subreddit As String, Listing As String, Limit As Integer, Timeframe As String)?
         Dim keyword As String = FormMain.TextBoxKeyword.Text.Trim()
         Dim subreddit As String = FormMain.TextBoxSubreddit.Text.Trim()
-        ''' <summary>
-        ''' Convert the Listing and Subreddit to lowercase using InvariantCulture.
-        ''' <summary>
+        ' Convert the Listing and Subreddit to lowercase using InvariantCulture.
         Dim listing As String = If(String.IsNullOrEmpty(FormMain.ComboBoxListing.Text), "top", FormMain.ComboBoxListing.Text.ToLower(Globalization.CultureInfo.InvariantCulture).Trim())
         Dim timeframe As String = If(String.IsNullOrEmpty(FormMain.ComboBoxTimeframe.Text), "all", FormMain.ComboBoxTimeframe.Text.ToLower(Globalization.CultureInfo.InvariantCulture).Trim())
         Dim limit As Integer = FormMain.NumericUpDownLimit.Value
 
-        ''' <summary>
-        ''' Validate inputs.
-        ''' <summary>
+        ' Validate inputs.
         If String.IsNullOrEmpty(keyword) AndAlso String.IsNullOrEmpty(subreddit) Then
-            MessageBox.Show("Keyword and Subreddit should not be empty.", "Invalid Inputs", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Keyword and Subreddit should not be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return Nothing
         ElseIf String.IsNullOrEmpty(keyword) Then
-            MessageBox.Show("Keyword field should not be empty.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Keyword field should not be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return Nothing
         ElseIf String.IsNullOrEmpty(subreddit) Then
-            MessageBox.Show("Subreddit field should not be empty.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Subreddit field should not be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return Nothing
         End If
         Return (keyword, subreddit, listing, limit, timeframe)
@@ -73,7 +99,7 @@ Public Class Utilities
     ''' to JSON with an indented format and written to the chosen file. 
     ''' A success message will be displayed to the user upon successful save.
     ''' </remarks>
-    Public Shared Sub SavePostsToJson(Posts As Object)
+    Public Shared Sub SavePostsToJson(posts As Object)
         Dim saveFileDialog As New SaveFileDialog With {
                     .Filter = "JSON files (*.json)|*.json",
                     .Title = "Save posts to JSON"
@@ -84,11 +110,11 @@ Public Class Utilities
             Dim serializerSettings As New JsonSerializerSettings With {
                 .Formatting = Formatting.Indented
             }
-            Dim json As String = JsonConvert.SerializeObject(Posts, serializerSettings)
+            Dim json As String = JsonConvert.SerializeObject(posts, serializerSettings)
 
             File.WriteAllText(fileName, json)
 
-            MessageBox.Show($"Posts saved to {fileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show($"Posts saved to {fileName}", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
@@ -110,9 +136,7 @@ Public Class Utilities
         If saveFileDialog.ShowDialog() = DialogResult.OK Then
             Dim fileName As String = saveFileDialog.FileName
             Using csvWriter As New StreamWriter(fileName)
-                ''' <summary>
-                ''' Write the header.
-                ''' <summary>
+                ' Write the header.
                 csvWriter.WriteLine("Index,Author,ID,Subreddit,Visibility,Thumbnail,NSFW,Gilded,Upvotes,Upvote Ratio,Downvotes,Award,Top Award,Is cross-postable?,Score,Category,Text,Domain,Permalink,Created At,Approved At,Approved By")
 
                 Dim postCount As Integer = 0
@@ -122,32 +146,21 @@ Public Class Utilities
                 Next
             End Using
 
-            MessageBox.Show($"Posts saved to {fileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show($"Posts saved to {fileName}", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
 
-
-
     ''' <summary>
-    ''' Shows the license notice in a messagebox.
+    ''' Checks if the "launch.log" file exists in the directory: C:\Users\<username>\AppData\Roaming\RPSTl\logs.
     ''' </summary>
     ''' <remarks>
-    ''' The license text is retrieved from the AboutBox.LicenseText property.
-    ''' The messagebox is displayed with the title "License" and an information icon.
+    ''' If the file doesn't exist, it shows a MessageBox with the License Agreement Notice with buttons Yes and No. 
+    ''' If the user clicks on the Yes button, it creates one the launch.log file, otherwise assume the user did not agree to the License and close the program. 
+    ''' The launc.log file is used to determine whether the program has been run before.
     ''' </remarks>
-    Public Shared Sub LicenseNotice()
-        MessageBox.Show(AboutBox.LicenseText, "License", MessageBoxButtons.OK, MessageBoxIcon.Information)
-    End Sub
-
-
-    ''' <summary>
-    ''' Checks if the "first-launch.log" file exists in the directory: C:\Users\<username>\AppData\Roaming\RedditPostScrapingTool\logs.
-    ''' If the file doesn't exist, it creates one. This file is used to determine whether the program has been run before.
-    ''' If the program is being run for the first time, a license notice will be displayed.
-    ''' </summary>
     Public Shared Sub LogFirstTimeLaunch()
-        Dim filePath As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "RPST", "logs", "first-launch.log")
+        Dim filePath As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "RPST", "logs", "launch.log")
         Dim textToWrite As String = $"
 {My.Application.Info.AssemblyName}
 -------------------------
@@ -158,10 +171,16 @@ Host: {Environment.MachineName}
 OS: {Environment.OSVersion}
 x64: {Environment.Is64BitOperatingSystem}
 First launched on: {DateTime.Now}"
+
+
+
         If Not File.Exists(filePath) Then
-            LicenseNotice()
-            File.WriteAllText(filePath, textToWrite)
-        Else
+            Dim result As DialogResult = LicenseAgreement()
+            If result = DialogResult.Yes Then
+                File.WriteAllText(filePath, textToWrite)
+            Else
+                FormMain.Close()
+            End If
         End If
     End Sub
 End Class

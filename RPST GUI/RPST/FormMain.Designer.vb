@@ -26,7 +26,7 @@ Partial Class FormMain
         Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(FormMain))
         TextBoxKeyword = New TextBox()
         TextBoxSubreddit = New TextBox()
-        ButtonScrape = New Button()
+        ButtonSearch = New Button()
         ComboBoxTimeframe = New ComboBox()
         ComboBoxListing = New ComboBox()
         LabelKeyword = New Label()
@@ -41,7 +41,6 @@ Partial Class FormMain
         ToJSONToolStripMenuItem = New ToolStripMenuItem()
         ToCSVToolStripMenuItem = New ToolStripMenuItem()
         AboutToolStripMenuItem = New ToolStripMenuItem()
-        DeveloperToolStripMenuItem = New ToolStripMenuItem()
         CheckForUpdatesToolStripMenuItem = New ToolStripMenuItem()
         QuitToolStripMenuItem = New ToolStripMenuItem()
         NumericUpDownLimit = New NumericUpDown()
@@ -70,20 +69,19 @@ Partial Class FormMain
         TextBoxSubreddit.TabIndex = 4
         ToolTip.SetToolTip(TextBoxSubreddit, "[required] The subreddit to search in.")
         ' 
-        ' ButtonScrape
+        ' ButtonSearch
         ' 
-        ButtonScrape.Location = New Point(167, 174)
-        ButtonScrape.Name = "ButtonScrape"
-        ButtonScrape.Size = New Size(51, 28)
-        ButtonScrape.TabIndex = 6
-        ButtonScrape.Text = "Scrape"
-        ToolTip.SetToolTip(ButtonScrape, "Hitting ENTER will also start the scraping process.")
-        ButtonScrape.UseVisualStyleBackColor = True
+        ButtonSearch.Location = New Point(165, 165)
+        ButtonSearch.Name = "ButtonSearch"
+        ButtonSearch.Size = New Size(55, 28)
+        ButtonSearch.TabIndex = 6
+        ButtonSearch.Text = "Search"
+        ToolTip.SetToolTip(ButtonSearch, "Hitting ENTER will also start the scraping process.")
+        ButtonSearch.UseVisualStyleBackColor = True
         ' 
         ' ComboBoxTimeframe
         ' 
         ComboBoxTimeframe.AutoCompleteCustomSource.AddRange(New String() {"Hour", "Day", "Week", "Month", "Year"})
-        ComboBoxTimeframe.AutoCompleteMode = AutoCompleteMode.Append
         ComboBoxTimeframe.AutoCompleteSource = AutoCompleteSource.CustomSource
         ComboBoxTimeframe.FormattingEnabled = True
         ComboBoxTimeframe.Items.AddRange(New Object() {"Hour", "Day", "Week", "Month", "Year"})
@@ -97,8 +95,8 @@ Partial Class FormMain
         ' ComboBoxListing
         ' 
         ComboBoxListing.AutoCompleteCustomSource.AddRange(New String() {"Controversial", "Hot", "Best", "New", "Rising"})
-        ComboBoxListing.AutoCompleteMode = AutoCompleteMode.Append
         ComboBoxListing.AutoCompleteSource = AutoCompleteSource.CustomSource
+        ComboBoxListing.BackColor = SystemColors.Window
         ComboBoxListing.FormattingEnabled = True
         ComboBoxListing.Items.AddRange(New Object() {"Controversial", "Hot", "Best", "New", "Rising"})
         ComboBoxListing.Location = New Point(118, 107)
@@ -165,16 +163,16 @@ Partial Class FormMain
         ' 
         ' ContextMenuStripRightClick
         ' 
-        ContextMenuStripRightClick.Items.AddRange(New ToolStripItem() {AboutToolStripMenuItem, DeveloperToolStripMenuItem, CheckForUpdatesToolStripMenuItem, SettingsToolStripMenuItem, QuitToolStripMenuItem})
+        ContextMenuStripRightClick.Items.AddRange(New ToolStripItem() {SettingsToolStripMenuItem, AboutToolStripMenuItem, CheckForUpdatesToolStripMenuItem, QuitToolStripMenuItem})
         ContextMenuStripRightClick.Name = "ContextMenuStrip1"
-        ContextMenuStripRightClick.Size = New Size(172, 114)
+        ContextMenuStripRightClick.Size = New Size(181, 114)
         ' 
         ' SettingsToolStripMenuItem
         ' 
         SettingsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {DarkModeToolStripMenuItem, SavePostsToolStripMenuItem})
         SettingsToolStripMenuItem.Image = CType(resources.GetObject("SettingsToolStripMenuItem.Image"), Image)
         SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
-        SettingsToolStripMenuItem.Size = New Size(171, 22)
+        SettingsToolStripMenuItem.Size = New Size(180, 22)
         SettingsToolStripMenuItem.Text = "Settings"
         ' 
         ' DarkModeToolStripMenuItem
@@ -182,7 +180,7 @@ Partial Class FormMain
         DarkModeToolStripMenuItem.CheckOnClick = True
         DarkModeToolStripMenuItem.Image = CType(resources.GetObject("DarkModeToolStripMenuItem.Image"), Image)
         DarkModeToolStripMenuItem.Name = "DarkModeToolStripMenuItem"
-        DarkModeToolStripMenuItem.Size = New Size(180, 22)
+        DarkModeToolStripMenuItem.Size = New Size(132, 22)
         DarkModeToolStripMenuItem.Text = "Dark Mode"
         ' 
         ' SavePostsToolStripMenuItem
@@ -191,7 +189,7 @@ Partial Class FormMain
         SavePostsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ToJSONToolStripMenuItem, ToCSVToolStripMenuItem})
         SavePostsToolStripMenuItem.Image = CType(resources.GetObject("SavePostsToolStripMenuItem.Image"), Image)
         SavePostsToolStripMenuItem.Name = "SavePostsToolStripMenuItem"
-        SavePostsToolStripMenuItem.Size = New Size(180, 22)
+        SavePostsToolStripMenuItem.Size = New Size(132, 22)
         SavePostsToolStripMenuItem.Text = "Save posts"
         ' 
         ' ToJSONToolStripMenuItem
@@ -200,7 +198,7 @@ Partial Class FormMain
         ToJSONToolStripMenuItem.CheckOnClick = True
         ToJSONToolStripMenuItem.Image = CType(resources.GetObject("ToJSONToolStripMenuItem.Image"), Image)
         ToJSONToolStripMenuItem.Name = "ToJSONToolStripMenuItem"
-        ToJSONToolStripMenuItem.Size = New Size(180, 22)
+        ToJSONToolStripMenuItem.Size = New Size(116, 22)
         ToJSONToolStripMenuItem.Text = "to JSON"
         ' 
         ' ToCSVToolStripMenuItem
@@ -209,7 +207,7 @@ Partial Class FormMain
         ToCSVToolStripMenuItem.CheckOnClick = True
         ToCSVToolStripMenuItem.Image = CType(resources.GetObject("ToCSVToolStripMenuItem.Image"), Image)
         ToCSVToolStripMenuItem.Name = "ToCSVToolStripMenuItem"
-        ToCSVToolStripMenuItem.Size = New Size(180, 22)
+        ToCSVToolStripMenuItem.Size = New Size(116, 22)
         ToCSVToolStripMenuItem.Text = "to CSV"
         ' 
         ' AboutToolStripMenuItem
@@ -217,23 +215,15 @@ Partial Class FormMain
         AboutToolStripMenuItem.AutoToolTip = True
         AboutToolStripMenuItem.Image = CType(resources.GetObject("AboutToolStripMenuItem.Image"), Image)
         AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        AboutToolStripMenuItem.Size = New Size(171, 22)
-        AboutToolStripMenuItem.Text = "About"
-        ' 
-        ' DeveloperToolStripMenuItem
-        ' 
-        DeveloperToolStripMenuItem.AutoToolTip = True
-        DeveloperToolStripMenuItem.Image = CType(resources.GetObject("DeveloperToolStripMenuItem.Image"), Image)
-        DeveloperToolStripMenuItem.Name = "DeveloperToolStripMenuItem"
-        DeveloperToolStripMenuItem.Size = New Size(171, 22)
-        DeveloperToolStripMenuItem.Text = "Developer"
+        AboutToolStripMenuItem.Size = New Size(180, 22)
+        AboutToolStripMenuItem.Text = "About RPST"
         ' 
         ' CheckForUpdatesToolStripMenuItem
         ' 
         CheckForUpdatesToolStripMenuItem.AutoToolTip = True
         CheckForUpdatesToolStripMenuItem.Image = CType(resources.GetObject("CheckForUpdatesToolStripMenuItem.Image"), Image)
         CheckForUpdatesToolStripMenuItem.Name = "CheckForUpdatesToolStripMenuItem"
-        CheckForUpdatesToolStripMenuItem.Size = New Size(171, 22)
+        CheckForUpdatesToolStripMenuItem.Size = New Size(180, 22)
         CheckForUpdatesToolStripMenuItem.Text = "Check for Updates"
         ' 
         ' QuitToolStripMenuItem
@@ -242,7 +232,7 @@ Partial Class FormMain
         QuitToolStripMenuItem.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point)
         QuitToolStripMenuItem.Image = CType(resources.GetObject("QuitToolStripMenuItem.Image"), Image)
         QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
-        QuitToolStripMenuItem.Size = New Size(171, 22)
+        QuitToolStripMenuItem.Size = New Size(180, 22)
         QuitToolStripMenuItem.Text = "Quit"
         ' 
         ' NumericUpDownLimit
@@ -270,7 +260,7 @@ Partial Class FormMain
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.Control
-        ClientSize = New Size(239, 221)
+        ClientSize = New Size(239, 211)
         ContextMenuStrip = ContextMenuStripRightClick
         Controls.Add(ComboBoxTimeframe)
         Controls.Add(TextBoxKeyword)
@@ -279,7 +269,7 @@ Partial Class FormMain
         Controls.Add(ComboBoxListing)
         Controls.Add(NumericUpDownLimit)
         Controls.Add(LabelListing)
-        Controls.Add(ButtonScrape)
+        Controls.Add(ButtonSearch)
         Controls.Add(LabelLimit)
         Controls.Add(LabelSubreddit)
         Controls.Add(TextBoxSubreddit)
@@ -297,7 +287,7 @@ Partial Class FormMain
 
     Friend WithEvents TextBoxKeyword As TextBox
     Friend WithEvents TextBoxSubreddit As TextBox
-    Friend WithEvents ButtonScrape As Button
+    Friend WithEvents ButtonSearch As Button
     Friend WithEvents ComboBoxTimeframe As ComboBox
     Friend WithEvents ComboBoxListing As ComboBox
     Friend WithEvents LabelKeyword As Label
@@ -311,7 +301,6 @@ Partial Class FormMain
     Friend WithEvents ToCSVToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NumericUpDownLimit As NumericUpDown
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents DeveloperToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CheckForUpdatesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents QuitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolTip As ToolTip

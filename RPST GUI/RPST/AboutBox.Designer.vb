@@ -25,13 +25,23 @@ Partial Class AboutBox
         Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(AboutBox))
         PictureBoxLogo = New PictureBox()
         LabelProgramName = New Label()
-        LabelProgramDescription = New Label()
+        LabelDescription = New Label()
+        TabControl1 = New TabControl()
+        TabPageAbout = New TabPage()
+        LabelCopyright = New Label()
+        LinkLabelLicense = New LinkLabel()
         LinkLabelReadtheWiki = New LinkLabel()
-        Panel1 = New Panel()
-        LinkLabelVersion = New LinkLabel()
-        LicenseRichTextBox = New RichTextBox()
+        TabPageAuthor = New TabPage()
+        LinkLabelEmail = New LinkLabel()
+        LinkLabelBMC = New LinkLabel()
+        LinkLabelAboutMe = New LinkLabel()
+        LabelAuthor = New Label()
+        LabelVersion = New Label()
+        ButtonClose = New Button()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
-        Panel1.SuspendLayout()
+        TabControl1.SuspendLayout()
+        TabPageAbout.SuspendLayout()
+        TabPageAuthor.SuspendLayout()
         SuspendLayout()
         ' 
         ' PictureBoxLogo
@@ -40,7 +50,7 @@ Partial Class AboutBox
         PictureBoxLogo.Image = CType(resources.GetObject("PictureBoxLogo.Image"), Image)
         PictureBoxLogo.Location = New Point(12, 12)
         PictureBoxLogo.Name = "PictureBoxLogo"
-        PictureBoxLogo.Size = New Size(88, 93)
+        PictureBoxLogo.Size = New Size(62, 64)
         PictureBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBoxLogo.TabIndex = 0
         PictureBoxLogo.TabStop = False
@@ -48,76 +58,168 @@ Partial Class AboutBox
         ' LabelProgramName
         ' 
         LabelProgramName.AutoSize = True
-        LabelProgramName.Font = New Font("Segoe Script", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
+        LabelProgramName.Font = New Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         LabelProgramName.ForeColor = SystemColors.ControlText
-        LabelProgramName.Location = New Point(3, 15)
+        LabelProgramName.Location = New Point(80, 33)
         LabelProgramName.Name = "LabelProgramName"
-        LabelProgramName.Size = New Size(48, 20)
+        LabelProgramName.Size = New Size(44, 17)
         LabelProgramName.TabIndex = 3
         LabelProgramName.Text = "Name"
         ' 
-        ' LabelProgramDescription
+        ' LabelDescription
         ' 
-        LabelProgramDescription.AutoSize = True
-        LabelProgramDescription.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        LabelProgramDescription.ForeColor = SystemColors.ControlText
-        LabelProgramDescription.Location = New Point(3, 43)
-        LabelProgramDescription.Name = "LabelProgramDescription"
-        LabelProgramDescription.Size = New Size(68, 15)
-        LabelProgramDescription.TabIndex = 4
-        LabelProgramDescription.Text = "Description"
+        LabelDescription.AutoSize = True
+        LabelDescription.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        LabelDescription.ForeColor = SystemColors.ControlText
+        LabelDescription.Location = New Point(6, 7)
+        LabelDescription.Name = "LabelDescription"
+        LabelDescription.Size = New Size(67, 15)
+        LabelDescription.TabIndex = 4
+        LabelDescription.Text = "Description"
+        ' 
+        ' TabControl1
+        ' 
+        TabControl1.Controls.Add(TabPageAbout)
+        TabControl1.Controls.Add(TabPageAuthor)
+        TabControl1.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        TabControl1.Location = New Point(12, 91)
+        TabControl1.Name = "TabControl1"
+        TabControl1.SelectedIndex = 0
+        TabControl1.Size = New Size(322, 152)
+        TabControl1.TabIndex = 8
+        ' 
+        ' TabPageAbout
+        ' 
+        TabPageAbout.BackColor = Color.Transparent
+        TabPageAbout.Controls.Add(LabelCopyright)
+        TabPageAbout.Controls.Add(LinkLabelLicense)
+        TabPageAbout.Controls.Add(LabelDescription)
+        TabPageAbout.Controls.Add(LinkLabelReadtheWiki)
+        TabPageAbout.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        TabPageAbout.Location = New Point(4, 24)
+        TabPageAbout.Name = "TabPageAbout"
+        TabPageAbout.Padding = New Padding(3)
+        TabPageAbout.Size = New Size(314, 124)
+        TabPageAbout.TabIndex = 0
+        TabPageAbout.Text = "About"
+        ' 
+        ' LabelCopyright
+        ' 
+        LabelCopyright.AutoSize = True
+        LabelCopyright.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        LabelCopyright.Location = New Point(6, 97)
+        LabelCopyright.Name = "LabelCopyright"
+        LabelCopyright.Size = New Size(60, 15)
+        LabelCopyright.TabIndex = 7
+        LabelCopyright.Text = "Copyright"
+        ' 
+        ' LinkLabelLicense
+        ' 
+        LinkLabelLicense.AutoSize = True
+        LinkLabelLicense.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        LinkLabelLicense.Location = New Point(6, 52)
+        LinkLabelLicense.Name = "LinkLabelLicense"
+        LinkLabelLicense.Size = New Size(84, 15)
+        LinkLabelLicense.TabIndex = 5
+        LinkLabelLicense.TabStop = True
+        LinkLabelLicense.Text = "🗒️ MIT License"
         ' 
         ' LinkLabelReadtheWiki
         ' 
         LinkLabelReadtheWiki.AutoSize = True
         LinkLabelReadtheWiki.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
-        LinkLabelReadtheWiki.Location = New Point(313, 43)
+        LinkLabelReadtheWiki.Location = New Point(6, 74)
         LinkLabelReadtheWiki.Name = "LinkLabelReadtheWiki"
-        LinkLabelReadtheWiki.Size = New Size(79, 15)
+        LinkLabelReadtheWiki.Size = New Size(94, 15)
         LinkLabelReadtheWiki.TabIndex = 6
         LinkLabelReadtheWiki.TabStop = True
-        LinkLabelReadtheWiki.Text = "Read the Wiki"
+        LinkLabelReadtheWiki.Text = "📖 Read the Wiki"
         ' 
-        ' Panel1
+        ' TabPageAuthor
         ' 
-        Panel1.BackColor = SystemColors.Control
-        Panel1.Controls.Add(LinkLabelVersion)
-        Panel1.Controls.Add(LabelProgramDescription)
-        Panel1.Controls.Add(LabelProgramName)
-        Panel1.Controls.Add(LinkLabelReadtheWiki)
-        Panel1.Location = New Point(106, 12)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(409, 93)
-        Panel1.TabIndex = 7
+        TabPageAuthor.BackColor = Color.Transparent
+        TabPageAuthor.Controls.Add(LinkLabelEmail)
+        TabPageAuthor.Controls.Add(LinkLabelBMC)
+        TabPageAuthor.Controls.Add(LinkLabelAboutMe)
+        TabPageAuthor.Controls.Add(LabelAuthor)
+        TabPageAuthor.ForeColor = SystemColors.ControlText
+        TabPageAuthor.Location = New Point(4, 24)
+        TabPageAuthor.Name = "TabPageAuthor"
+        TabPageAuthor.Padding = New Padding(3)
+        TabPageAuthor.Size = New Size(314, 124)
+        TabPageAuthor.TabIndex = 1
+        TabPageAuthor.Text = "Author"
         ' 
-        ' LinkLabelVersion
+        ' LinkLabelEmail
         ' 
-        LinkLabelVersion.AutoSize = True
-        LinkLabelVersion.Location = New Point(347, 17)
-        LinkLabelVersion.Name = "LinkLabelVersion"
-        LinkLabelVersion.Size = New Size(45, 15)
-        LinkLabelVersion.TabIndex = 7
-        LinkLabelVersion.TabStop = True
-        LinkLabelVersion.Text = "Version"
+        LinkLabelEmail.AutoSize = True
+        LinkLabelEmail.Location = New Point(6, 89)
+        LinkLabelEmail.Name = "LinkLabelEmail"
+        LinkLabelEmail.Size = New Size(51, 15)
+        LinkLabelEmail.TabIndex = 3
+        LinkLabelEmail.TabStop = True
+        LinkLabelEmail.Text = "📧 Email"
         ' 
-        ' LicenseRichTextBox
+        ' LinkLabelBMC
         ' 
-        LicenseRichTextBox.Font = New Font("Cambria", 9.75F, FontStyle.Regular, GraphicsUnit.Point)
-        LicenseRichTextBox.Location = New Point(12, 113)
-        LicenseRichTextBox.Name = "LicenseRichTextBox"
-        LicenseRichTextBox.ReadOnly = True
-        LicenseRichTextBox.Size = New Size(503, 329)
-        LicenseRichTextBox.TabIndex = 1
-        LicenseRichTextBox.Text = "License notice"
+        LinkLabelBMC.AutoSize = True
+        LinkLabelBMC.Location = New Point(3, 66)
+        LinkLabelBMC.Name = "LinkLabelBMC"
+        LinkLabelBMC.Size = New Size(111, 15)
+        LinkLabelBMC.TabIndex = 2
+        LinkLabelBMC.TabStop = True
+        LinkLabelBMC.Text = "🍵 Buy Me A Coffee"
+        ' 
+        ' LinkLabelAboutMe
+        ' 
+        LinkLabelAboutMe.AutoSize = True
+        LinkLabelAboutMe.Location = New Point(6, 43)
+        LinkLabelAboutMe.Name = "LinkLabelAboutMe"
+        LinkLabelAboutMe.Size = New Size(75, 15)
+        LinkLabelAboutMe.TabIndex = 1
+        LinkLabelAboutMe.TabStop = True
+        LinkLabelAboutMe.Text = "🔗 About.me"
+        ' 
+        ' LabelAuthor
+        ' 
+        LabelAuthor.AutoSize = True
+        LabelAuthor.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point)
+        LabelAuthor.Location = New Point(6, 15)
+        LabelAuthor.Name = "LabelAuthor"
+        LabelAuthor.Size = New Size(96, 15)
+        LabelAuthor.TabIndex = 0
+        LabelAuthor.Text = "Richard Mwewa"
+        ' 
+        ' LabelVersion
+        ' 
+        LabelVersion.AutoSize = True
+        LabelVersion.Font = New Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        LabelVersion.Location = New Point(80, 53)
+        LabelVersion.Name = "LabelVersion"
+        LabelVersion.Size = New Size(45, 13)
+        LabelVersion.TabIndex = 9
+        LabelVersion.Text = "Version"
+        ' 
+        ' ButtonClose
+        ' 
+        ButtonClose.Location = New Point(275, 249)
+        ButtonClose.Name = "ButtonClose"
+        ButtonClose.Size = New Size(61, 23)
+        ButtonClose.TabIndex = 6
+        ButtonClose.Text = "&Close"
+        ButtonClose.UseVisualStyleBackColor = True
         ' 
         ' AboutBox
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.Gainsboro
-        ClientSize = New Size(526, 453)
-        Controls.Add(LicenseRichTextBox)
-        Controls.Add(Panel1)
+        CancelButton = ButtonClose
+        ClientSize = New Size(346, 285)
+        Controls.Add(ButtonClose)
+        Controls.Add(LabelVersion)
+        Controls.Add(TabControl1)
+        Controls.Add(LabelProgramName)
         Controls.Add(PictureBoxLogo)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
@@ -128,16 +230,30 @@ Partial Class AboutBox
         StartPosition = FormStartPosition.CenterScreen
         Text = "About"
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).EndInit()
-        Panel1.ResumeLayout(False)
-        Panel1.PerformLayout()
+        TabControl1.ResumeLayout(False)
+        TabPageAbout.ResumeLayout(False)
+        TabPageAbout.PerformLayout()
+        TabPageAuthor.ResumeLayout(False)
+        TabPageAuthor.PerformLayout()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents PictureBoxLogo As PictureBox
     Friend WithEvents LabelProgramName As Label
-    Friend WithEvents LabelProgramDescription As Label
-    Friend WithEvents LinkLabelReadtheWiki As LinkLabel
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents LabelDescription As Label
     Friend WithEvents LicenseRichTextBox As RichTextBox
-    Friend WithEvents LinkLabelVersion As LinkLabel
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPageAbout As TabPage
+    Friend WithEvents TabPageAuthor As TabPage
+    Friend WithEvents LabelVersion As Label
+    Friend WithEvents LinkLabelLicense As LinkLabel
+    Friend WithEvents ButtonClose As Button
+    Friend WithEvents LabelCopyright As Label
+    Friend WithEvents LinkLabelReadtheWiki As LinkLabel
+    Friend WithEvents LabelAuthor As Label
+    Friend WithEvents LinkLabelAboutMe As LinkLabel
+    Friend WithEvents LinkLabelEmail As LinkLabel
+    Friend WithEvents LinkLabelBMC As LinkLabel
 End Class
