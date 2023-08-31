@@ -7,7 +7,7 @@ packages = ["rpst"]
 
 [project]
 name = "reddit-post-scraping-tool"
-version = "1.9.0.0"
+version = "1.9.1.0"
 description = "Retrieve Reddit posts that contain the specified keyword from a specified subreddit."
 readme = "README.md"
 requires-python = ">=3.8"
