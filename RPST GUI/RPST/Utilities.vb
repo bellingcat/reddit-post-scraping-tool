@@ -29,7 +29,7 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.", "License Agreement", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.", "License Agreement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
 
         Return result
     End Function
@@ -176,7 +176,7 @@ First launched on: {DateTime.Now}"
 
         If Not File.Exists(filePath) Then
             Dim result As DialogResult = LicenseAgreement()
-            If result = DialogResult.Yes Then
+            If result = DialogResult.OK Then
                 File.WriteAllText(filePath, textToWrite)
             Else
                 FormMain.Close()
