@@ -1,3 +1,4 @@
+![reddit](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/558d31b8-575d-4ab4-a4cf-ec5c41105d12)
 # RPST (Reddit Post Scraping Tool)
 Retrieve **Reddit** posts that contain the specified keyword from a specified subreddit.
 
