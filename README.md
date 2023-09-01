@@ -6,8 +6,8 @@ Retrieve **Reddit** posts that contain the specified keyword from a specified su
 
 # ✅ Features
 ## *GUI*
-- [x] Dark mode (*Right-click*).
-- [x] Saves results to a JSON file (*Right-click*).
+- [x] Dark mode (*Right-click>Settings>Dark Mode*).
+- [x] Saves results to a JSON/CSV file (*Right-click>Settings>Save posts>to JSON/to CSV*).
 - [x] Logs errors to a file.
 - [x] In-App feature to check for Updates.
 
@@ -19,9 +19,6 @@ Retrieve **Reddit** posts that contain the specified keyword from a specified su
 # 📃 TODO
 ## *GUI*
 - [ ] Make it installable with a setup.exe/setup.msi file.
-- [x] Add manual dark mode option, that will be persistent in all sessions.
-- [x] Make settings persistent in all sessions.
-- [x] Make it save results to a CSV file.
 
 # 🖥️ Tested environments
 ## *GUI*
