@@ -1,4 +1,6 @@
-![reddit](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/558d31b8-575d-4ab4-a4cf-ec5c41105d12)
+# Note
+> ## Use [Knew Karma](https://github.com/bellingcat/knewkarma) for more advanced and improved features.
+
 # RPST (Reddit Post Scraping Tool)
 Retrieve **Reddit** posts that contain the specified keyword from a specified subreddit.
 
@@ -6,8 +8,8 @@ Retrieve **Reddit** posts that contain the specified keyword from a specified su
 
 # ✅ Features
 ## *GUI*
-- [x] Dark mode (*Right-click*).
-- [x] Saves results to a JSON file (*Right-click*).
+- [x] Dark mode (*Right-click>Settings>Dark Mode*).
+- [x] Saves results to a JSON/CSV file (*Right-click>Settings>Save posts>to JSON/to CSV*).
 - [x] Logs errors to a file.
 - [x] In-App feature to check for Updates.
 
@@ -19,9 +21,6 @@ Retrieve **Reddit** posts that contain the specified keyword from a specified su
 # 📃 TODO
 ## *GUI*
 - [ ] Make it installable with a setup.exe/setup.msi file.
-- [x] Add manual dark mode option, that will be persistent in all sessions.
-- [x] Make settings persistent in all sessions.
-- [x] Make it save results to a CSV file.
 
 # 🖥️ Tested environments
 ## *GUI*
