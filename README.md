@@ -1,5 +1,5 @@
 # Note
-> ## Use [Knew Karma](https://github.com/bellingcat/knewkarma) for more advanced & improved features.
+> ## Use [Knew Karma](https://github.com/bellingcat/knewkarma) for more advanced and improved features.
 
 # RPST (Reddit Post Scraping Tool)
 Retrieve **Reddit** posts that contain the specified keyword from a specified subreddit.
