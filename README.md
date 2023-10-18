@@ -1,5 +1,5 @@
-## Note
-> Use [Knew Karma](https://pypi.org/project/knewkarma) for more advanced & improved features.
+# Note
+> ## Use [Knew Karma](https://pypi.org/project/knewkarma) for more advanced & improved features.
 
 # RPST (Reddit Post Scraping Tool)
 Retrieve **Reddit** posts that contain the specified keyword from a specified subreddit.
