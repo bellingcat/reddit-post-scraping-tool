@@ -102,7 +102,7 @@ def get_posts(args: argparse):
     # Send a GET request to the specified subreddit and listing,
     # limiting the response by the specified limit and timeframe.
     response = session.get(
-        f"https://reddit.com/r/{subreddit}/{listing}"
+        f"https://www.reddit.com/r/{subreddit}/{listing}"
         f".json?limit={limit}&t={timeframe}"
     ).json()
 

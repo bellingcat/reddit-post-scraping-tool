@@ -16,7 +16,7 @@ Public Class ApiHandler
     ''' </summary>
     ''' <returns>Json object containing scraped data.</returns>
     Public Async Function ScrapeRedditAsync(subreddit As String, listing As String, limit As Integer, timeframe As String) As Task(Of JObject)
-        Dim ApiEndpoint As String = $"https://reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}"
+        Dim ApiEndpoint As String = $"https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}"
         Return Await GetJObjectFromEndpointAsync(endpoint:=ApiEndpoint)
     End Function
 
