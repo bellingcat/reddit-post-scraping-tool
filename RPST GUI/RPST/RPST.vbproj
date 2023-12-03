@@ -6,18 +6,18 @@
     <StartupObject>RPST.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
-    <Company>Bellingcat</Company>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+    <Company>Richard Mwewa</Company>
     <Description>Retrieve Reddit posts that contain the specified keyword from a specified subreddit. </Description>
     <Copyright>© 2023 Richard Mwewa. All rights reserved.</Copyright>
     <PackageProjectUrl>https://github.com/bellingcat/reddit-post-scraping-tool</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/bellingcat/reddit-post-scraping-tool</RepositoryUrl>
-    <AssemblyVersion>1.9.1.1</AssemblyVersion>
-    <FileVersion>1.9.1.1</FileVersion>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>1.9.1</Version>
+    <Version>2.0.0</Version>
     <PackageTags>reddit;scraper;reddit-scraper;osint</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
@@ -27,10 +27,11 @@
     <Product>$(AssemblyName) (Reddit Post Scraping Tool)</Product>
     <AssemblyName>RPST</AssemblyName>
     <Title>Reddit Post Scraping Tool.</Title>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="icon.ico" />
+    <Content Include="Resources\icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -74,6 +75,10 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Resources\icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
