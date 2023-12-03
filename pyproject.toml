@@ -7,27 +7,27 @@ packages = ["rpst"]
 
 [project]
 name = "reddit-post-scraping-tool"
-version = "1.9.1.1"
+version = "2.0.0.0"
 description = "Retrieve Reddit posts that contain the specified keyword from a specified subreddit."
 readme = "README.md"
 requires-python = ">=3.8"
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 keywords = ["reddit-crawler", "reddit-scraping", "reddit", "reddit-api"]
-authors = [{name = "Richard Mwewa", email = "rly0nheart@duck.com"}]
+authors = [{ name = "Richard Mwewa", email = "rly0nheart@duck.com" }]
 classifiers = [
-  "Development Status :: 5 - Production/Stable",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Visual Basic",
-  "Intended Audience :: End Users/Desktop",
-  "License :: OSI Approved :: MIT License",
-  "Operating System :: OS Independent",
-  "Natural Language :: English"
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Visual Basic",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Natural Language :: English"
 ]
 
 dependencies = [
     "rich",
-    "glyphoji",
-    "requests",
+    "aiohttp",
+    "rich-argparse"
 ]
 
 [project.urls]
@@ -36,4 +36,5 @@ documentation = "https://github.com/bellingcat/reddit-post-scraping-tool/wiki"
 repository = "https://github.com/bellingcat/reddit-post-scraping-tool.git"
 
 [project.scripts]
-rpst = "rpst.main:run"
+rpst = "rpst.scraper:run"
+reddit_post_scraping_tool = "rpst.scraper:run"
