@@ -2,7 +2,7 @@ import os
 
 __author__: str = "Richard Mwewa"
 __about_author__: str = "https://about/me/rly0nheart"
-__version__: str = "2.0.0.0"
+__version__: str = "2.0.1.0"
 
 __description__: str = f"""
 # RPST (Reddit Post Scraping Tool) {__version__}
