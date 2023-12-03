@@ -2,13 +2,13 @@
 
 ## Note
 
-> Use [Knew Karma](https://github.com/bellingcat/knewkarma) for more advanced and improved features.
+> Use [Knew Karma](https://pypi.org/project/knewkarma) for more advanced and improved features.
 
 # RPST (Reddit Post Scraping Tool)
 
 Retrieve **Reddit** posts that contain the specified **keyword** from a specified **subreddit**.
 
-[![Upload Python Package](https://github.com/bellingcat/reddit-post-scraping-tool/actions/workflows/python-publish.yml/badge.svg)](https://github.com/rly0nheart/reddit-post-scraping-tool/actions/workflows/python-publish.yml) [![CodeQL](https://github.com/bellingcat/reddit-post-scraping-tool/actions/workflows/codeql.yml/badge.svg)](https://github.com/rly0nheart/reddit-post-scraping-tool/actions/workflows/codeql.yml) ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=flat&logo=.net&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54)
+[![.Net](https://img.shields.io/badge/Visual%20Basic%20.NET-5C2D91?style=flat&logo=.net&logoColor=white)](https://github.com/search?q=repo%3Abellingcat%2Freddit-post-scraping-tool++language%3A%22Visual+Basic+.NET%22&type=code) [![Python](https://img.shields.io/badge/Python-3670A0?style=flat&logo=python&logoColor=ffdd54)](https://github.com/search?q=repo%3Abellingcat%2Freddit-post-scraping-tool++language%3APython&type=code) [![Docker](https://img.shields.io/badge/Dockefile-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://github.com/search?q=repo%3Abellingcat%2Freddit-post-scraping-tool++language%3ADockerfile&type=code) [![PyPI - Version](https://img.shields.io/pypi/v/reddit-post-scraping-tool?style=flat&logo=pypi&logoColor=ffdd54&label=PyPI&labelColor=3670A0&color=3670A0)](https://pypi.org/project/reddit-post-scraping-tool)  [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/_rly0nheart)
 
 # ✅ Features
 
@@ -24,12 +24,6 @@ Retrieve **Reddit** posts that contain the specified **keyword** from a specifie
 - [x] Saves results to JSON (*specifiy* `--json`).
 - [x] Saves results to CSV (*specify* `--csv`).
 - [x] Automatically checks for new updates, and notifies user if updates were found.
-
-# 📃 TODO
-
-## *GUI*
-
-- [ ] Make it installable with a setup.exe/setup.msi file.
 
 # 🖥️ Tested environments
 
