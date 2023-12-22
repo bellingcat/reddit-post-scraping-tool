@@ -1,8 +1,9 @@
-![rpst](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/b9ec50b2-d2cb-419f-b8f0-d170b0630875)
 
 ## Note
 
 > Use [Knew Karma](https://pypi.org/project/knewkarma) for more advanced and improved features.
+
+![rpst](https://github.com/bellingcat/reddit-post-scraping-tool/assets/74001397/b9ec50b2-d2cb-419f-b8f0-d170b0630875)
 
 # RPST (Reddit Post Scraping Tool)
 
